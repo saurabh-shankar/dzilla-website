@@ -1,0 +1,53 @@
+{
+  "brand": {
+    "name": "D.zilla",
+    "logo": { "dark": "assets/logo-dark.png", "light": "assets/logo-light.png", "note": "logo-dark.png on light backgrounds, logo-light.png on dark backgrounds. Header height 26px, footer 28px. Never render the wordmark as text." },
+    "tagline": "We build brands through media"
+  },
+  "contact": {
+    "email": "growatd.zilla@gmail.com",
+    "phonePrimary": "+91 77669 38518",
+    "phoneSecondary": "+91 90651 00482",
+    "politicalPrOverride": { "primary": "+91 90651 00482", "secondary": "+91 77669 38518" }
+  },
+  "landingSections": [
+    { "id": "top",       "name": "Hero",        "content": "Headline 'We build brands through media' + green dot. Left: empty video slot (awaiting client asset). Right: headline, sub, CTA." },
+    { "id": null,        "name": "Trusted by",  "content": "Client logo strip. Sits directly below the hero, above Work." },
+    { "id": "work",      "name": "Work",        "content": "Heading 'Work that earned its attention'. 10 tiles + Alchemy IVF marquee after tile 01. See work.json." },
+    { "id": "services",  "name": "What we do",  "content": "Dark section. Intro line + 6 service cards. See services.json." },
+    { "id": "pr",        "name": "Political PR","content": "Dedicated section for the political offer." },
+    { "id": "process",   "name": "Process",     "content": "4 steps: Define / Design / Build / Launch." },
+    { "id": "contact",   "name": "Contact",     "content": "'Let's build something worth noticing.' + email, phones, CTA." }
+  ],
+  "processSteps": [
+    { "n": "01", "title": "Define", "body": "Audience, goal and the one idea worth the budget." },
+    { "n": "02", "title": "Design", "body": "Look, script, storyboard and channel plan, signed off." },
+    { "n": "03", "title": "Build",  "body": "Shoot, CGI, edit and grade on one continuous timeline." },
+    { "n": "04", "title": "Launch", "body": "Cutdowns per platform, live monitoring, a report you can act on." }
+  ],
+  "whatWeDoIntro": "We bring strategy, creativity, production, and distribution together to build campaigns, create compelling content, and help brands make their mark.",
+  "contactHeadline": "Let's build something worth noticing.",
+  "contactSub": "Tell us the goal. We'll come back with the idea, the plan and the number.",
+  "clients": [
+    { "name": "Piramal", "logo": "assets/logos/piramal.png" },
+    { "name": "MARS Cosmetics", "logo": "assets/logos/mars-cosmetics.png" },
+    { "name": "YourStory", "logo": "assets/logos/yourstory.png" },
+    { "name": "Royal Enfield", "logo": "assets/logos/royal-enfield.png" },
+    { "name": "Election Commission of India", "logo": "assets/logos/eci.png" },
+    { "name": "Industries Dept, Bihar", "logo": "assets/logos/dept-industries-bihar.png" },
+    { "name": "Kaimur Forest Division", "logo": "assets/logos/kaimur-forest-division.png" },
+    { "name": "Bihar State Sports Authority", "logo": "assets/logos/bihar-state-sports-authority.png" }
+  ],
+  "routes": {
+    "/": "D.zilla.dc.html",
+    "/services/campaigns": "Campaigns.dc.html",
+    "/services/social": "Social.dc.html",
+    "/services/studio-films": "Studio-Films.dc.html",
+    "/services/cgi-ai": "CGI-AI.dc.html",
+    "/services/brand-ip": "Brand-IP.dc.html",
+    "/services/political-pr": "Political-PR.dc.html",
+    "/work/venus-capital-heights": "Case-Venus-Capital-Heights.dc.html",
+    "/work/alchemy-ivf": "Case-Alchemy-IVF.dc.html",
+    "/contact": "Contact.dc.html"
+  }
+}

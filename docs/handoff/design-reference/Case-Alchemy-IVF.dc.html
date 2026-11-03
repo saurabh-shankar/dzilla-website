@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  html, body { margin:0; padding:0; background:#F7F8F8; }
+  body { font-family:'Plus Jakarta Sans', Helvetica, sans-serif; -webkit-font-smoothing:antialiased; }
+  * { box-sizing:border-box; }
+  a { color:#0B0C0E; text-decoration:none; }
+  a:hover { color:#12854A; }
+  a:focus-visible { outline:2px solid #12854A; outline-offset:3px; }
+  ::selection { background:#12854A; color:#F7F8F8; }
+  @keyframes dz-rise { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+  @keyframes dz-marquee { from { transform:translate3d(-50%,0,0); } to { transform:translate3d(0,0,0); } }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; }
+  }
+</style>
+</helmet>
+
+<div style="background:#F7F8F8; color:#0B0C0E; overflow-x:hidden">
+
+  <header style="position:fixed; top:0; left:0; right:0; z-index:60">
+    <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px 16px; padding:14px clamp(14px,3.4vw,40px); background:linear-gradient(180deg, rgba(255,255,255,0.68), rgba(247,248,248,0.42)); backdrop-filter:blur(22px) saturate(180%); -webkit-backdrop-filter:blur(22px) saturate(180%); box-shadow:0 12px 32px rgba(11,12,14,0.06)">
+      <a href="D.zilla.dc.html" style="flex:none"><img src="assets/logo-dark.png" alt="D.zilla" style="display:block; height:26px; width:auto"></a>
+      <nav style="display:flex; align-items:center; gap:clamp(8px,1.4vw,22px); font-size:15px; font-weight:500; min-width:0">
+        <a href="D.zilla.dc.html#work" style="color:#0B0C0E; padding:10px 4px" style-hover="color:#12854A">All work</a>
+        <a href="D.zilla.dc.html#contact" style="font-size:15px; font-weight:600; padding:11px 24px; background:#0B0C0E; color:#F7F8F8; white-space:nowrap; border-radius:999px" style-hover="background:#12854A">Contact Us</a>
+      </nav>
+    </div>
+  </header>
+
+  <section style="padding:clamp(100px,13vh,164px) clamp(16px,3.4vw,40px) clamp(26px,3.2vw,44px)">
+    <div style="max-width:1100px; animation:dz-rise 0.9s cubic-bezier(0.22,1,0.36,1) both">
+      <div style="font-size:12px; font-weight:600; letter-spacing:0.14em; color:#12854A; margin-bottom:18px">BRAND IP</div>
+      <h1 style="margin:0 0 22px; font-weight:700; font-size:clamp(38px,6.4vw,104px); line-height:0.94; letter-spacing:-0.05em; text-wrap:balance">ivf.for.all</h1>
+      <p style="margin:0; max-width:680px; font-size:clamp(17px,1.5vw,21px); line-height:1.6; color:#4B5157; text-wrap:pretty">An owned content property built for Alchemy IVF Nepal — not a campaign that ends, but a format that returns every week and compounds.</p>
+    </div>
+  </section>
+
+  <section style="padding:0 clamp(16px,3.4vw,40px) clamp(32px,4vw,64px)">
+    <div style="display:flex; flex-wrap:wrap; gap:clamp(20px,3vw,56px); border-top:1px solid #DDE0E3; border-bottom:1px solid #DDE0E3; padding:clamp(24px,3vw,40px) 0">
+      <div>
+        <div style="font-size:clamp(40px,5.4vw,78px); font-weight:700; letter-spacing:-0.05em; line-height:1">00M<span style="color:#12854A">+</span></div>
+        <p style="margin:8px 0 0; font-size:16px; color:#5A6066">Total views</p>
+      </div>
+      <div>
+        <div style="font-size:clamp(40px,5.4vw,78px); font-weight:700; letter-spacing:-0.05em; line-height:1">00<span style="color:#12854A">+</span></div>
+        <p style="margin:8px 0 0; font-size:16px; color:#5A6066">Reels published</p>
+      </div>
+      <div>
+        <div style="font-size:clamp(40px,5.4vw,78px); font-weight:700; letter-spacing:-0.05em; line-height:1">00</div>
+        <p style="margin:8px 0 0; font-size:16px; color:#5A6066">Months running</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:0 0 clamp(48px,6vw,96px)">
+    <div data-marquee="1" style="position:relative; overflow:hidden; padding:4px 0">
+      <div data-track="1" style="display:flex; gap:clamp(12px,1.4vw,22px); width:max-content; padding:0 clamp(12px,1.4vw,22px); animation:dz-marquee 52s linear infinite">
+        <sc-for list="{{ rail }}" as="reel" hint-placeholder-count="8">
+          <div style="position:relative; flex:none; width:clamp(150px,16vw,268px); aspect-ratio:9/16; overflow:hidden; border-radius:18px; background:#0B0C0E">
+            <iframe src="{{ reel.src }}" title="ivf.for.all reel" allow="autoplay; fullscreen" allowfullscreen loading="lazy" style="position:absolute; top:50%; left:50%; width:100%; height:100%; transform:translate(-50%,-50%) scale(1.06); transform-origin:center; border:0; display:block"></iframe>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    <p style="margin:clamp(16px,2vw,24px) clamp(16px,3.4vw,40px) 0; font-size:13px; letter-spacing:0.12em; color:#9BA1A6">THE SERIES — SCROLLING</p>
+  </section>
+
+  <section style="border-top:1px solid #DDE0E3; padding:clamp(48px,6vw,96px) clamp(16px,3.4vw,40px) clamp(40px,5vw,72px)">
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%,320px), 1fr)); gap:clamp(28px,4vw,80px); max-width:1400px">
+      <div>
+        <h2 style="margin:0 0 18px; font-size:clamp(20px,2.4vw,34px); font-weight:500; letter-spacing:-0.035em">The client</h2>
+        <p style="margin:0; font-size:17px; line-height:1.7; color:#4B5157; text-wrap:pretty">Alchemy IVF Nepal is a fertility clinic in a category people research quietly. Trust is earned before a call is ever made.</p>
+      </div>
+      <div>
+        <h2 style="margin:0 0 18px; font-size:clamp(20px,2.4vw,34px); font-weight:500; letter-spacing:-0.035em">The problem</h2>
+        <p style="margin:0; font-size:17px; line-height:1.7; color:#4B5157; text-wrap:pretty">Advertising doesn't move a decision this personal. The audience wanted answers, not offers — and nobody in the market was giving them plainly.</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="border-top:1px solid #DDE0E3; padding:clamp(48px,6vw,96px) clamp(16px,3.4vw,40px) clamp(40px,5vw,72px)">
+    <div style="display:flex; align-items:baseline; gap:20px; margin-bottom:clamp(24px,3vw,40px)">
+      <span style="font-size:12px; font-weight:600; color:#12854A; flex:none">01</span>
+      <h2 style="margin:0; font-size:clamp(26px,3.4vw,54px); font-weight:500; letter-spacing:-0.04em; text-wrap:balance">The format</h2>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%,320px), 1fr)); gap:clamp(28px,4vw,80px); max-width:1400px">
+      <div>
+        <div style="font-size:12px; font-weight:600; letter-spacing:0.14em; color:#6B7176; margin-bottom:14px">WHAT WE BUILT</div>
+        <p style="margin:0 0 16px; font-size:17px; line-height:1.7; color:#4B5157; text-wrap:pretty">ivf.for.all — one question answered straight, every episode, by the people who actually treat it. A fixed shape, a fixed voice, a name the audience can follow.</p>
+        <p style="margin:0 0 20px; font-size:17px; line-height:1.7; color:#4B5157; text-wrap:pretty">Because the format is owned, every episode makes the next one cheaper to produce and easier to find.</p>
+        <div style="display:flex; flex-wrap:wrap; gap:8px">
+          <span style="font-size:14px; padding:8px 16px; border:1px solid rgba(11,12,14,0.16); border-radius:999px; color:#4B5157">Format design</span>
+          <span style="font-size:14px; padding:8px 16px; border:1px solid rgba(11,12,14,0.16); border-radius:999px; color:#4B5157">Scripting</span>
+          <span style="font-size:14px; padding:8px 16px; border:1px solid rgba(11,12,14,0.16); border-radius:999px; color:#4B5157">Batch production</span>
+          <span style="font-size:14px; padding:8px 16px; border:1px solid rgba(11,12,14,0.16); border-radius:999px; color:#4B5157">Publishing</span>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:12px; font-weight:600; letter-spacing:0.14em; color:#6B7176; margin-bottom:14px">HOW IT HELPED</div>
+        <p style="margin:0 0 16px; font-size:17px; line-height:1.7; color:#4B5157; text-wrap:pretty">The clinic stopped competing on ad spend and started owning the answer to the question everyone was already searching.</p>
+        <p style="margin:0; font-size:17px; line-height:1.7; color:#4B5157; text-wrap:pretty">Episodes keep pulling views months after publishing — the library works while the brand sleeps.</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="border-top:1px solid #DDE0E3; padding:clamp(48px,6vw,96px) clamp(16px,3.4vw,40px) clamp(40px,5vw,72px)">
+    <div style="display:flex; align-items:baseline; gap:20px; margin-bottom:clamp(24px,3vw,40px)">
+      <span style="font-size:12px; font-weight:600; color:#12854A; flex:none">02</span>
+      <h2 style="margin:0; font-size:clamp(26px,3.4vw,54px); font-weight:500; letter-spacing:-0.04em; text-wrap:balance">The work</h2>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%,200px), 1fr)); gap:clamp(14px,1.8vw,26px)">
+      <sc-for list="{{ grid }}" as="reel" hint-placeholder-count="6">
+        <div style="display:flex; flex-direction:column">
+          <div style="position:relative; aspect-ratio:9/16; overflow:hidden; border-radius:22px; background:#0B0C0E">
+            <iframe src="{{ reel.src }}" title="ivf.for.all reel" allow="autoplay; fullscreen" allowfullscreen loading="lazy" style="position:absolute; top:50%; left:50%; width:100%; height:100%; transform:translate(-50%,-50%) scale(1.06); transform-origin:center; border:0; display:block"></iframe>
+          </div>
+          <div style="padding:14px 4px 0; font-size:15px; font-weight:600; color:#0B0C0E">{{ reel.views }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section style="border-top:1px solid #DDE0E3; padding:clamp(48px,6vw,96px) clamp(16px,3.4vw,40px)">
+    <div style="max-width:820px">
+      <h2 style="margin:0 0 20px; font-size:clamp(24px,3.2vw,48px); font-weight:500; letter-spacing:-0.04em; text-wrap:balance">Why it compounds</h2>
+      <p style="margin:0 0 16px; font-size:17px; line-height:1.7; color:#4B5157; text-wrap:pretty">A campaign spends, runs and ends. An IP is an asset — the name, the format and the library stay with the brand, and every season costs less to make than the last.</p>
+      <p style="margin:0; font-size:clamp(19px,2vw,26px); line-height:1.5; letter-spacing:-0.02em; font-weight:500; text-wrap:pretty">We didn't run ads for a clinic. We built something it owns.</p>
+    </div>
+  </section>
+
+  <section style="border-top:1px solid #DDE0E3; padding:clamp(48px,6vw,96px) clamp(16px,3.4vw,40px)">
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; gap:24px; flex-wrap:wrap">
+      <div>
+        <p style="margin:0 0 18px; font-size:clamp(24px,3.2vw,48px); font-weight:500; letter-spacing:-0.04em; max-width:560px; text-wrap:pretty">Want a property your brand actually owns?</p>
+        <a href="Brand-IP.dc.html" style="display:inline-block; font-size:15px; font-weight:600; padding:13px 28px; background:#0B0C0E; color:#F7F8F8; border-radius:999px" style-hover="background:#12854A">Build an owned property</a>
+      </div>
+      <a href="D.zilla.dc.html#work" style="font-size:15px; font-weight:600; color:#6B7176" style-hover="color:#12854A">← Back to all work</a>
+    </div>
+  </section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  reels() {
+    // Replace these ids with the real Drive file ids, one per reel.
+    return [
+      { id: "19Cc91a52PDA_trEQeeQA9J-sFkkJGifl", views: "— views" },
+      { id: "1Gi_xvY4aPn0Rl1rAiPuGj6BrDoflbVHH", views: "— views" },
+      { id: "1fZlJvtwApHNSyQS-9FpDpRJPMJaZK9pd", views: "— views" },
+      { id: "1c6KzqcFqvLOaGb6MP5ckaSK1hbvXaMIK", views: "— views" },
+      { id: "1WleWnG9BBa6v6p6B8j_oaETKpj2ad3OD", views: "— views" },
+      { id: "1biNKSX80pc-unVzL39v2BXQ-5rTuKO_-", views: "— views" },
+      { id: "1jNQX7aSTzd-r35zRlq9EUM0_p2MG6jQB", views: "— views" },
+      { id: "1foxWo2r67UmgTNzTr7jZYtP-488AVoWK", views: "— views" },
+      { id: "1LphoGJTGA41P2KwHkmI6TLTAeKdDJ_D8", views: "— views" },
+      { id: "1Jz8vfxoOeMwqVdlVDvQ7VwQfdU2H9RFO", views: "— views" },
+      { id: "1deukUys15sYOkijKGtc2Oce96pJQnuSC", views: "— views" },
+      { id: "1fGKWQqMX06Cur0RW0MHeAo6hytBSEa68", views: "— views" },
+      { id: "14NQvSh9Q2SqOWd_tbj_A9jGFB5nWejRU", views: "— views" },
+      { id: "1Xdtz8WUjxsb6l9pqkYhX5GFv147haFnf", views: "— views" },
+      { id: "13ep-LyDsXfK5lGgpih3aeaI34Je9MN8U", views: "— views" }
+    ];
+  }
+
+  componentDidMount() {
+    const wrap = document.querySelector('[data-marquee]');
+    const track = wrap && wrap.querySelector('[data-track]');
+    if (!track) return;
+    wrap.addEventListener('mouseenter', () => { track.style.animationPlayState = 'paused'; });
+    wrap.addEventListener('mouseleave', () => { track.style.animationPlayState = 'running'; });
+  }
+
+  renderVals() {
+    const src = r => r.id
+      ? 'https://drive.google.com/file/d/' + r.id + '/preview'
+      : 'about:blank';
+    const list = this.reels().map(r => ({ src: src(r), views: r.views }));
+    return {
+      rail: list.concat(list),
+      grid: list
+    };
+  }
+}
+</script>
+</body>
+</html>

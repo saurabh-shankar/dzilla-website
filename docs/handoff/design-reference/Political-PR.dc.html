@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  html, body { margin:0; padding:0; background:#F7F8F8; }
+  body { font-family:'Plus Jakarta Sans', Helvetica, sans-serif; -webkit-font-smoothing:antialiased; }
+  * { box-sizing:border-box; }
+  a { color:#0B0C0E; text-decoration:none; }
+  a:hover { color:#12854A; }
+  a:focus-visible { outline:2px solid #12854A; outline-offset:3px; }
+  ::selection { background:#12854A; color:#F7F8F8; }
+  @keyframes dz-rise { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; }
+  }
+</style>
+</helmet>
+
+<div style="background:#F7F8F8; color:#0B0C0E; overflow-x:hidden">
+
+  <header style="position:fixed; top:0; left:0; right:0; z-index:60">
+    <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px 16px; padding:14px clamp(14px,3.4vw,40px); background:linear-gradient(180deg, rgba(255,255,255,0.68), rgba(247,248,248,0.42)); backdrop-filter:blur(22px) saturate(180%); -webkit-backdrop-filter:blur(22px) saturate(180%); box-shadow:0 12px 32px rgba(11,12,14,0.06)">
+      <a href="D.zilla.dc.html" style="font-family:'Instrument Sans','Plus Jakarta Sans',Helvetica,sans-serif; font-weight:600; font-size:21px; letter-spacing:-0.045em; line-height:1; flex:none; color:#0B0C0E"><img src="assets/logo-dark.png" alt="D.zilla" style="display:block; height:26px; width:auto"></a>
+      <nav style="display:flex; align-items:center; gap:clamp(6px,1.4vw,22px); font-size:15px; font-weight:500; min-width:0">
+        <a href="D.zilla.dc.html#work" style="color:#0B0C0E; padding:10px 4px" style-hover="color:#12854A">Work</a>
+        <a href="D.zilla.dc.html#services" style="color:#0B0C0E; padding:10px 4px" style-hover="color:#12854A">All services</a>
+        <a href="Contact.dc.html" style="font-size:15px; font-weight:600; padding:11px 24px; background:#0B0C0E; color:#F7F8F8; white-space:nowrap; border-radius:999px" style-hover="background:#12854A">Contact Us</a>
+      </nav>
+    </div>
+  </header>
+
+  <section style="padding:clamp(96px,12vh,132px) clamp(16px,3.4vw,40px) clamp(40px,5vw,72px)">
+    <div style="display:flex; align-items:center; gap:10px; font-size:12px; font-weight:600; letter-spacing:0.16em; color:#6B7176; margin-bottom:clamp(20px,2.6vw,32px)">
+      <a href="D.zilla.dc.html" style="color:#6B7176" style-hover="color:#12854A">HOME</a>
+      <span>/</span>
+      <a href="D.zilla.dc.html#services" style="color:#6B7176" style-hover="color:#12854A">SERVICES</a>
+      <span>/</span>
+      <span style="color:#12854A">POLITICAL PR</span>
+    </div>
+
+    <div style="display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:clamp(22px,3vw,48px)">
+      <h1 style="margin:0; font-weight:700; font-size:clamp(38px,7vw,116px); line-height:0.92; letter-spacing:-0.05em; text-wrap:balance; animation:dz-rise 0.8s cubic-bezier(0.22,1,0.36,1) both">Political PR<span style="display:inline-block; width:0.16em; height:0.16em; border-radius:50%; background:#12854A; vertical-align:baseline; margin-left:0.05em"></span></h1>
+      <p style="margin:0; max-width:480px; font-size:17px; line-height:1.65; color:#4B5157; text-wrap:pretty; animation:dz-rise 0.8s cubic-bezier(0.22,1,0.36,1) 0.1s both">A full campaign desk for candidates, parties and government departments — narrative, content, ground production and daily publishing, run by one team.</p>
+    </div>
+
+    <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:clamp(26px,3.2vw,44px)">
+      <a href="Campaigns.dc.html" style="font-size:14px; font-weight:500; padding:9px 18px; border-radius:999px; border:1px solid rgba(11,12,14,0.18); color:#4B5157; white-space:nowrap" style-hover="border:1px solid #0B0C0E;color:#0B0C0E">Campaigns</a>
+      <a href="Social.dc.html" style="font-size:14px; font-weight:500; padding:9px 18px; border-radius:999px; border:1px solid rgba(11,12,14,0.18); color:#4B5157; white-space:nowrap" style-hover="border:1px solid #0B0C0E;color:#0B0C0E">Social</a>
+      <a href="Studio-Films.dc.html" style="font-size:14px; font-weight:500; padding:9px 18px; border-radius:999px; border:1px solid rgba(11,12,14,0.18); color:#4B5157; white-space:nowrap" style-hover="border:1px solid #0B0C0E;color:#0B0C0E">Studio / Films</a>
+      <a href="CGI-AI.dc.html" style="font-size:14px; font-weight:500; padding:9px 18px; border-radius:999px; border:1px solid rgba(11,12,14,0.18); color:#4B5157; white-space:nowrap" style-hover="border:1px solid #0B0C0E;color:#0B0C0E">CGI + AI</a>
+      <a href="Brand-IP.dc.html" style="font-size:14px; font-weight:500; padding:9px 18px; border-radius:999px; border:1px solid rgba(11,12,14,0.18); color:#4B5157; white-space:nowrap" style-hover="border:1px solid #0B0C0E;color:#0B0C0E">Brand IP</a>
+      <span style="font-size:14px; font-weight:600; padding:9px 18px; border-radius:999px; background:#0B0C0E; color:#F7F8F8; white-space:nowrap">Political PR</span>
+    </div>
+  </section>
+
+  <section style="padding:0 clamp(16px,3.4vw,40px) clamp(48px,6vw,88px)">
+    <p style="margin:0; max-width:980px; font-size:clamp(22px,2.8vw,42px); font-weight:500; line-height:1.2; letter-spacing:-0.04em; text-wrap:pretty">Campaigns are won on speed and discipline. We run a desk that understands the booth and the algorithm, and can publish inside the hour.</p>
+  </section>
+
+  <section style="background:#050506; color:#F7F8F8; padding:clamp(56px,7vw,112px) clamp(16px,3.4vw,40px)">
+    <div style="display:flex; align-items:baseline; justify-content:space-between; gap:24px; flex-wrap:wrap; margin-bottom:clamp(28px,3.4vw,48px)">
+      <h2 style="margin:0; font-size:13px; font-weight:600; letter-spacing:0.16em; color:#4ADE80">WHAT WE DO</h2>
+      <span style="font-size:13px; color:rgba(247,248,248,0.7)">Take the whole desk, or only the parts you need</span>
+    </div>
+
+    <div style="display:flex; flex-direction:column; border-top:1px solid rgba(255,255,255,0.14)">
+      <div style="padding:clamp(20px,2.4vw,32px) 0; border-bottom:1px solid rgba(255,255,255,0.14)">
+        <div style="display:flex; align-items:baseline; gap:clamp(14px,2vw,32px)">
+          <span style="font-size:12px; font-weight:600; color:rgba(247,248,248,0.7); flex:none">01</span>
+          <span style="font-size:clamp(22px,3.2vw,44px); font-weight:500; letter-spacing:-0.04em; line-height:1.05">Campaign PR management</span>
+        </div>
+        <p style="margin:12px 0 0 clamp(28px,3.4vw,62px); max-width:660px; font-size:16px; line-height:1.65; color:rgba(247,248,248,0.76); text-wrap:pretty">Full-cycle campaign PR for Lok Sabha, Assembly and by-elections — message, content calendar, publishing rhythm and ground coordination, run as a two to three month sprint.</p>
+      </div>
+
+      <div style="padding:clamp(20px,2.4vw,32px) 0; border-bottom:1px solid rgba(255,255,255,0.14)">
+        <div style="display:flex; align-items:baseline; gap:clamp(14px,2vw,32px)">
+          <span style="font-size:12px; font-weight:600; color:rgba(247,248,248,0.7); flex:none">02</span>
+          <span style="font-size:clamp(22px,3.2vw,44px); font-weight:500; letter-spacing:-0.04em; line-height:1.05">Narrative films &amp; documentaries</span>
+        </div>
+        <p style="margin:12px 0 0 clamp(28px,3.4vw,62px); max-width:660px; font-size:16px; line-height:1.65; color:rgba(247,248,248,0.76); text-wrap:pretty">Candidate documentaries, work-record films and curated videos that set the narrative early instead of reacting to someone else's.</p>
+      </div>
+
+      <div style="padding:clamp(20px,2.4vw,32px) 0; border-bottom:1px solid rgba(255,255,255,0.14)">
+        <div style="display:flex; align-items:baseline; gap:clamp(14px,2vw,32px)">
+          <span style="font-size:12px; font-weight:600; color:rgba(247,248,248,0.7); flex:none">03</span>
+          <span style="font-size:clamp(22px,3.2vw,44px); font-weight:500; letter-spacing:-0.04em; line-height:1.05">Page growth &amp; social management</span>
+        </div>
+        <p style="margin:12px 0 0 clamp(28px,3.4vw,62px); max-width:660px; font-size:16px; line-height:1.65; color:rgba(247,248,248,0.76); text-wrap:pretty">Daily posting, campaign creatives and community handling across Facebook, Instagram, YouTube and WhatsApp channels — handles we manage have grown several times over inside a single campaign.</p>
+      </div>
+
+      <div style="padding:clamp(20px,2.4vw,32px) 0; border-bottom:1px solid rgba(255,255,255,0.14)">
+        <div style="display:flex; align-items:baseline; gap:clamp(14px,2vw,32px)">
+          <span style="font-size:12px; font-weight:600; color:rgba(247,248,248,0.7); flex:none">04</span>
+          <span style="font-size:clamp(22px,3.2vw,44px); font-weight:500; letter-spacing:-0.04em; line-height:1.05">Ground coverage &amp; rally production</span>
+        </div>
+        <p style="margin:12px 0 0 clamp(28px,3.4vw,62px); max-width:660px; font-size:16px; line-height:1.65; color:rgba(247,248,248,0.76); text-wrap:pretty">A crew that travels with the candidate — rallies, padyatras, door-to-door and nukkad sabhas shot, cut and published the same day.</p>
+      </div>
+
+      <div style="padding:clamp(20px,2.4vw,32px) 0; border-bottom:1px solid rgba(255,255,255,0.14)">
+        <div style="display:flex; align-items:baseline; gap:clamp(14px,2vw,32px)">
+          <span style="font-size:12px; font-weight:600; color:rgba(247,248,248,0.7); flex:none">05</span>
+          <span style="font-size:clamp(22px,3.2vw,44px); font-weight:500; letter-spacing:-0.04em; line-height:1.05">Rapid-response desk</span>
+        </div>
+        <p style="margin:12px 0 0 clamp(28px,3.4vw,62px); max-width:660px; font-size:16px; line-height:1.65; color:rgba(247,248,248,0.76); text-wrap:pretty">Monitoring, drafting, approval and publishing compressed into the hour through campaign weeks, with a daily read for the candidate and core team.</p>
+      </div>
+
+      <div style="padding:clamp(20px,2.4vw,32px) 0; border-bottom:1px solid rgba(255,255,255,0.14)">
+        <div style="display:flex; align-items:baseline; gap:clamp(14px,2vw,32px)">
+          <span style="font-size:12px; font-weight:600; color:rgba(247,248,248,0.7); flex:none">06</span>
+          <span style="font-size:clamp(22px,3.2vw,44px); font-weight:500; letter-spacing:-0.04em; line-height:1.05">Government &amp; institutional communication</span>
+        </div>
+        <p style="margin:12px 0 0 clamp(28px,3.4vw,62px); max-width:660px; font-size:16px; line-height:1.65; color:rgba(247,248,248,0.76); text-wrap:pretty">Public-awareness films, scheme documentaries, voter-engagement content and tourism promotion for departments, authorities and commissions.</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:clamp(56px,7vw,104px) clamp(16px,3.4vw,40px)">
+    <h2 style="margin:0 0 clamp(26px,3.2vw,44px); font-size:13px; font-weight:600; letter-spacing:0.16em; color:#12854A">TRACK RECORD</h2>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr)); gap:clamp(24px,3vw,48px); border-top:1px solid #DDE0E3; padding-top:clamp(26px,3vw,40px)">
+      <div>
+        <div style="font-size:clamp(34px,4.2vw,60px); font-weight:700; letter-spacing:-0.05em; line-height:1">30,091</div>
+        <p style="margin:10px 0 0; font-size:16px; line-height:1.6; color:#5A6066; text-wrap:pretty">Victory margin on a Lok Sabha campaign we ran PR for</p>
+      </div>
+      <div>
+        <div style="font-size:clamp(34px,4.2vw,60px); font-weight:700; letter-spacing:-0.05em; line-height:1">25K<span style="color:#12854A"> → </span>185K</div>
+        <p style="margin:10px 0 0; font-size:16px; line-height:1.6; color:#5A6066; text-wrap:pretty">Follower growth on a managed leader page in one campaign cycle</p>
+      </div>
+      <div>
+        <div style="font-size:clamp(34px,4.2vw,60px); font-weight:700; letter-spacing:-0.05em; line-height:1">3 <span style="font-size:0.5em; font-weight:600">states</span></div>
+        <p style="margin:10px 0 0; font-size:16px; line-height:1.6; color:#5A6066; text-wrap:pretty">Bihar, Rajasthan and Haryana — campaigns run on the ground</p>
+      </div>
+      <div>
+        <div style="font-size:clamp(34px,4.2vw,60px); font-weight:700; letter-spacing:-0.05em; line-height:1">&lt;60<span style="font-size:0.5em; font-weight:600">min</span></div>
+        <p style="margin:10px 0 0; font-size:16px; line-height:1.6; color:#5A6066; text-wrap:pretty">Response time from brief to published during campaign weeks</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:0 clamp(16px,3.4vw,40px) clamp(56px,7vw,104px)">
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr)); gap:clamp(28px,4vw,72px); align-items:start">
+      <div>
+        <h2 style="margin:0 0 20px; font-size:13px; font-weight:600; letter-spacing:0.16em; color:#12854A">WHO WE WORK WITH</h2>
+        <div style="display:flex; flex-direction:column; border-top:1px solid #DDE0E3">
+          <div style="padding:15px 0; border-bottom:1px solid #DDE0E3; font-size:17px">Sitting MPs and MLAs</div>
+          <div style="padding:15px 0; border-bottom:1px solid #DDE0E3; font-size:17px">First-time candidates and by-election contests</div>
+          <div style="padding:15px 0; border-bottom:1px solid #DDE0E3; font-size:17px">Party units and constituency teams</div>
+          <div style="padding:15px 0; border-bottom:1px solid #DDE0E3; font-size:17px">Government departments and state authorities</div>
+          <div style="padding:15px 0; border-bottom:1px solid #DDE0E3; font-size:17px">Election commissions and public missions</div>
+        </div>
+      </div>
+      <div>
+        <h2 style="margin:0 0 20px; font-size:13px; font-weight:600; letter-spacing:0.16em; color:#12854A">HOW AN ENGAGEMENT STARTS</h2>
+        <div style="display:flex; flex-direction:column; gap:clamp(20px,2.4vw,30px); border-top:1px solid #DDE0E3; padding-top:clamp(22px,2.6vw,32px)">
+          <div>
+            <div style="font-size:12px; font-weight:600; color:#12854A; margin-bottom:8px">01</div>
+            <h3 style="margin:0 0 8px; font-size:19px; font-weight:600; letter-spacing:-0.02em">Tell us the seat and the timeline</h3>
+            <p style="margin:0; font-size:16px; line-height:1.65; color:#5A6066; text-wrap:pretty">Constituency, contest, how long you have and what already exists.</p>
+          </div>
+          <div>
+            <div style="font-size:12px; font-weight:600; color:#12854A; margin-bottom:8px">02</div>
+            <h3 style="margin:0 0 8px; font-size:19px; font-weight:600; letter-spacing:-0.02em">We come back with the plan and the number</h3>
+            <p style="margin:0; font-size:16px; line-height:1.65; color:#5A6066; text-wrap:pretty">Scope, crew size, publishing cadence and cost — no templates.</p>
+          </div>
+          <div>
+            <div style="font-size:12px; font-weight:600; color:#12854A; margin-bottom:8px">03</div>
+            <h3 style="margin:0 0 8px; font-size:19px; font-weight:600; letter-spacing:-0.02em">The desk goes live</h3>
+            <p style="margin:0; font-size:16px; line-height:1.65; color:#5A6066; text-wrap:pretty">One point of contact, daily output, daily reporting until the result.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="border-top:1px solid #DDE0E3; padding:clamp(56px,8vw,120px) clamp(16px,3.4vw,40px)">
+    <h2 style="margin:0; font-weight:700; font-size:clamp(32px,6.4vw,104px); line-height:0.94; letter-spacing:-0.05em; max-width:1000px; text-wrap:balance">Want this desk on your campaign<span style="display:inline-block; width:0.16em; height:0.16em; border-radius:50%; background:#12854A; vertical-align:baseline; margin-left:0.05em"></span></h2>
+    <p style="margin:clamp(20px,2.4vw,28px) 0 0; max-width:520px; font-size:17px; line-height:1.65; color:#4B5157; text-wrap:pretty">Send us the seat, the timeline and what you need covered. We reply with a plan you can act on.</p>
+    <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:clamp(24px,3vw,40px)">
+      <a href="Contact.dc.html" style="font-size:15px; font-weight:600; padding:14px 30px; background:#0B0C0E; color:#F7F8F8; border-radius:999px" style-hover="background:#12854A">Send us a message</a>
+      <a href="tel:+919065100482" style="font-size:15px; font-weight:600; padding:14px 30px; border:1px solid rgba(11,12,14,0.22); color:#0B0C0E; border-radius:999px" style-hover="border:1px solid #12854A;color:#12854A">+91 90651 00482</a>
+      <a href="D.zilla.dc.html#services" style="font-size:15px; font-weight:600; padding:14px 30px; border:1px solid rgba(11,12,14,0.22); color:#0B0C0E; border-radius:999px" style-hover="border:1px solid #12854A;color:#12854A">Back to services</a>
+    </div>
+  </section>
+
+  <footer style="background:#050506; color:#F7F8F8; padding:clamp(44px,5.4vw,80px) clamp(16px,3.4vw,40px) 28px">
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr)); gap:clamp(28px,3.4vw,48px)">
+      <div>
+        <div style="font-family:'Instrument Sans','Plus Jakarta Sans',Helvetica,sans-serif; font-weight:600; font-size:21px; letter-spacing:-0.045em; margin-bottom:14px"><img src="assets/logo-light.png" alt="D.zilla" style="display:block; height:28px; width:auto"></div>
+        <p style="margin:0 0 18px; max-width:260px; font-size:15px; line-height:1.65; color:rgba(247,248,248,0.7); text-wrap:pretty">Campaigns, content and films for brands and leaders who want to be remembered.</p>
+        <a href="mailto:growatd.zilla@gmail.com" style="font-size:15px; font-weight:600; color:#F7F8F8" style-hover="color:#4ADE80">growatd.zilla@gmail.com</a>
+        <div style="display:flex; flex-direction:column; gap:6px; margin-top:12px">
+          <a href="tel:+919065100482" style="font-size:15px; color:rgba(247,248,248,0.78)" style-hover="color:#4ADE80">+91 90651 00482</a>
+          <a href="tel:+917766938518" style="font-size:15px; color:rgba(247,248,248,0.78)" style-hover="color:#4ADE80">+91 77669 38518</a>
+        </div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:10px">
+        <div style="font-size:12px; font-weight:600; letter-spacing:0.14em; color:rgba(247,248,248,0.6); margin-bottom:6px">COMPANY</div>
+        <a href="D.zilla.dc.html" style="font-size:15px; color:rgba(247,248,248,0.78)" style-hover="color:#4ADE80">Home</a>
+        <a href="D.zilla.dc.html#work" style="font-size:15px; color:rgba(247,248,248,0.78)" style-hover="color:#4ADE80">Work</a>
+        <a href="D.zilla.dc.html#process" style="font-size:15px; color:rgba(247,248,248,0.78)" style-hover="color:#4ADE80">Process</a>
+        <a href="Contact.dc.html" style="font-size:15px; color:rgba(247,248,248,0.78)" style-hover="color:#4ADE80">Contact</a>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:10px">
+        <div style="font-size:12px; font-weight:600; letter-spacing:0.14em; color:rgba(247,248,248,0.6); margin-bottom:6px">SERVICES</div>
+        <a href="Campaigns.dc.html" style="font-size:15px; color:rgba(247,248,248,0.78)" style-hover="color:#4ADE80">Campaigns</a>
+        <a href="Social.dc.html" style="font-size:15px; color:rgba(247,248,248,0.78)" style-hover="color:#4ADE80">Social</a>
+        <a href="Studio-Films.dc.html" style="font-size:15px; color:rgba(247,248,248,0.78)" style-hover="color:#4ADE80">Studio / Films</a>
+        <a href="CGI-AI.dc.html" style="font-size:15px; color:rgba(247,248,248,0.78)" style-hover="color:#4ADE80">CGI + AI</a>
+        <a href="Brand-IP.dc.html" style="font-size:15px; color:rgba(247,248,248,0.78)" style-hover="color:#4ADE80">Brand IP</a>
+        <a href="Political-PR.dc.html" style="font-size:15px; color:rgba(247,248,248,0.78)" style-hover="color:#4ADE80">Political PR</a>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:10px">
+        <div style="font-size:12px; font-weight:600; letter-spacing:0.14em; color:rgba(247,248,248,0.6); margin-bottom:6px">SOCIAL</div>
+        <a href="Contact.dc.html" style="font-size:15px; color:rgba(247,248,248,0.78)" style-hover="color:#4ADE80">Instagram</a>
+        <a href="Contact.dc.html" style="font-size:15px; color:rgba(247,248,248,0.78)" style-hover="color:#4ADE80">LinkedIn</a>
+        <a href="Contact.dc.html" style="font-size:15px; color:rgba(247,248,248,0.78)" style-hover="color:#4ADE80">YouTube</a>
+        <a href="Contact.dc.html" style="font-size:15px; color:rgba(247,248,248,0.78)" style-hover="color:#4ADE80">Behance</a>
+      </div>
+    </div>
+    <div style="margin-top:clamp(40px,5vw,72px); border-top:1px solid rgba(255,255,255,0.14); padding-top:22px; display:flex; flex-wrap:wrap; gap:20px; justify-content:space-between; font-size:14px; color:rgba(247,248,248,0.7)">
+      <div>© 2026 D.zilla. All rights reserved.</div>
+      <div style="display:flex; gap:26px">
+        <a href="Contact.dc.html" style="color:rgba(247,248,248,0.7)" style-hover="color:#4ADE80">Terms of service</a>
+        <a href="Contact.dc.html" style="color:rgba(247,248,248,0.7)" style-hover="color:#4ADE80">Privacy policy</a>
+      </div>
+    </div>
+  </footer>
+</div>
+</x-dc>
+</body>
+</html>

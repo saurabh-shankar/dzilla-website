@@ -1,0 +1,52 @@
+{
+  "venus-capital-heights": {
+    "title": "Venus Capital Heights",
+    "tag": "STUDIO / FILMS",
+    "media": {
+      "hero": { "driveId": "1dZh9Z6dFU-u7ZwN5YwiqglkKAXQNNcMW", "aspect": "16/9", "note": "min-height min(76svh, 820px)" },
+      "brandFilm": { "driveId": "1RPsU58M0Jk5lMytnk-yAss89YpURWmlT", "aspect": "16/9" },
+      "experienceCentreReels": [
+        "1pS9KCrZvRoIUS4gzwlmIu5KHfD8ic_20",
+        "15bz-dEd09sDtmPhxEXg1emM9CCZY1Tbi",
+        "10FJfNgasMkzMeCzP_mjNxYbSUhRFbGb1"
+      ],
+      "eventFilm": { "driveId": "1p1fUg45Vc_fGpXhwsls1XCUgmnJ8WnS6", "aspect": "16/9" },
+      "redCarpetKarnivalReels": [
+        "1BZmV_ktp3tkocawV-nOYv1gaFRh9wbAw",
+        "1b0xCyUNW8xKDKt-MCWI42LyjWANR433r",
+        "1-92b2ji1vDycLc4rIjbp62VZ2TAgeWOJ"
+      ]
+    },
+    "sourceFile": "design-reference/Case-Venus-Capital-Heights.dc.html"
+  },
+  "alchemy-ivf": {
+    "title": "ivf.for.all",
+    "client": "Alchemy IVF Nepal",
+    "tag": "BRAND IP",
+    "statsPending": true,
+    "stats": [
+      { "value": "00M+", "label": "Total views" },
+      { "value": "00+", "label": "Reels published" },
+      { "value": "00", "label": "Months running" }
+    ],
+    "reelViewCountsPending": true,
+    "reels": [
+      "19Cc91a52PDA_trEQeeQA9J-sFkkJGifl",
+      "1Gi_xvY4aPn0Rl1rAiPuGj6BrDoflbVHH",
+      "1fZlJvtwApHNSyQS-9FpDpRJPMJaZK9pd",
+      "1c6KzqcFqvLOaGb6MP5ckaSK1hbvXaMIK",
+      "1WleWnG9BBa6v6p6B8j_oaETKpj2ad3OD",
+      "1biNKSX80pc-unVzL39v2BXQ-5rTuKO_-",
+      "1jNQX7aSTzd-r35zRlq9EUM0_p2MG6jQB",
+      "1foxWo2r67UmgTNzTr7jZYtP-488AVoWK",
+      "1LphoGJTGA41P2KwHkmI6TLTAeKdDJ_D8",
+      "1Jz8vfxoOeMwqVdlVDvQ7VwQfdU2H9RFO",
+      "1deukUys15sYOkijKGtc2Oce96pJQnuSC",
+      "1fGKWQqMX06Cur0RW0MHeAo6hytBSEa68",
+      "14NQvSh9Q2SqOWd_tbj_A9jGFB5nWejRU",
+      "1Xdtz8WUjxsb6l9pqkYhX5GFv147haFnf",
+      "13ep-LyDsXfK5lGgpih3aeaI34Je9MN8U"
+    ],
+    "sourceFile": "design-reference/Case-Alchemy-IVF.dc.html"
+  }
+}

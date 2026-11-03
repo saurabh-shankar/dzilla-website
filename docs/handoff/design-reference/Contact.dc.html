@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  html, body { margin:0; padding:0; background:#F7F8F8; }
+  body { font-family:'Plus Jakarta Sans', Helvetica, sans-serif; -webkit-font-smoothing:antialiased; }
+  * { box-sizing:border-box; }
+  a { color:#0B0C0E; text-decoration:none; }
+  a:hover { color:#12854A; }
+  a:focus-visible { outline:2px solid #12854A; outline-offset:3px; }
+  ::selection { background:#12854A; color:#F7F8F8; }
+  input, select, textarea, button { font-family:inherit; }
+  input:focus, select:focus, textarea:focus { outline:none; border-color:#12854A !important; }
+  ::placeholder { color:#9BA1A6; }
+  @keyframes dz-rise { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; }
+  }
+</style>
+</helmet>
+
+<div style="background:#F7F8F8; color:#0B0C0E; overflow-x:hidden; min-height:100svh">
+
+  <header style="position:fixed; top:0; left:0; right:0; z-index:60">
+    <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px 16px; padding:14px clamp(14px,3.4vw,40px); background:linear-gradient(180deg, rgba(255,255,255,0.68), rgba(247,248,248,0.42)); backdrop-filter:blur(22px) saturate(180%); -webkit-backdrop-filter:blur(22px) saturate(180%); box-shadow:0 12px 32px rgba(11,12,14,0.06)">
+      <a href="D.zilla.dc.html" style="font-family:'Instrument Sans','Plus Jakarta Sans',Helvetica,sans-serif; font-weight:600; font-size:21px; letter-spacing:-0.045em; line-height:1; flex:none; color:#0B0C0E"><img src="assets/logo-dark.png" alt="D.zilla" style="display:block; height:26px; width:auto"></a>
+      <nav style="display:flex; align-items:center; gap:clamp(8px,1.4vw,22px); font-size:15px; font-weight:500; min-width:0">
+        <a href="D.zilla.dc.html#work" style="color:#0B0C0E; padding:10px 4px" style-hover="color:#12854A">Work</a>
+        <a href="D.zilla.dc.html#services" style="color:#0B0C0E; padding:10px 4px" style-hover="color:#12854A">Services</a>
+      </nav>
+    </div>
+  </header>
+
+  <section style="padding:clamp(100px,13vh,164px) clamp(16px,3.4vw,40px) clamp(32px,4vw,56px)">
+    <div style="max-width:960px; animation:dz-rise 0.9s cubic-bezier(0.22,1,0.36,1) both">
+      <div style="font-size:12px; font-weight:600; letter-spacing:0.14em; color:#12854A; margin-bottom:18px">CONTACT</div>
+      <h1 style="margin:0 0 20px; font-weight:700; font-size:clamp(36px,6.2vw,96px); line-height:0.94; letter-spacing:-0.05em; text-wrap:balance">Send us a message<span style="display:inline-block; width:0.14em; height:0.14em; border-radius:50%; background:#12854A; margin-left:0.06em"></span></h1>
+      <p style="margin:0; max-width:560px; font-size:clamp(17px,1.5vw,20px); line-height:1.6; color:#4B5157; text-wrap:pretty">Tell us the goal. We'll come back with the idea, the plan and the number.</p>
+    </div>
+  </section>
+
+  <section style="padding:0 clamp(16px,3.4vw,40px) clamp(56px,7vw,110px)">
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%,340px), 1fr)); gap:clamp(28px,4vw,72px); max-width:1400px; align-items:start">
+
+      <form onSubmit="{{ submit }}" style="display:flex; flex-direction:column; gap:22px; order:1">
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%,220px), 1fr)); gap:22px">
+          <label style="display:flex; flex-direction:column; gap:9px">
+            <span style="font-size:12px; font-weight:600; letter-spacing:0.14em; color:#6B7176">YOUR NAME</span>
+            <input type="text" required placeholder="Full name" value="{{ name }}" onChange="{{ onName }}" style="font-size:17px; padding:14px 0; border:0; border-bottom:1px solid rgba(11,12,14,0.22); background:transparent; color:#0B0C0E; border-radius:0; transition:border-color 200ms ease">
+          </label>
+          <label style="display:flex; flex-direction:column; gap:9px">
+            <span style="font-size:12px; font-weight:600; letter-spacing:0.14em; color:#6B7176">EMAIL</span>
+            <input type="email" required placeholder="you@company.com" value="{{ email }}" onChange="{{ onEmail }}" style="font-size:17px; padding:14px 0; border:0; border-bottom:1px solid rgba(11,12,14,0.22); background:transparent; color:#0B0C0E; border-radius:0; transition:border-color 200ms ease">
+          </label>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%,220px), 1fr)); gap:22px">
+          <label style="display:flex; flex-direction:column; gap:9px">
+            <span style="font-size:12px; font-weight:600; letter-spacing:0.14em; color:#6B7176">PHONE</span>
+            <input type="tel" required placeholder="+91 00000 00000" value="{{ phone }}" onChange="{{ onPhone }}" style="font-size:17px; padding:14px 0; border:0; border-bottom:1px solid rgba(11,12,14,0.22); background:transparent; color:#0B0C0E; border-radius:0; transition:border-color 200ms ease">
+          </label>
+          <label style="display:flex; flex-direction:column; gap:9px">
+            <span style="font-size:12px; font-weight:600; letter-spacing:0.14em; color:#6B7176">SERVICE</span>
+            <select required value="{{ service }}" onChange="{{ onService }}" style="font-size:17px; padding:14px 0; border:0; border-bottom:1px solid rgba(11,12,14,0.22); background:transparent; color:#0B0C0E; border-radius:0; appearance:none; -webkit-appearance:none; transition:border-color 200ms ease">
+              <option value="">Select a service</option>
+              <option value="Campaigns">Campaigns</option>
+              <option value="Social">Social</option>
+              <option value="Studio / Films">Studio / Films</option>
+              <option value="CGI + AI">CGI + AI</option>
+              <option value="Brand IP">Brand IP</option>
+              <option value="Political PR">Political PR</option>
+              <option value="Not sure yet">Not sure yet</option>
+            </select>
+          </label>
+        </div>
+
+        <label style="display:flex; flex-direction:column; gap:9px">
+          <span style="font-size:12px; font-weight:600; letter-spacing:0.14em; color:#6B7176">TELL US ABOUT IT</span>
+          <textarea required rows="7" placeholder="What are you launching, who is it for, and what does success look like?" value="{{ message }}" onChange="{{ onMessage }}" style="font-size:17px; line-height:1.6; padding:16px; border:1px solid rgba(11,12,14,0.22); background:#FFFFFF; color:#0B0C0E; border-radius:14px; resize:vertical; min-height:160px; transition:border-color 200ms ease"></textarea>
+        </label>
+
+        <div style="display:flex; align-items:center; gap:18px; flex-wrap:wrap">
+          <button type="submit" style="font-size:15px; font-weight:600; padding:15px 32px; background:#0B0C0E; color:#F7F8F8; border:0; border-radius:999px; cursor:pointer; transition:background 200ms ease" style-hover="background:#12854A">Submit enquiry</button>
+          <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+            <span style="font-size:15px; color:#12854A; font-weight:500">Opening your mail app with the details filled in.</span>
+          </sc-if>
+        </div>
+        <p style="margin:0; font-size:14px; line-height:1.6; color:#6B7176; max-width:520px; text-wrap:pretty">Submitting composes the message in your own mail app and sends it to growatd.zilla@gmail.com — nothing leaves your device until you hit send.</p>
+      </form>
+
+      <div style="display:flex; flex-direction:column; gap:14px; order:0">
+        <a href="mailto:growatd.zilla@gmail.com" style="display:block; padding:clamp(22px,2.6vw,32px); background:#FFFFFF; border:1px solid rgba(11,12,14,0.1); border-radius:22px; transition:border-color 200ms ease" style-hover="border:1px solid #12854A">
+          <div style="font-size:12px; font-weight:600; letter-spacing:0.14em; color:#6B7176; margin-bottom:14px">EMAIL US</div>
+          <div style="font-size:clamp(20px,2.2vw,30px); font-weight:600; letter-spacing:-0.035em; word-break:break-word; color:#0B0C0E">growatd.zilla@gmail.com</div>
+          <div style="margin-top:12px; font-size:15px; color:#5A6066">Tap to open your mail app →</div>
+        </a>
+        <a href="tel:+917766938518" style="display:block; padding:clamp(22px,2.6vw,32px); background:#FFFFFF; border:1px solid rgba(11,12,14,0.1); border-radius:22px; transition:border-color 200ms ease" style-hover="border:1px solid #12854A">
+          <div style="font-size:12px; font-weight:600; letter-spacing:0.14em; color:#6B7176; margin-bottom:14px">CALL US</div>
+          <div style="font-size:clamp(20px,2.2vw,30px); font-weight:600; letter-spacing:-0.035em; color:#0B0C0E">+91 77669 38518</div>
+          <div style="margin-top:8px; font-size:16px; font-weight:500; color:#5A6066">+91 90651 00482</div>
+          <div style="margin-top:12px; font-size:15px; color:#5A6066">Tap to call →</div>
+        </a>
+        <div style="padding:clamp(22px,2.6vw,32px); border:1px solid rgba(11,12,14,0.1); border-radius:22px">
+          <div style="font-size:12px; font-weight:600; letter-spacing:0.14em; color:#6B7176; margin-bottom:14px">STUDIO</div>
+          <p style="margin:0 0 10px; font-size:17px; line-height:1.6; color:#0B0C0E">Gurgaon, Haryana</p>
+          <p style="margin:0; font-size:15px; line-height:1.6; color:#5A6066">Mon–Sat, 10am–7pm IST</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section style="border-top:1px solid #DDE0E3; padding:clamp(32px,4vw,56px) clamp(16px,3.4vw,40px)">
+    <a href="D.zilla.dc.html" style="font-size:15px; font-weight:600; color:#6B7176" style-hover="color:#12854A">← Back to D.zilla</a>
+  </section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;contactEmail&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;growatd.zilla@gmail.com&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = { name: '', email: '', phone: '', service: '', message: '', sent: false };
+
+  field(key) {
+    return (e) => this.setState({ [key]: e.target.value });
+  }
+
+  submit = (e) => {
+    e.preventDefault();
+    const { name, email, phone, service, message } = this.state;
+    const to = this.props.contactEmail ?? 'growatd.zilla@gmail.com';
+    const subject = `New enquiry — ${service || 'General'} — ${name}`;
+    const body = [
+      `Name: ${name}`,
+      `Email: ${email}`,
+      `Phone: ${phone}`,
+      `Service: ${service}`,
+      '',
+      'Brief:',
+      message
+    ].join('\n');
+    this.setState({ sent: true });
+    window.location.href = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  };
+
+  renderVals() {
+    const s = this.state;
+    return {
+      name: s.name, email: s.email, phone: s.phone, service: s.service, message: s.message,
+      sent: s.sent,
+      onName: this.field('name'),
+      onEmail: this.field('email'),
+      onPhone: this.field('phone'),
+      onService: this.field('service'),
+      onMessage: this.field('message'),
+      submit: this.submit
+    };
+  }
+}
+</script>
+</body>
+</html>

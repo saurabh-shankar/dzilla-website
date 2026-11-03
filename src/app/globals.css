@@ -1,0 +1,269 @@
+@import "tailwindcss";
+
+/* ───────────────────────── Design tokens ─────────────────────────
+   Values from docs/handoff/README.md → "Design Tokens".            */
+@theme {
+  --color-ink: #0b0c0e;
+  --color-night: #050506; /* dark sections + footer in the references */
+  --color-paper: #f7f8f8;
+  --color-green: #12854a;
+  --color-green-bright: #4ade80;
+  --color-body: #4b5157;
+  --color-muted: #5a6066;
+  --color-meta: #6b7176;
+  --color-faint: #9ba1a6;
+  --color-rule: #dde0e3;
+  --color-placeholder: #edeef0;
+  --color-logo-text: #33383d;
+
+  --font-sans: var(--font-jakarta), Helvetica, sans-serif;
+
+  --ease-dz: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --radius-media: 22px;
+  --radius-card: 18px;
+
+  --shadow-header: 0 12px 32px rgba(11, 12, 14, 0.06);
+  --shadow-tile: 0 34px 70px -28px rgba(11, 12, 14, 0.28), 0 12px 28px -18px rgba(11, 12, 14, 0.18);
+
+  --animate-dz-rise: dz-rise 0.9s var(--ease-dz) both;
+
+  @keyframes dz-rise {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+/* Fluid spacing shared across every screen. */
+:root {
+  --gutter: clamp(16px, 3.4vw, 40px);
+}
+
+@keyframes dz-marquee {
+  from { transform: translate3d(-50%, 0, 0); }
+  to { transform: translate3d(0, 0, 0); }
+}
+@keyframes dz-menu-in {
+  from { opacity: 0; transform: translateY(-10px) scale(0.97); filter: blur(6px); }
+  to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
+@keyframes dz-menu-item-in {
+  from { opacity: 0; transform: translateX(-10px); filter: blur(3px); }
+  to { opacity: 1; transform: translateX(0); filter: blur(0); }
+}
+
+/* Needed so the ink-sweep radius can animate. */
+@property --sr {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+/* ───────────────────────── Base ───────────────────────── */
+@layer base {
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    background: var(--color-paper);
+  }
+  body {
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  a {
+    color: var(--color-ink);
+    text-decoration: none;
+  }
+  a:hover {
+    color: var(--color-green);
+  }
+  a:focus-visible,
+  button:focus-visible,
+  summary:focus-visible {
+    outline: 2px solid var(--color-green);
+    outline-offset: 3px;
+  }
+  a,
+  button,
+  img,
+  select,
+  input,
+  textarea,
+  [data-tile],
+  [data-title] {
+    transition:
+      color 320ms var(--ease-dz),
+      background-color 320ms var(--ease-dz),
+      border-color 320ms var(--ease-dz),
+      box-shadow 320ms var(--ease-dz),
+      opacity 320ms var(--ease-dz),
+      filter 420ms var(--ease-dz),
+      transform 420ms var(--ease-dz);
+  }
+  ::selection {
+    background: var(--color-green);
+    color: var(--color-paper);
+  }
+  h1, h2, h3 {
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+}
+
+/* ───────────────────────── Components ───────────────────────── */
+@layer components {
+  .gutter-x {
+    padding-left: var(--gutter);
+    padding-right: var(--gutter);
+  }
+
+  /* Eyebrow above tile titles (12px / 0.14em). */
+  .eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+  }
+  /* Section label (13px / 0.16em, green). */
+  .section-label {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    color: var(--color-green);
+  }
+
+  /* Green dot that ends headlines. */
+  .dz-dot {
+    display: inline-block;
+    width: 0.16em;
+    height: 0.16em;
+    border-radius: 50%;
+    background: var(--color-green);
+    vertical-align: baseline;
+    margin-left: 0.05em;
+  }
+
+  /* Spread buttons — a circle that grows from the pointer.
+     --sx / --sy / --ss are set by <Interactions />.            */
+  .dz-spread {
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+    --spread: rgba(18, 133, 74, 0.12);
+  }
+  .dz-spread::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 160px;
+    height: 160px;
+    margin: -80px 0 0 -80px;
+    border-radius: 50%;
+    background: var(--spread);
+    transform: translate(var(--sx, 80px), var(--sy, 22px)) scale(var(--ss, 0));
+    transition: transform 620ms var(--ease-dz);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .dz-spread > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Pill buttons. */
+  .btn-solid {
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 999px;
+    background: var(--color-ink);
+    color: var(--color-paper);
+    white-space: nowrap;
+  }
+  .btn-solid:hover {
+    color: var(--color-paper);
+  }
+  .btn-solid.dz-spread {
+    --spread: var(--color-green);
+  }
+  .btn-solid.hover-green:hover {
+    background: var(--color-green);
+  }
+  .btn-outline {
+    display: inline-block;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 999px;
+    border: 1px solid rgba(11, 12, 14, 0.22);
+    color: var(--color-ink);
+  }
+  .btn-outline:hover {
+    border-color: var(--color-green);
+    color: var(--color-green);
+  }
+
+  /* Ink sweep — radial gradient clipped to text, grown from the pointer. */
+  .dz-ink {
+    --ink-base: var(--color-ink);
+    background-color: var(--ink-base);
+    background-image: radial-gradient(
+      circle var(--sr, 0px) at var(--sx, 50%) var(--sy, 50%),
+      var(--color-green) 0 99%,
+      transparent 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: --sr 900ms var(--ease-dz);
+  }
+  .dz-ink-light {
+    --ink-base: var(--color-paper);
+  }
+
+  /* Google Drive embeds — centred and over-scanned to kill letterboxing. */
+  .dz-embed {
+    position: relative;
+    overflow: hidden;
+    background: var(--color-ink);
+  }
+  .dz-embed > iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%) scale(1.06);
+    transform-origin: center;
+    border: 0;
+    display: block;
+  }
+
+  /* Infinite marquee track — pause on hover handled in <Marquee />. */
+  .dz-marquee {
+    display: flex;
+    width: max-content;
+    animation: dz-marquee var(--marquee-duration, 60s) linear infinite;
+  }
+
+  /* Intro loader is skipped entirely under reduced motion. */
+  @media (prefers-reduced-motion: reduce) {
+    .dz-intro {
+      display: none !important;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

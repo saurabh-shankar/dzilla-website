@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  html, body { margin:0; padding:0; background:#F7F8F8; }
+  body { font-family:'Plus Jakarta Sans', Helvetica, sans-serif; -webkit-font-smoothing:antialiased; }
+  * { box-sizing:border-box; }
+  a { color:#0B0C0E; text-decoration:none; }
+  a:hover { color:#12854A; }
+  a:focus-visible { outline:2px solid #12854A; outline-offset:3px; }
+  a, button, img, select, input, textarea, [data-tile], [data-title] {
+    transition: color 320ms cubic-bezier(0.22,1,0.36,1),
+                background-color 320ms cubic-bezier(0.22,1,0.36,1),
+                border-color 320ms cubic-bezier(0.22,1,0.36,1),
+                box-shadow 320ms cubic-bezier(0.22,1,0.36,1),
+                opacity 320ms cubic-bezier(0.22,1,0.36,1),
+                filter 420ms cubic-bezier(0.22,1,0.36,1),
+                transform 420ms cubic-bezier(0.22,1,0.36,1);
+  }
+  ::selection { background:#12854A; color:#F7F8F8; }
+  @keyframes dz-marquee { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+  @keyframes dz-rise { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
+  @property --sr { syntax: '<length>'; inherits: false; initial-value: 0px; }
+  @keyframes dz-menu-in { from { opacity:0; transform:translateY(-10px) scale(0.97); filter:blur(6px); } to { opacity:1; transform:translateY(0) scale(1); filter:blur(0); } }
+  @keyframes dz-menu-item-in { from { opacity:0; transform:translateX(-10px); filter:blur(3px); } to { opacity:1; transform:translateX(0); filter:blur(0); } }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; }
+  }
+</style>
+</helmet>
+
+<div data-intro="1" style="position:fixed; inset:0; z-index:300; background:#000000; display:flex; align-items:center; justify-content:center; transition:opacity 520ms cubic-bezier(0.22,1,0.36,1)">
+    <video data-intro-video="1" src="assets/intro.mp4" playsinline autoplay preload="auto" style="width:100%; height:100%; object-fit:cover; object-position:center top; transform:translateY(2%)"></video>
+  </div>
+
+  <div style="background:#F7F8F8; color:#0B0C0E; overflow-x:hidden">
+
+  <header style="position:fixed; top:0; left:0; right:0; z-index:60">
+    <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px 16px; padding:14px clamp(14px,3.4vw,40px); background:linear-gradient(180deg, rgba(255,255,255,0.68), rgba(247,248,248,0.42)); backdrop-filter:blur(22px) saturate(180%); -webkit-backdrop-filter:blur(22px) saturate(180%); box-shadow:0 12px 32px rgba(11,12,14,0.06)">
+      <a href="#top" style="font-family:'Instrument Sans','Plus Jakarta Sans',Helvetica,sans-serif; font-weight:600; font-size:21px; letter-spacing:-0.045em; line-height:1; flex:none; color:#0B0C0E"><img src="assets/logo-dark.png" alt="D.zilla" style="display:block; height:26px; width:auto"></a>
+      <sc-if value="{{ compactNav }}" hint-placeholder-val="{{ false }}">
+        <nav style="display:flex; align-items:center; gap:14px; font-size:14px; font-weight:500; min-width:0">
+          <a href="#work" data-ink="1" style="padding:10px 2px; background-color:#0B0C0E; background-image:radial-gradient(circle var(--sr,0px) at var(--sx,50%) var(--sy,50%), #12854A 0 99%, transparent 100%); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; transition:--sr 900ms cubic-bezier(0.22,1,0.36,1)">Work</a>
+          <a href="#services" data-ink="1" style="padding:10px 2px; background-color:#0B0C0E; background-image:radial-gradient(circle var(--sr,0px) at var(--sx,50%) var(--sy,50%), #12854A 0 99%, transparent 100%); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; transition:--sr 900ms cubic-bezier(0.22,1,0.36,1)">Services</a>
+          <a href="Contact.dc.html" style="font-size:14px; font-weight:600; padding:10px 18px; background:#0B0C0E; color:#F7F8F8; white-space:nowrap; border-radius:999px; position:relative; overflow:hidden; z-index:0" style-before="content:''; position:absolute; left:0; top:0; width:160px; height:160px; margin:-80px 0 0 -80px; border-radius:50%; background:#12854A; transform:translate(var(--sx,80px), var(--sy,22px)) scale(var(--ss,0)); transition:transform 620ms cubic-bezier(0.22,1,0.36,1); pointer-events:none; z-index:0" data-spread="1" ><span style="position:relative; z-index:1">Contact</span></a>
+        </nav>
+      </sc-if>
+      <sc-if value="{{ fullNav }}" hint-placeholder-val="{{ true }}">
+      <nav style="display:flex; align-items:center; gap:clamp(6px,1.4vw,22px); font-size:15px; font-weight:500; min-width:0">
+        <a href="#work" data-ink="1" style="padding:10px 4px; background-color:#0B0C0E; background-image:radial-gradient(circle var(--sr,0px) at var(--sx,50%) var(--sy,50%), #12854A 0 99%, transparent 100%); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; transition:--sr 900ms cubic-bezier(0.22,1,0.36,1)">Work</a>
+        <div style="position:relative" onMouseEnter="{{ openMenu }}" onMouseLeave="{{ closeMenu }}">
+          <a href="#services" data-ink="1" style="padding:10px 4px; display:flex; align-items:center; gap:8px; background-color:#0B0C0E; background-image:radial-gradient(circle var(--sr,0px) at var(--sx,50%) var(--sy,50%), #12854A 0 99%, transparent 100%); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; transition:--sr 900ms cubic-bezier(0.22,1,0.36,1)">
+            Services
+            <span style="width:0; height:0; border-left:4px solid transparent; border-right:4px solid transparent; border-top:5px solid #12854A; display:inline-block"></span>
+          </a>
+          <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+            <div style="position:absolute; top:100%; left:-14px; padding-top:10px; width:272px">
+              <div style="background:#FFFFFF; border:1px solid rgba(11,12,14,0.1); box-shadow:0 18px 40px rgba(11,12,14,0.1); padding:6px; border-radius:18px; overflow:hidden; transform-origin:18px top; animation:dz-menu-in 460ms cubic-bezier(0.22,1,0.36,1) both">
+                <a href="Campaigns.dc.html" data-spread="1" style="display:block; padding:11px 14px; font-size:15px; color:#4B5157; border-radius:12px; position:relative; overflow:hidden; z-index:0; animation:dz-menu-item-in 520ms cubic-bezier(0.22,1,0.36,1) 60ms backwards" style-before="content:''; position:absolute; left:0; top:0; width:160px; height:160px; margin:-80px 0 0 -80px; border-radius:50%; background:#0B0C0E; transform:translate(var(--sx,80px), var(--sy,22px)) scale(var(--ss,0)); transition:transform 620ms cubic-bezier(0.22,1,0.36,1); pointer-events:none; z-index:0" style-hover="color:#F7F8F8;transform:translateX(5px)"><span style="position:relative; z-index:1">Campaigns</span></a>
+                <a href="Social.dc.html" data-spread="1" style="display:block; padding:11px 14px; font-size:15px; color:#4B5157; border-radius:12px; position:relative; overflow:hidden; z-index:0; animation:dz-menu-item-in 520ms cubic-bezier(0.22,1,0.36,1) 105ms backwards" style-before="content:''; position:absolute; left:0; top:0; width:160px; height:160px; margin:-80px 0 0 -80px; border-radius:50%; background:#0B0C0E; transform:translate(var(--sx,80px), var(--sy,22px)) scale(var(--ss,0)); transition:transform 620ms cubic-bezier(0.22,1,0.36,1); pointer-events:none; z-index:0" style-hover="color:#F7F8F8;transform:translateX(5px)"><span style="position:relative; z-index:1">Social</span></a>
+                <a href="Studio-Films.dc.html" data-spread="1" style="display:block; padding:11px 14px; font-size:15px; color:#4B5157; border-radius:12px; position:relative; overflow:hidden; z-index:0; animation:dz-menu-item-in 520ms cubic-bezier(0.22,1,0.36,1) 150ms backwards" style-before="content:''; position:absolute; left:0; top:0; width:160px; height:160px; margin:-80px 0 0 -80px; border-radius:50%; background:#0B0C0E; transform:translate(var(--sx,80px), var(--sy,22px)) scale(var(--ss,0)); transition:transform 620ms cubic-bezier(0.22,1,0.36,1); pointer-events:none; z-index:0" style-hover="color:#F7F8F8;transform:translateX(5px)"><span style="position:relative; z-index:1">Studio / Films</span></a>
+                <a href="CGI-AI.dc.html" data-spread="1" style="display:block; padding:11px 14px; font-size:15px; color:#4B5157; border-radius:12px; position:relative; overflow:hidden; z-index:0; animation:dz-menu-item-in 520ms cubic-bezier(0.22,1,0.36,1) 195ms backwards" style-before="content:''; position:absolute; left:0; top:0; width:160px; height:160px; margin:-80px 0 0 -80px; border-radius:50%; background:#0B0C0E; transform:translate(var(--sx,80px), var(--sy,22px)) scale(var(--ss,0)); transition:transform 620ms cubic-bezier(0.22,1,0.36,1); pointer-events:none; z-index:0" style-hover="color:#F7F8F8;transform:translateX(5px)"><span style="position:relative; z-index:1">CGI + AI</span></a>
+                <a href="Brand-IP.dc.html" data-spread="1" style="display:block; padding:11px 14px; font-size:15px; color:#4B5157; border-radius:12px; position:relative; overflow:hidden; z-index:0; animation:dz-menu-item-in 520ms cubic-bezier(0.22,1,0.36,1) 240ms backwards" style-before="content:''; position:absolute; left:0; top:0; width:160px; height:160px; margin:-80px 0 0 -80px; border-radius:50%; background:#0B0C0E; transform:translate(var(--sx,80px), var(--sy,22px)) scale(var(--ss,0)); transition:transform 620ms cubic-bezier(0.22,1,0.36,1); pointer-events:none; z-index:0" style-hover="color:#F7F8F8;transform:translateX(5px)"><span style="position:relative; z-index:1">Brand IP</span></a>
+                <a href="Political-PR.dc.html" data-spread="1" style="display:block; padding:11px 14px; font-size:15px; color:#4B5157; border-radius:12px; position:relative; overflow:hidden; z-index:0; animation:dz-menu-item-in 520ms cubic-bezier(0.22,1,0.36,1) 285ms backwards" style-before="content:''; position:absolute; left:0; top:0; width:160px; height:160px; margin:-80px 0 0 -80px; border-radius:50%; background:#0B0C0E; transform:translate(var(--sx,80px), var(--sy,22px)) scale(var(--ss,0)); transition:transform 620ms cubic-bezier(0.22,1,0.36,1); pointer-events:none; z-index:0" style-hover="color:#F7F8F8;transform:translateX(5px)"><span style="position:relative; z-index:1">Political PR</span></a>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+        <a href="Contact.dc.html" style="font-size:15px; font-weight:600; padding:11px 24px; background:#0B0C0E; color:#F7F8F8; white-space:nowrap; border-radius:999px; position:relative; overflow:hidden; z-index:0" style-before="content:''; position:absolute; left:0; top:0; width:160px; height:160px; margin:-80px 0 0 -80px; border-radius:50%; background:#12854A; transform:translate(var(--sx,80px), var(--sy,22px)) scale(var(--ss,0)); transition:transform 620ms cubic-bezier(0.22,1,0.36,1); pointer-events:none; z-index:0" data-spread="1" ><span style="position:relative; z-index:1">Contact Us</span></a>
+      </nav>
+      </sc-if>
+    </div>
+  </header>
+
+  <section id="top" style="display:flex; flex-wrap:wrap; align-items:stretch; gap:clamp(18px,2.4vw,36px); min-height:100svh; padding:clamp(84px,10vh,120px) clamp(16px,3.4vw,40px) clamp(26px,3.2vw,44px); background:#F7F8F8; color:#0B0C0E">
+
+    <div style="position:relative; flex:1 1 300px; min-width:min(100%,280px); overflow:hidden; border-radius:22px; min-height:clamp(260px,44svh,680px); background:#EDEEF0">
+      <div style="position:absolute; inset:0">
+        <video data-hero-video="0" muted loop playsinline style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:none"></video>
+        <div data-hero-fallback="0" style="position:absolute; inset:0; background:#EDEEF0"></div>
+      </div>
+    </div>
+
+    <div style="flex:1 1 320px; min-width:min(100%,280px); display:flex; flex-direction:column; justify-content:flex-end; gap:clamp(18px,2.2vw,28px); padding:clamp(6px,1.6vw,20px) 0 clamp(6px,1.4vw,16px)">
+      <h1 style="margin:0; color:#0B0C0E; font-weight:700; font-size:clamp(34px,5.4vw,92px); line-height:0.94; letter-spacing:-0.05em; text-wrap:balance; animation:dz-rise 0.9s cubic-bezier(0.22,1,0.36,1) 0.08s both">We build<br>brands through<br>media<span style="display:inline-block; width:0.16em; height:0.16em; border-radius:50%; background:#12854A; vertical-align:baseline; margin-left:0.05em"></span></h1>
+      <div style="animation:dz-rise 0.9s cubic-bezier(0.22,1,0.36,1) 0.18s both">
+        <p style="margin:0 0 24px; max-width:460px; font-size:17px; line-height:1.65; color:#4B5157; text-wrap:pretty">Strategy, film, CGI and social under one roof — for brands and leaders who would rather be remembered than merely seen.</p>
+        <div style="display:flex; flex-wrap:wrap; gap:10px">
+          <a href="Contact.dc.html" style="font-size:15px; font-weight:600; padding:13px 28px; background:#0B0C0E; color:#F7F8F8; border-radius:999px; position:relative; overflow:hidden; z-index:0" style-before="content:''; position:absolute; left:0; top:0; width:160px; height:160px; margin:-80px 0 0 -80px; border-radius:50%; background:#12854A; transform:translate(var(--sx,80px), var(--sy,22px)) scale(var(--ss,0)); transition:transform 620ms cubic-bezier(0.22,1,0.36,1); pointer-events:none; z-index:0" data-spread="1" ><span style="position:relative; z-index:1">Start a project</span></a>
+          <a href="#work" style="font-size:15px; font-weight:600; padding:13px 28px; border:1px solid rgba(11,12,14,0.22); color:#0B0C0E; border-radius:999px; position:relative; overflow:hidden; z-index:0" style-before="content:''; position:absolute; left:0; top:0; width:160px; height:160px; margin:-80px 0 0 -80px; border-radius:50%; background:rgba(18,133,74,0.12); transform:translate(var(--sx,80px), var(--sy,22px)) scale(var(--ss,0)); transition:transform 620ms cubic-bezier(0.22,1,0.36,1); pointer-events:none; z-index:0" data-spread="1" style-hover="border:1px solid #12854A;color:#12854A"><span style="position:relative; z-index:1">Watch the reel</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <sc-if value="{{ showClients }}" hint-placeholder-val="{{ true }}">
+  <section style="border-top:1px solid #DDE0E3; padding:clamp(36px,4.6vw,64px) 0">
+    <div style="font-size:13px; font-weight:600; letter-spacing:0.16em; color:#12854A; margin:0 clamp(16px,3.4vw,40px) clamp(22px,2.6vw,34px)">TRUSTED BY</div>
+    <div style="overflow:hidden">
+      <div style="display:flex; width:max-content; animation:dz-marquee 78s linear infinite">
+        <div style="display:flex; align-items:center; gap:clamp(44px,6vw,92px); padding-right:clamp(44px,6vw,92px)">
+          <a href="https://venusstarindia.com/venus-capital-heights/" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:14px; flex:none; text-decoration:none; color:#33383D">
+            <img src="https://www.google.com/s2/favicons?domain=venusstarindia.com&sz=256" alt="Venus Star India" style="height:48px; width:auto; max-width:190px; object-fit:contain; display:block" style-hover="transform:scale(1.07)" />
+            <span style="font-size:17px; font-weight:600; letter-spacing:0.04em; color:#33383D; white-space:nowrap">Venus Star India</span>
+          </a>
+          <a href="https://www.piramalpharma.com" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:14px; flex:none; text-decoration:none; color:#33383D">
+            <img src="assets/logos/piramal.png" alt="Piramal" style="height:38px; width:auto; max-width:190px; object-fit:contain; display:block" style-hover="transform:scale(1.07)" />
+          </a>
+          <a href="https://marscosmetics.in" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:14px; flex:none; text-decoration:none; color:#33383D">
+            <img src="assets/logos/mars-cosmetics.png" alt="MARS Cosmetics" style="height:32px; width:auto; max-width:190px; object-fit:contain; display:block" style-hover="transform:scale(1.07)" />
+          </a>
+          <a href="https://yourstory.com" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:14px; flex:none; text-decoration:none; color:#33383D">
+            <img src="assets/logos/yourstory.png" alt="YourStory" style="height:34px; width:auto; max-width:190px; object-fit:contain; display:block" style-hover="transform:scale(1.07)" />
+          </a>
+          <a href="https://www.royalenfield.com/in/en/home/" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:14px; flex:none; text-decoration:none; color:#33383D">
+            <img src="assets/logos/royal-enfield.png" alt="Royal Enfield" style="height:26px; width:auto; max-width:210px; object-fit:contain; display:block" style-hover="transform:scale(1.07)" />
+          </a>
+          <a href="https://www.eci.gov.in" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:14px; flex:none; text-decoration:none; color:#33383D">
+            <img src="assets/logos/eci.png" alt="Election Commission of India" style="height:48px; width:auto; max-width:190px; object-fit:contain; display:block" style-hover="transform:scale(1.07)" />
+            <span style="font-size:17px; font-weight:600; letter-spacing:0.04em; color:#33383D; white-space:nowrap">Election Commission of India</span>
+          </a>
+          <a href="https://myprimegroup.in" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:14px; flex:none; text-decoration:none; color:#33383D">
+            <img src="https://www.google.com/s2/favicons?domain=myprimegroup.in&sz=256" alt="Prime Group" style="height:48px; width:auto; max-width:190px; object-fit:contain; display:block" style-hover="transform:scale(1.07)" />
+            <span style="font-size:17px; font-weight:600; letter-spacing:0.04em; color:#33383D; white-space:nowrap">Prime Group</span>
+          </a>
+          <a href="https://www.youtube.com/@IndustriesDeptBihar/playlists" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:14px; flex:none; text-decoration:none; color:#33383D">
+            <img src="assets/logos/dept-industries-bihar.png" alt="Industries Dept, Bihar" style="height:48px; width:auto; max-width:190px; object-fit:contain; display:block" style-hover="transform:scale(1.07)" />
+            <span style="font-size:17px; font-weight:600; letter-spacing:0.04em; color:#33383D; white-space:nowrap">Industries Dept, Bihar</span>
+          </a>
+          <a href="https://nalandainternationalliteraturefestival.org" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:14px; flex:none; text-decoration:none; color:#33383D">
+            <img src="https://www.google.com/s2/favicons?domain=nalandainternationalliteraturefestival.org&sz=256" alt="NILF" style="height:48px; width:auto; max-width:190px; object-fit:contain; display:block" style-hover="transform:scale(1.07)" />
+            <span style="font-size:17px; font-weight:600; letter-spacing:0.04em; color:#33383D; white-space:nowrap">NILF</span>
+          </a>
+          <a href="https://www.efapublicschool.com" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:14px; flex:none; text-decoration:none; color:#33383D">
+            <img src="https://www.google.com/s2/favicons?domain=efapublicschool.com&sz=256" alt="EFA Public School" style="height:48px; width:auto; max-width:190px; object-fit:contain; display:block" style-hover="transform:scale(1.07)" />
+            <span style="font-size:17px; font-weight:600; letter-spacing:0.04em; color:#33383D; white-space:nowrap">EFA Public School</span>
+          </a>
+          <a href="https://www.facebook.com/DfoKaimurWLS/" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:14px; flex:none; text-decoration:none; color:#33383D">
+            <img src="assets/logos/kaimur-forest-division.png" alt="Kaimur Forest Division" style="height:48px; width:auto; max-width:190px; object-fit:contain; display:block" style-hover="transform:scale(1.07)" />
+            <span style="font-size:17px; font-weight:600; letter-spacing:0.04em; color:#33383D; white-space:nowrap">Kaimur Forest Division</span>
+          </a>
+          <a href="https://www.biharsports.org" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:14px; flex:none; text-decoration:none; color:#33383D">
+            <img src="assets/logos/bihar-state-sports-authority.png" alt="Bihar State Sports Authority" style="height:54px; width:auto; max-width:190px; object-fit:contain; display:block" style-hover="transform:scale(1.07)" />
+          </a>
+        </div>
+        <div style="display:flex; align-items:center; gap:clamp(44px,6vw,92px); padding-right:clamp(44px,6vw,92px)">
+          <a href="https://venusstarindia.com/venus-capital-heights/" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:14px; flex:none; text-decoration:none; color:#33383D">
+            <img src="https://www.google.com/s2/favicons?domain=venusstarindia.com&sz=256" alt="Venus Star India" style="height:48px; width:auto; max-width:190px; object-fit:contain; display:block" style-hover="transform:scale(1.07)" />
+            <span style="font-size:17px; font-weight:600; letter-spacing:0.04em; color:#33383D; white-space:nowrap">Venus Star India</span>
+          </a>
+          <a href="https://www.piramalpharma.com" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:14px; flex:none; text-decoration:none; color:#33383D">
+            <img src="assets/logos/piramal.png" alt="Piramal" style="height:38px; width:auto; max-width:190px; object-fit:contain; display:block" style-hover="transform:scale(1.07)" />
+          </a>
+          <a href="https://marscosmetics.in" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:14px; flex:none; text-decoration:none; color:#33383D">
+            <img src="assets/logos/mars-cosmetics.png" alt="MARS Cosmetics" style="height:32px; width:auto; max-width:190px; object-fit:contain; display:block" style-hover="transform:scale(1.07)" />
+          </a>
+          <a href="https://yourstory.com" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:14px; flex:none; text-decoration:none; color:#33383D">
+            <img src="assets/logos/yourstory.png" alt="YourStory" style="height:34px; width:auto; max-width:190px; object-fit:contain; display:block" style-hover="transform:scale(1.07)" />
+          </a>
+          <a href="https://www.royalenfield.com/in/en/home/" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:14px; flex:none; text-decoration:none; color:#33383D">
+            <img src="assets/logos/royal-enfield.png" alt="Royal Enfield" style="height:26px; width:auto; max-width:210px; object-fit:contain; display:block" style-hover="transform:scale(1.07)" />
+          </a>
+          <a href="https://www.eci.gov.in" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:14px; flex:none; text-decoration:none; color:#33383D">
+            <img src="assets/logos/eci.png" alt="Election Commission of India" style="height:48px; width:auto; max-width:190px; object-fit:contain; display:block" style-hover="transform:scale(1.07)" />
+            <span style="font-size:17px; font-weight:600; letter-spacing:0.04em; color:#33383D; white-space:nowrap">Election Commission of India</span>
+          </a>
+          <a href="https://myprimegroup.in" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:14px; flex:none; text-decoration:none; color:#33383D">
+            <img src="https://www.google.com/s2/favicons?domain=myprimegroup.in&sz=256" alt="Prime Group" style="height:48px; width:auto; max-width:190px; object-fit:contain; display:block" style-hover="transform:scale(1.07)" />
+            <span style="font-size:17px; font-weight:600; letter-spacing:0.04em; color:#33383D; white-space:nowrap">Prime Group</span>
+          </a>
+          <a href="https://www.youtube.com/@IndustriesDeptBihar/playlists" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:14px; flex:none; text-decoration:none; color:#33383D">
+            <img src="assets/logos/dept-industries-bihar.png" alt="Industries Dept, Bihar" style="height:48px; width:auto; max-width:190px; object-fit:contain; display:block" style-hover="transform:scale(1.07)" />
+            <span style="font-size:17px; font-weight:600; letter-spacing:0.04em; color:#33383D; white-space:nowrap">Industries Dept, Bihar</span>
+          </a>
+          <a href="https://nalandainternationalliteraturefestival.org" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:14px; flex:none; text-decoration:none; color:#33383D">
+            <img src="https://www.google.com/s2/favicons?domain=nalandainternationalliteraturefestival.org&sz=256" alt="NILF" style="height:48px; width:auto; max-width:190px; object-fit:contain; display:block" style-hover="transform:scale(1.07)" />
+            <span style="font-size:17px; font-weight:600; letter-spacing:0.04em; color:#33383D; white-space:nowrap">NILF</span>
+          </a>
+          <a href="https://www.efapublicschool.com" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:14px; flex:none; text-decoration:none; color:#33383D">
+            <img src="https://www.google.com/s2/favicons?domain=efapublicschool.com&sz=256" alt="EFA Public School" style="height:48px; width:auto; max-width:190px; object-fit:contain; display:block" style-hover="transform:scale(1.07)" />
+            <span style="font-size:17px; font-weight:600; letter-spacing:0.04em; color:#33383D; white-space:nowrap">EFA Public School</span>
+          </a>
+          <a href="https://www.facebook.com/DfoKaimurWLS/" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:14px; flex:none; text-decoration:none; color:#33383D">
+            <img src="assets/logos/kaimur-forest-division.png" alt="Kaimur Forest Division" style="height:48px; width:auto; max-width:190px; object-fit:contain; display:block" style-hover="transform:scale(1.07)" />
+            <span style="font-size:17px; font-weight:600; letter-spacing:0.04em; color:#33383D; white-space:nowrap">Kaimur Forest Division</span>
+          </a>
+          <a href="https://www.biharsports.org" target="_blank" rel="noopener" style="display:flex; align-items:center; gap:14px; flex:none; text-decoration:none; color:#33383D">
+            <img src="assets/logos/bihar-state-sports-authority.png" alt="Bihar State Sports Authority" style="height:54px; width:auto; max-width:190px; object-fit:contain; display:block" style-hover="transform:scale(1.07)" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  </sc-if>
+
+  <section id="work" style="border-top:1px solid #DDE0E3; padding:clamp(56px,7vw,110px) clamp(16px,3.4vw,40px) clamp(48px,6vw,96px)">
+    <div style="display:flex; align-items:baseline; justify-content:space-between; gap:24px; flex-wrap:wrap; margin-bottom:clamp(32px,4vw,60px)">
+      <p style="margin:0; font-size:clamp(20px,2.4vw,34px); font-weight:500; letter-spacing:-0.035em; max-width:600px; text-wrap:pretty">Work that earned its attention.</p>
+    </div>
+
+    <div style="display:flex; flex-direction:column; gap:clamp(44px,6vw,120px)">
+      <div data-tile="1" style="display:flex; flex-direction:column; width:min(100%, 1680px); max-width:100%; margin-left:auto; margin-right:auto; align-self:center">
+        <div style="position:relative; aspect-ratio:16/9; min-height:min(82svh, 860px); overflow:hidden; border-radius:22px; background:#0B0C0E; box-shadow:0 34px 70px -28px rgba(11,12,14,0.28), 0 12px 28px -18px rgba(11,12,14,0.18)">
+          <iframe src="https://drive.google.com/file/d/1dZh9Z6dFU-u7ZwN5YwiqglkKAXQNNcMW/preview" title="Venus Capital Heights brand film" allow="autoplay; fullscreen" allowfullscreen style="position:absolute; inset:0; width:100%; height:100%; border:0; display:block"></iframe>
+        </div>
+        <div style="display:flex; align-items:baseline; justify-content:space-between; gap:16px; padding:18px 4px 0">
+          <div style="min-width:0">
+            <div style="font-size:12px; font-weight:600; letter-spacing:0.14em; color:#12854A; margin-bottom:8px">STUDIO / FILMS</div>
+            <a href="Case-Venus-Capital-Heights.dc.html" data-title="1" data-ink="1" style="display:block; font-size:clamp(20px,2.4vw,34px); font-weight:500; letter-spacing:-0.035em; background-color:#0B0C0E; background-image:radial-gradient(circle var(--sr,0px) at var(--sx,50%) var(--sy,50%), #12854A 0 99%, transparent 100%); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; transition:--sr 900ms cubic-bezier(0.22,1,0.36,1)">Venus Capital Heights</a>
+            <p style="margin:10px 0 0; max-width:520px; font-size:15px; line-height:1.6; color:#5A6066; text-wrap:pretty">A city film, an experience centre and Bihar's first red-carpet carnival — building anticipation for a project still being built.</p>
+            <a href="Case-Venus-Capital-Heights.dc.html" style="display:inline-block; margin-top:18px; font-size:14px; font-weight:600; padding:11px 22px; border:1px solid rgba(11,12,14,0.22); color:#0B0C0E; border-radius:999px; position:relative; overflow:hidden; z-index:0" style-before="content:''; position:absolute; left:0; top:0; width:160px; height:160px; margin:-80px 0 0 -80px; border-radius:50%; background:rgba(18,133,74,0.12); transform:translate(var(--sx,80px), var(--sy,22px)) scale(var(--ss,0)); transition:transform 620ms cubic-bezier(0.22,1,0.36,1); pointer-events:none; z-index:0" data-spread="1" style-hover="border:1px solid #12854A;color:#12854A"><span style="position:relative; z-index:1">Click here to view case study →</span></a>
+          </div>
+          <span style="font-size:12px; font-weight:600; color:#6B7176; flex:none">01</span>
+        </div>
+      </div>
+
+      <div data-rail="1" style="width:100vw; margin-left:calc(50% - 50vw); margin-right:calc(50% - 50vw); overflow:hidden; padding:4px 0">
+        <div data-rail-track="1" style="display:flex; gap:clamp(12px,1.4vw,22px); width:max-content; padding:0 clamp(12px,1.4vw,22px); animation:dz-marquee 60s linear infinite">
+          <div style="position:relative; flex:none; width:clamp(180px,16vw,268px); aspect-ratio:9/16; overflow:hidden; border-radius:18px; background:#0B0C0E">
+            <iframe src="https://drive.google.com/file/d/19Cc91a52PDA_trEQeeQA9J-sFkkJGifl/preview" title="Alchemy IVF reel" allow="autoplay; fullscreen" allowfullscreen loading="lazy" style="position:absolute; top:50%; left:50%; width:100%; height:100%; transform:translate(-50%,-50%) scale(1.06); transform-origin:center; border:0; display:block"></iframe>
+          </div>
+          <div style="position:relative; flex:none; width:clamp(180px,16vw,268px); aspect-ratio:9/16; overflow:hidden; border-radius:18px; background:#0B0C0E">
+            <iframe src="https://drive.google.com/file/d/1Gi_xvY4aPn0Rl1rAiPuGj6BrDoflbVHH/preview" title="Alchemy IVF reel" allow="autoplay; fullscreen" allowfullscreen loading="lazy" style="position:absolute; top:50%; left:50%; width:100%; height:100%; transform:translate(-50%,-50%) scale(1.06); transform-origin:center; border:0; display:block"></iframe>
+          </div>
+          <div style="position:relative; flex:none; width:clamp(180px,16vw,268px); aspect-ratio:9/16; overflow:hidden; border-radius:18px; background:#0B0C0E">
+            <iframe src="https://drive.google.com/file/d/1fZlJvtwApHNSyQS-9FpDpRJPMJaZK9pd/preview" title="Alchemy IVF reel" allow="autoplay; fullscreen" allowfullscreen loading="lazy" style="position:absolute; top:50%; left:50%; width:100%; height:100%; transform:translate(-50%,-50%) scale(1.06); transform-origin:center; border:0; display:block"></iframe>
+          </div>
+          <div style="position:relative; flex:none; width:clamp(180px,16vw,268px); aspect-ratio:9/16; overflow:hidden; border-radius:18px; background:#0B0C0E">
+            <iframe src="https://drive.google.com/file/d/1c6KzqcFqvLOaGb6MP5ckaSK1hbvXaMIK/preview" title="Alchemy IVF reel" allow="autoplay; fullscreen" allowfullscreen loading="lazy" style="position:absolute; top:50%; left:50%; width:100%; height:100%; transform:translate(-50%,-50%) scale(1.06); transform-origin:center; border:0; display:block"></iframe>
+          </div>
+          <div style="position:relative; flex:none; width:clamp(180px,16vw,268px); aspect-ratio:9/16; overflow:hidden; border-radius:18px; background:#0B0C0E">
+            <iframe src="https://drive.google.com/file/d/1WleWnG9BBa6v6p6B8j_oaETKpj2ad3OD/preview" title="Alchemy IVF reel" allow="autoplay; fullscreen" allowfullscreen loading="lazy" style="position:absolute; top:50%; left:50%; width:100%; height:100%; transform:translate(-50%,-50%) scale(1.06); transform-origin:center; border:0; display:block"></iframe>
+          </div>
+          <div style="position:relative; flex:none; width:clamp(180px,16vw,268px); aspect-ratio:9/16; overflow:hidden; border-radius:18px; background:#0B0C0E">
+            <iframe src="https://drive.google.com/file/d/1biNKSX80pc-unVzL39v2BXQ-5rTuKO_-/preview" title="Alchemy IVF reel" allow="autoplay; fullscreen" allowfullscreen loading="lazy" style="position:absolute; top:50%; left:50%; width:100%; height:100%; transform:translate(-50%,-50%) scale(1.06); transform-origin:center; border:0; display:block"></iframe>
+          </div>
+          <div style="position:relative; flex:none; width:clamp(180px,16vw,268px); aspect-ratio:9/16; overflow:hidden; border-radius:18px; background:#0B0C0E">
+            <iframe src="https://drive.google.com/file/d/1jNQX7aSTzd-r35zRlq9EUM0_p2MG6jQB/preview" title="Alchemy IVF reel" allow="autoplay; fullscreen" allowfullscreen loading="lazy" style="position:absolute; top:50%; left:50%; width:100%; height:100%; transform:translate(-50%,-50%) scale(1.06); transform-origin:center; border:0; display:block"></iframe>
+          </div>
+          <div style="position:relative; flex:none; width:clamp(180px,16vw,268px); aspect-ratio:9/16; overflow:hidden; border-radius:18px; background:#0B0C0E">
+            <iframe src="https://drive.google.com/file/d/1foxWo2r67UmgTNzTr7jZYtP-488AVoWK/preview" title="Alchemy IVF reel" allow="autoplay; fullscreen" allowfullscreen loading="lazy" style="position:absolute; top:50%; left:50%; width:100%; height:100%; transform:translate(-50%,-50%) scale(1.06); transform-origin:center; border:0; display:block"></iframe>
+          </div>
+          <div style="position:relative; flex:none; width:clamp(180px,16vw,268px); aspect-ratio:9/16; overflow:hidden; border-radius:18px; background:#0B0C0E">
+            <iframe src="https://drive.google.com/file/d/19Cc91a52PDA_trEQeeQA9J-sFkkJGifl/preview" title="Alchemy IVF reel" allow="autoplay; fullscreen" allowfullscreen loading="lazy" style="position:absolute; top:50%; left:50%; width:100%; height:100%; transform:translate(-50%,-50%) scale(1.06); transform-origin:center; border:0; display:block"></iframe>
+          </div>
+          <div style="position:relative; flex:none; width:clamp(180px,16vw,268px); aspect-ratio:9/16; overflow:hidden; border-radius:18px; background:#0B0C0E">
+            <iframe src="https://drive.google.com/file/d/1Gi_xvY4aPn0Rl1rAiPuGj6BrDoflbVHH/preview" title="Alchemy IVF reel" allow="autoplay; fullscreen" allowfullscreen loading="lazy" style="position:absolute; top:50%; left:50%; width:100%; height:100%; transform:translate(-50%,-50%) scale(1.06); transform-origin:center; border:0; display:block"></iframe>
+          </div>
+          <div style="position:relative; flex:none; width:clamp(180px,16vw,268px); aspect-ratio:9/16; overflow:hidden; border-radius:18px; background:#0B0C0E">
+            <iframe src="https://drive.google.com/file/d/1fZlJvtwApHNSyQS-9FpDpRJPMJaZK9pd/preview" title="Alchemy IVF reel" allow="autoplay; fullscreen" allowfullscreen loading="lazy" style="position:absolute; top:50%; left:50%; width:100%; height:100%; transform:translate(-50%,-50%) scale(1.06); transform-origin:center; border:0; display:block"></iframe>
+          </div>
+          <div style="position:relative; flex:none; width:clamp(180px,16vw,268px); aspect-ratio:9/16; overflow:hidden; border-radius:18px; background:#0B0C0E">
+            <iframe src="https://drive.google.com/file/d/1c6KzqcFqvLOaGb6MP5ckaSK1hbvXaMIK/preview" title="Alchemy IVF reel" allow="autoplay; fullscreen" allowfullscreen loading="lazy" style="position:absolute; top:50%; left:50%; width:100%; height:100%; transform:translate(-50%,-50%) scale(1.06); transform-origin:center; border:0; display:block"></iframe>
+          </div>
+          <div style="position:relative; flex:none; width:clamp(180px,16vw,268px); aspect-ratio:9/16; overflow:hidden; border-radius:18px; background:#0B0C0E">
+            <iframe src="https://drive.google.com/file/d/1WleWnG9BBa6v6p6B8j_oaETKpj2ad3OD/preview" title="Alchemy IVF reel" allow="autoplay; fullscreen" allowfullscreen loading="lazy" style="position:absolute; top:50%; left:50%; width:100%; height:100%; transform:translate(-50%,-50%) scale(1.06); transform-origin:center; border:0; display:block"></iframe>
+          </div>
+          <div style="position:relative; flex:none; width:clamp(180px,16vw,268px); aspect-ratio:9/16; overflow:hidden; border-radius:18px; background:#0B0C0E">
+            <iframe src="https://drive.google.com/file/d/1biNKSX80pc-unVzL39v2BXQ-5rTuKO_-/preview" title="Alchemy IVF reel" allow="autoplay; fullscreen" allowfullscreen loading="lazy" style="position:absolute; top:50%; left:50%; width:100%; height:100%; transform:translate(-50%,-50%) scale(1.06); transform-origin:center; border:0; display:block"></iframe>
+          </div>
+          <div style="position:relative; flex:none; width:clamp(180px,16vw,268px); aspect-ratio:9/16; overflow:hidden; border-radius:18px; background:#0B0C0E">
+            <iframe src="https://drive.google.com/file/d/1jNQX7aSTzd-r35zRlq9EUM0_p2MG6jQB/preview" title="Alchemy IVF reel" allow="autoplay; fullscreen" allowfullscreen loading="lazy" style="position:absolute; top:50%; left:50%; width:100%; height:100%; transform:translate(-50%,-50%) scale(1.06); transform-origin:center; border:0; display:block"></iframe>
+          </div>
+          <div style="position:relative; flex:none; width:clamp(180px,16vw,268px); aspect-ratio:9/16; overflow:hidden; border-radius:18px; background:#0B0C0E">
+            <iframe src="https://drive.google.com/file/d/1foxWo2r67UmgTNzTr7jZYtP-488AVoWK/preview" title="Alchemy IVF reel" allow="autoplay; fullscreen" allowfullscreen loading="lazy" style="position:absolute; top:50%; left:50%; width:100%; height:100%; transform:translate(-50%,-50%) scale(1.06); transform-origin:center; border:0; display:block"></iframe>
+          </div>
+        </div>
+        <div style="display:flex; align-items:baseline; justify-content:space-between; gap:16px; padding:18px clamp(16px,3.4vw,40px) 0">
+          <div style="min-width:0">
+            <div style="font-size:12px; font-weight:600; letter-spacing:0.14em; color:#12854A; margin-bottom:8px">BRAND IP</div>
+            <a href="Case-Alchemy-IVF.dc.html" data-title="1" data-ink="1" style="display:block; font-size:clamp(20px,2.4vw,34px); font-weight:500; letter-spacing:-0.035em; background-color:#0B0C0E; background-image:radial-gradient(circle var(--sr,0px) at var(--sx,50%) var(--sy,50%), #12854A 0 99%, transparent 100%); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; transition:--sr 900ms cubic-bezier(0.22,1,0.36,1)">Alchemy IVF</a>
+            <p style="margin:10px 0 0; max-width:520px; font-size:15px; line-height:1.6; color:#5A6066; text-wrap:pretty">ivf.for.all — an owned series that answers the questions people are too private to ask, and keeps returning long after a campaign would have ended.</p>
+            <a href="Case-Alchemy-IVF.dc.html" style="display:inline-block; margin-top:18px; font-size:14px; font-weight:600; padding:11px 22px; border:1px solid rgba(11,12,14,0.22); color:#0B0C0E; border-radius:999px; position:relative; overflow:hidden; z-index:0" style-before="content:''; position:absolute; left:0; top:0; width:160px; height:160px; margin:-80px 0 0 -80px; border-radius:50%; background:rgba(18,133,74,0.12); transform:translate(var(--sx,80px), var(--sy,22px)) scale(var(--ss,0)); transition:transform 620ms cubic-bezier(0.22,1,0.36,1); pointer-events:none; z-index:0" data-spread="1" style-hover="border:1px solid #12854A;color:#12854A"><span style="position:relative; z-index:1">Click here to view case study →</span></a>
+          </div>
+        </div>
+      </div>
+
+      <div data-tile="1" style="display:flex; flex-direction:column; width:min(100%, 1680px); max-width:100%; margin-left:auto; margin-right:auto; align-self:center">
+        <div style="position:relative; aspect-ratio:16/9; min-height:min(82svh, 860px); overflow:hidden; border-radius:22px; background:#0B0C0E">
+          <iframe src="https://drive.google.com/file/d/1QEj78CLhHePA9c8Qs1cSN8OhfuZ9Q29K/preview" title="Brand film" allow="autoplay; fullscreen" allowfullscreen style="position:absolute; inset:0; width:100%; height:100%; border:0; display:block"></iframe>
+        </div>
+        <div style="display:flex; align-items:baseline; justify-content:space-between; gap:16px; padding:18px 4px 0">
+          <div style="min-width:0">
+            <div style="font-size:12px; font-weight:600; letter-spacing:0.14em; color:#12854A; margin-bottom:8px">STUDIO / FILM</div>
+            <div data-title="1" style="font-size:clamp(20px,2.4vw,34px); font-weight:500; letter-spacing:-0.035em; color:#0B0C0E">Badalta Bihar</div>
+            <p style="margin:10px 0 0; max-width:520px; font-size:15px; line-height:1.6; color:#5A6066; text-wrap:pretty">A brand film taken end to end — concept, script, production and post.</p>
+          </div>
+          <span style="font-size:12px; font-weight:600; color:#6B7176; flex:none">02</span>
+        </div>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%,170px), 1fr)); gap:clamp(14px,1.8vw,32px); align-items:start; width:100%; max-width:1680px; margin:0 auto">
+      <div data-tile="1" style="display:flex; flex-direction:column; min-width:0">
+        <div style="position:relative; aspect-ratio:9/16; overflow:hidden; border-radius:22px; background:#0B0C0E">
+          <iframe src="https://drive.google.com/file/d/1GEJsZMZLRu6rmg8gbRbszrvhpUlxbVlp/preview" title="CGI product launch film" allow="autoplay; fullscreen" allowfullscreen style="position:absolute; inset:0; width:100%; height:100%; border:0; display:block"></iframe>
+        </div>
+        <div style="display:flex; align-items:baseline; justify-content:space-between; gap:16px; padding:18px 4px 0">
+          <div style="min-width:0">
+            <div style="font-size:12px; font-weight:600; letter-spacing:0.14em; color:#12854A; margin-bottom:8px">SOCIAL</div>
+            <div data-title="1" style="font-size:clamp(20px,2.4vw,34px); font-weight:500; letter-spacing:-0.035em; color:#0B0C0E">Ava X Mars</div>
+            <p style="margin:10px 0 0; max-width:520px; font-size:15px; line-height:1.6; color:#5A6066; text-wrap:pretty">Creative direction and a UGC shoot built for the feed.</p>
+          </div>
+          <span style="font-size:12px; font-weight:600; color:#6B7176; flex:none">03</span>
+        </div>
+      </div>
+      <div data-tile="1" style="display:flex; flex-direction:column; min-width:0">
+        <div style="position:relative; aspect-ratio:9/16; overflow:hidden; border-radius:22px; background:#0B0C0E">
+          <iframe src="https://drive.google.com/file/d/1B9sEIdy9nEPnC7VQNAT2P4JwKKeFSM_J/preview" title="Founder-led social engine" allow="autoplay; fullscreen" allowfullscreen style="position:absolute; inset:0; width:100%; height:100%; border:0; display:block"></iframe>
+        </div>
+        <div style="display:flex; align-items:baseline; justify-content:space-between; gap:16px; padding:18px 4px 0">
+          <div style="min-width:0">
+            <div style="font-size:12px; font-weight:600; letter-spacing:0.14em; color:#12854A; margin-bottom:8px">SOCIAL</div>
+            <div data-title="1" style="font-size:clamp(20px,2.4vw,34px); font-weight:500; letter-spacing:-0.035em; color:#0B0C0E">Aro Cafe</div>
+            <p style="margin:10px 0 0; max-width:520px; font-size:15px; line-height:1.6; color:#5A6066; text-wrap:pretty">Creative direction and a UGC shoot built for the feed.</p>
+          </div>
+          <span style="font-size:12px; font-weight:600; color:#6B7176; flex:none">04</span>
+        </div>
+      </div>
+  <div data-tile="1" style="display:flex; flex-direction:column; min-width:0">
+          <div style="position:relative; aspect-ratio:9/16; overflow:hidden; border-radius:22px; background:#0B0C0E">
+            <iframe src="https://drive.google.com/file/d/1B-LBJX_k1TmlC91r_HKN7iw14zYMr9Io/preview" title="Hyugaone" allow="autoplay; fullscreen" allowfullscreen style="position:absolute; inset:0; width:100%; height:100%; border:0; display:block"></iframe>
+          </div>
+          <div style="display:flex; align-items:baseline; justify-content:space-between; gap:16px; padding:18px 4px 0">
+            <div style="min-width:0">
+              <div style="font-size:12px; font-weight:600; letter-spacing:0.14em; color:#12854A; margin-bottom:8px">SOCIAL</div>
+              <div data-title="1" style="font-size:clamp(20px,2.4vw,34px); font-weight:500; letter-spacing:-0.035em; color:#0B0C0E">Hyugaone</div>
+              <p style="margin:10px 0 0; max-width:520px; font-size:15px; line-height:1.6; color:#5A6066; text-wrap:pretty">A hook-first UGC shoot — written to stop the scroll in the opening second.</p>
+            </div>
+            <span style="font-size:12px; font-weight:600; color:#6B7176; flex:none">05</span>
+          </div>
+        </div>
+      </div>
+      <div data-tile="1" style="display:flex; flex-direction:column; width:min(100%, 1680px); max-width:100%; margin-left:auto; margin-right:auto; align-self:center">
+        <div style="position:relative; aspect-ratio:16/9; min-height:min(82svh, 860px); overflow:hidden; border-radius:22px; background:#0B0C0E">
+          <iframe src="https://drive.google.com/file/d/1TnHj2Lfk0_xdlPEiXkBVofUfO62M9wZy/preview" title="Election-week war room" allow="autoplay; fullscreen" allowfullscreen style="position:absolute; inset:0; width:100%; height:100%; border:0; display:block"></iframe>
+        </div>
+        <div style="display:flex; align-items:baseline; justify-content:space-between; gap:16px; padding:18px 4px 0">
+          <div style="min-width:0">
+            <div style="font-size:12px; font-weight:600; letter-spacing:0.14em; color:#12854A; margin-bottom:8px">STUDIO / FILMS</div>
+            <div data-title="1" style="font-size:clamp(20px,2.4vw,34px); font-weight:500; letter-spacing:-0.035em; color:#0B0C0E">NILF</div>
+            <p style="margin:10px 0 0; max-width:520px; font-size:15px; line-height:1.6; color:#5A6066; text-wrap:pretty">End-to-end event production for a literature festival.</p>
+          </div>
+          <span style="font-size:12px; font-weight:600; color:#6B7176; flex:none">06</span>
+        </div>
+      </div>
+      
+      <div data-tile="1" style="display:flex; flex-direction:column; width:min(100%, 1680px); max-width:100%; margin-left:auto; margin-right:auto; align-self:center">
+        <div style="position:relative; aspect-ratio:16/9; min-height:min(82svh, 860px); overflow:hidden; border-radius:22px; background:#0B0C0E">
+          <iframe src="https://drive.google.com/file/d/15bEoSxAt-lj9hF2bBms3DGgAvaky_RgJ/preview" title="Always-on content engine" allow="autoplay; fullscreen" allowfullscreen style="position:absolute; inset:0; width:100%; height:100%; border:0; display:block"></iframe>
+        </div>
+        <div style="display:flex; align-items:baseline; justify-content:space-between; gap:16px; padding:18px 4px 0">
+          <div style="min-width:0">
+            <div style="font-size:12px; font-weight:600; letter-spacing:0.14em; color:#12854A; margin-bottom:8px">CGI + AI</div>
+            <div data-title="1" style="font-size:clamp(20px,2.4vw,34px); font-weight:500; letter-spacing:-0.035em; color:#0B0C0E">Products compilation</div>
+            <p style="margin:10px 0 0; max-width:520px; font-size:15px; line-height:1.6; color:#5A6066; text-wrap:pretty">A passion project — products, light and craft, made for its own sake.</p>
+          </div>
+          <span style="font-size:12px; font-weight:600; color:#6B7176; flex:none">07</span>
+        </div>
+      </div>
+
+      <div data-tile="1" style="display:flex; flex-direction:column; width:min(100%, 1680px); max-width:100%; margin-left:auto; margin-right:auto; align-self:center">
+        <div style="position:relative; aspect-ratio:16/9; min-height:min(82svh, 860px); overflow:hidden; border-radius:22px; background:#0B0C0E">
+          <iframe src="https://drive.google.com/file/d/1kq6sPwUDBQyL0gRk7Kvx2nxPvKTzITVq/preview" title="Brand film" allow="autoplay; fullscreen" allowfullscreen style="position:absolute; inset:0; width:100%; height:100%; border:0; display:block"></iframe>
+        </div>
+        <div style="display:flex; align-items:baseline; justify-content:space-between; gap:16px; padding:18px 4px 0">
+          <div style="min-width:0">
+            <div style="font-size:12px; font-weight:600; letter-spacing:0.14em; color:#12854A; margin-bottom:8px">STUDIO / FILM</div>
+            <div data-title="1" style="font-size:clamp(20px,2.4vw,34px); font-weight:500; letter-spacing:-0.035em; color:#0B0C0E">OBOP Industries of Bihar (ODOP & OBOP)</div>
+            <p style="margin:10px 0 0; max-width:520px; font-size:15px; line-height:1.6; color:#5A6066; text-wrap:pretty">Production and post for Bihar’s One Block One Product initiative.</p>
+          </div>
+          <span style="font-size:12px; font-weight:600; color:#6B7176; flex:none">08</span>
+        </div>
+      </div>
+
+      <div data-tile="1" style="display:flex; flex-direction:column; width:min(100%, 1680px); max-width:100%; margin-left:auto; margin-right:auto; align-self:center">
+        <div style="position:relative; aspect-ratio:16/9; min-height:min(82svh, 860px); overflow:hidden; border-radius:22px; background:#0B0C0E">
+          <iframe src="https://drive.google.com/file/d/10-OCoU-f_i6fDcT7n87PIKm2DHJnAzPg/preview" title="Brand film" allow="autoplay; fullscreen" allowfullscreen style="position:absolute; inset:0; width:100%; height:100%; border:0; display:block"></iframe>
+        </div>
+        <div style="display:flex; align-items:baseline; justify-content:space-between; gap:16px; padding:18px 4px 0">
+          <div style="min-width:0">
+            <div style="font-size:12px; font-weight:600; letter-spacing:0.14em; color:#12854A; margin-bottom:8px">STUDIO / FILM</div>
+            <div data-title="1" style="font-size:clamp(20px,2.4vw,34px); font-weight:500; letter-spacing:-0.035em; color:#0B0C0E">Documentary — Ajit Kumar</div>
+            <p style="margin:10px 0 0; max-width:520px; font-size:15px; line-height:1.6; color:#5A6066; text-wrap:pretty">A short biopic, shot and cut as a single portrait.</p>
+          </div>
+          <span style="font-size:12px; font-weight:600; color:#6B7176; flex:none">09</span>
+        </div>
+      </div>
+
+      <div data-tile="1" style="display:flex; flex-direction:column; width:min(100%, 1680px); max-width:100%; margin-left:auto; margin-right:auto; align-self:center">
+        <div style="position:relative; aspect-ratio:16/9; min-height:min(82svh, 860px); overflow:hidden; border-radius:22px; background:#0B0C0E">
+          <iframe src="https://drive.google.com/file/d/1P8YpuIL-rQdY8jPb3uL9m366jdbVrbw0/preview" title="Brand film" allow="autoplay; fullscreen" allowfullscreen style="position:absolute; inset:0; width:100%; height:100%; border:0; display:block"></iframe>
+        </div>
+        <div style="display:flex; align-items:baseline; justify-content:space-between; gap:16px; padding:18px 4px 0">
+          <div style="min-width:0">
+            <div style="font-size:12px; font-weight:600; letter-spacing:0.14em; color:#12854A; margin-bottom:8px">STUDIO / FILM</div>
+            <div data-title="1" style="font-size:clamp(20px,2.4vw,34px); font-weight:500; letter-spacing:-0.035em; color:#0B0C0E">Campzilla travel film</div>
+            <p style="margin:10px 0 0; max-width:520px; font-size:15px; line-height:1.6; color:#5A6066; text-wrap:pretty">A documentary on the Sone — the Ganges’ second-largest tributary.</p>
+          </div>
+          <span style="font-size:12px; font-weight:600; color:#6B7176; flex:none">10</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" style="background:#050506; color:#F7F8F8; padding:clamp(56px,7vw,112px) clamp(16px,3.4vw,40px)">
+    <div style="display:flex; align-items:baseline; justify-content:space-between; gap:24px; flex-wrap:wrap; margin-bottom:clamp(30px,3.6vw,52px)">
+      <h2 style="margin:0; font-size:13px; font-weight:600; letter-spacing:0.16em; color:#4ADE80">WHAT WE DO</h2>
+      <span style="font-size:13px; color:rgba(247,248,248,0.64)">Six capabilities, one creative team</span>
+    </div>
+
+    <p data-reveal="1" style="margin:0 0 clamp(40px,5vw,76px); max-width:820px; font-size:clamp(22px,2.9vw,44px); font-weight:500; line-height:1.18; letter-spacing:-0.04em; text-wrap:pretty">We bring strategy, creativity, production, and distribution together to build campaigns, create compelling content, and help brands make their mark.</p>
+
+    <div style="display:flex; flex-direction:column; border-top:1px solid rgba(255,255,255,0.14)">
+      <a href="Campaigns.dc.html" id="campaigns" data-reveal="1" data-ink-host="1" style="display:grid; grid-template-columns:minmax(0,1fr); gap:10px; padding:clamp(22px,2.6vw,34px) 0; border-bottom:1px solid rgba(255,255,255,0.14); color:#F7F8F8">
+        <div style="display:flex; align-items:baseline; gap:clamp(14px,2vw,32px)">
+          <span style="font-size:12px; font-weight:600; color:rgba(247,248,248,0.6); flex:none">01</span>
+          <span data-ink="1" style="font-size:clamp(24px,3.6vw,52px); font-weight:500; letter-spacing:-0.04em; line-height:1; background-color:#F7F8F8; background-image:radial-gradient(circle var(--sr,0px) at var(--sx,50%) var(--sy,50%), #4ADE80 0 99%, transparent 100%); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; transition:--sr 900ms cubic-bezier(0.22,1,0.36,1)">Campaigns</span>
+        </div>
+        <p style="margin:0 0 0 clamp(28px,3.4vw,62px); max-width:620px; font-size:16px; line-height:1.65; color:rgba(247,248,248,0.7); text-wrap:pretty">Ad campaign development &amp; execution, plus social media campaign strategy that holds up across every channel.</p>
+      </a>
+      <a href="Social.dc.html" id="social" data-reveal="1" data-ink-host="1" style="display:grid; grid-template-columns:minmax(0,1fr); gap:10px; padding:clamp(22px,2.6vw,34px) 0; border-bottom:1px solid rgba(255,255,255,0.14); color:#F7F8F8">
+        <div style="display:flex; align-items:baseline; gap:clamp(14px,2vw,32px)">
+          <span style="font-size:12px; font-weight:600; color:rgba(247,248,248,0.6); flex:none">02</span>
+          <span data-ink="1" style="font-size:clamp(24px,3.6vw,52px); font-weight:500; letter-spacing:-0.04em; line-height:1; background-color:#F7F8F8; background-image:radial-gradient(circle var(--sr,0px) at var(--sx,50%) var(--sy,50%), #4ADE80 0 99%, transparent 100%); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; transition:--sr 900ms cubic-bezier(0.22,1,0.36,1)">Social</span>
+        </div>
+        <p style="margin:0 0 0 clamp(28px,3.4vw,62px); max-width:620px; font-size:16px; line-height:1.65; color:rgba(247,248,248,0.7); text-wrap:pretty">Posts, reels, carousels and graphics, backed by content marketing.</p>
+      </a>
+      <a href="Studio-Films.dc.html" id="studio" data-reveal="1" data-ink-host="1" style="display:grid; grid-template-columns:minmax(0,1fr); gap:10px; padding:clamp(22px,2.6vw,34px) 0; border-bottom:1px solid rgba(255,255,255,0.14); color:#F7F8F8">
+        <div style="display:flex; align-items:baseline; gap:clamp(14px,2vw,32px)">
+          <span style="font-size:12px; font-weight:600; color:rgba(247,248,248,0.6); flex:none">03</span>
+          <span data-ink="1" style="font-size:clamp(24px,3.6vw,52px); font-weight:500; letter-spacing:-0.04em; line-height:1; background-color:#F7F8F8; background-image:radial-gradient(circle var(--sr,0px) at var(--sx,50%) var(--sy,50%), #4ADE80 0 99%, transparent 100%); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; transition:--sr 900ms cubic-bezier(0.22,1,0.36,1)">Studio / Films</span>
+        </div>
+        <p style="margin:0 0 0 clamp(28px,3.4vw,62px); max-width:620px; font-size:16px; line-height:1.65; color:rgba(247,248,248,0.7); text-wrap:pretty">Documentary and filmmaking, event coverage and production, video production and editing — shoot to delivery, one crew, one timeline.</p>
+      </a>
+      <a href="CGI-AI.dc.html" id="cgi" data-reveal="1" data-ink-host="1" style="display:grid; grid-template-columns:minmax(0,1fr); gap:10px; padding:clamp(22px,2.6vw,34px) 0; border-bottom:1px solid rgba(255,255,255,0.14); color:#F7F8F8">
+        <div style="display:flex; align-items:baseline; gap:clamp(14px,2vw,32px)">
+          <span style="font-size:12px; font-weight:600; color:rgba(247,248,248,0.6); flex:none">04</span>
+          <span data-ink="1" style="font-size:clamp(24px,3.6vw,52px); font-weight:500; letter-spacing:-0.04em; line-height:1; background-color:#F7F8F8; background-image:radial-gradient(circle var(--sr,0px) at var(--sx,50%) var(--sy,50%), #4ADE80 0 99%, transparent 100%); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; transition:--sr 900ms cubic-bezier(0.22,1,0.36,1)">CGI + AI</span>
+        </div>
+        <p style="margin:0 0 0 clamp(28px,3.4vw,62px); max-width:620px; font-size:16px; line-height:1.65; color:rgba(247,248,248,0.7); text-wrap:pretty">CGI production in 3D and VFX, plus AI-generated content and visuals.</p>
+      </a>
+      <a href="Brand-IP.dc.html" id="brand-ip" data-reveal="1" data-ink-host="1" style="display:grid; grid-template-columns:minmax(0,1fr); gap:10px; padding:clamp(22px,2.6vw,34px) 0; border-bottom:1px solid rgba(255,255,255,0.14); color:#F7F8F8">
+        <div style="display:flex; align-items:baseline; gap:clamp(14px,2vw,32px)">
+          <span style="font-size:12px; font-weight:600; color:rgba(247,248,248,0.6); flex:none">05</span>
+          <span data-ink="1" style="font-size:clamp(24px,3.6vw,52px); font-weight:500; letter-spacing:-0.04em; line-height:1; background-color:#F7F8F8; background-image:radial-gradient(circle var(--sr,0px) at var(--sx,50%) var(--sy,50%), #4ADE80 0 99%, transparent 100%); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; transition:--sr 900ms cubic-bezier(0.22,1,0.36,1)">Brand IP</span>
+        </div>
+        <p style="margin:0 0 0 clamp(28px,3.4vw,62px); max-width:620px; font-size:16px; line-height:1.65; color:rgba(247,248,248,0.7); text-wrap:pretty">Owned content properties — formats, shows and characters a brand can run season after season.</p>
+      </a>
+      <a href="Political-PR.dc.html" data-reveal="1" data-ink-host="1" style="display:grid; grid-template-columns:minmax(0,1fr); gap:10px; padding:clamp(22px,2.6vw,34px) 0; border-bottom:1px solid rgba(255,255,255,0.14); color:#F7F8F8">
+        <div style="display:flex; align-items:baseline; gap:clamp(14px,2vw,32px)">
+          <span style="font-size:12px; font-weight:600; color:rgba(247,248,248,0.6); flex:none">06</span>
+          <span data-ink="1" style="font-size:clamp(24px,3.6vw,52px); font-weight:500; letter-spacing:-0.04em; line-height:1; background-color:#F7F8F8; background-image:radial-gradient(circle var(--sr,0px) at var(--sx,50%) var(--sy,50%), #4ADE80 0 99%, transparent 100%); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; transition:--sr 900ms cubic-bezier(0.22,1,0.36,1)">Political PR</span>
+        </div>
+        <p style="margin:0 0 0 clamp(28px,3.4vw,62px); max-width:620px; font-size:16px; line-height:1.65; color:rgba(247,248,248,0.7); text-wrap:pretty">Positioning, war-room content, constituency storytelling and rapid-response media for leaders and parties.</p>
+      </a>
+    </div>
+  </section>
+
+  <section id="pr" style="position:relative; overflow:hidden; padding:clamp(56px,7vw,116px) clamp(16px,3.4vw,40px)">
+    <div style="position:relative; display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr)); gap:clamp(28px,4vw,72px); align-items:end">
+      <div>
+        <h2 style="margin:0 0 18px; font-size:13px; font-weight:600; letter-spacing:0.16em; color:#12854A">POLITICAL PR</h2>
+        <p style="margin:0; font-size:clamp(24px,3.4vw,52px); font-weight:500; line-height:1.14; letter-spacing:-0.04em; text-wrap:pretty">A team that understands both the booth and the algorithm.</p>
+      </div>
+      <div>
+        <p style="margin:0 0 24px; max-width:520px; font-size:17px; line-height:1.68; color:#4B5157; text-wrap:pretty">Positioning, war-room content, constituency storytelling and rapid-response media for leaders and parties — run by a team that understands both the booth and the algorithm.</p>
+        <div style="display:flex; flex-wrap:wrap; gap:10px">
+          <a href="Contact.dc.html" style="font-size:15px; font-weight:600; padding:13px 28px; background:#0B0C0E; color:#F7F8F8; border-radius:999px; position:relative; overflow:hidden; z-index:0" style-before="content:''; position:absolute; left:0; top:0; width:160px; height:160px; margin:-80px 0 0 -80px; border-radius:50%; background:#12854A; transform:translate(var(--sx,80px), var(--sy,22px)) scale(var(--ss,0)); transition:transform 620ms cubic-bezier(0.22,1,0.36,1); pointer-events:none; z-index:0" data-spread="1" ><span style="position:relative; z-index:1">Talk to the PR desk</span></a>
+          <a href="#work" style="font-size:15px; font-weight:600; padding:13px 28px; border:1px solid rgba(11,12,14,0.22); color:#0B0C0E; border-radius:999px; position:relative; overflow:hidden; z-index:0" style-before="content:''; position:absolute; left:0; top:0; width:160px; height:160px; margin:-80px 0 0 -80px; border-radius:50%; background:rgba(18,133,74,0.12); transform:translate(var(--sx,80px), var(--sy,22px)) scale(var(--ss,0)); transition:transform 620ms cubic-bezier(0.22,1,0.36,1); pointer-events:none; z-index:0" data-spread="1" style-hover="border:1px solid #12854A;color:#12854A"><span style="position:relative; z-index:1">See campaign work</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="process" style="border-top:1px solid #DDE0E3; padding:clamp(56px,7vw,112px) clamp(16px,3.4vw,40px)">
+    <div style="display:flex; align-items:baseline; justify-content:space-between; gap:24px; flex-wrap:wrap; margin-bottom:clamp(30px,3.6vw,52px)">
+      <h2 style="margin:0; font-size:13px; font-weight:600; letter-spacing:0.16em; color:#12854A">PROCESS</h2>
+      <p style="margin:0; font-size:clamp(20px,2.4vw,34px); font-weight:500; letter-spacing:-0.035em; max-width:560px; text-wrap:pretty">How a project moves through the studio.</p>
+    </div>
+    <div data-reveal="1" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr)); gap:clamp(24px,3vw,44px); border-top:1px solid #DDE0E3; padding-top:clamp(24px,3vw,40px)">
+      <div>
+        <div style="font-size:12px; font-weight:600; letter-spacing:0.14em; color:#12854A; margin-bottom:14px">01</div>
+        <div style="font-size:clamp(19px,1.8vw,24px); font-weight:500; letter-spacing:-0.03em; margin-bottom:10px">Define</div>
+        <p style="margin:0; font-size:15px; line-height:1.65; color:#5A6066; text-wrap:pretty">Audience, goal and the one idea worth the budget.</p>
+      </div>
+      <div>
+        <div style="font-size:12px; font-weight:600; letter-spacing:0.14em; color:#6B7176; margin-bottom:14px">02</div>
+        <div style="font-size:clamp(19px,1.8vw,24px); font-weight:500; letter-spacing:-0.03em; margin-bottom:10px">Design</div>
+        <p style="margin:0; font-size:15px; line-height:1.65; color:#5A6066; text-wrap:pretty">Look, script, storyboard and channel plan, signed off.</p>
+      </div>
+      <div>
+        <div style="font-size:12px; font-weight:600; letter-spacing:0.14em; color:#6B7176; margin-bottom:14px">03</div>
+        <div style="font-size:clamp(19px,1.8vw,24px); font-weight:500; letter-spacing:-0.03em; margin-bottom:10px">Build</div>
+        <p style="margin:0; font-size:15px; line-height:1.65; color:#5A6066; text-wrap:pretty">Shoot, CGI, edit and grade on one continuous timeline.</p>
+      </div>
+      <div>
+        <div style="font-size:12px; font-weight:600; letter-spacing:0.14em; color:#6B7176; margin-bottom:14px">04</div>
+        <div style="font-size:clamp(19px,1.8vw,24px); font-weight:500; letter-spacing:-0.03em; margin-bottom:10px">Launch</div>
+        <p style="margin:0; font-size:15px; line-height:1.65; color:#5A6066; text-wrap:pretty">Cutdowns per platform, live monitoring, a report you can act on.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" style="position:relative; overflow:hidden; border-top:1px solid #DDE0E3; padding:clamp(60px,8vw,128px) clamp(16px,3.4vw,40px)">
+    <div style="position:relative">
+      <h2 style="margin:0; font-weight:700; font-size:clamp(34px,7.4vw,124px); line-height:0.92; letter-spacing:-0.05em; max-width:1100px; text-wrap:balance">Let's build something worth noticing<span style="color:#12854A">.</span></h2>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr)); gap:clamp(26px,3.4vw,56px); margin-top:clamp(32px,4vw,64px); align-items:end">
+        <div>
+          <p style="margin:0 0 20px; max-width:460px; font-size:17px; line-height:1.68; color:#4B5157; text-wrap:pretty">Tell us the goal. We'll come back with the idea, the plan and the number.</p>
+          <a href="mailto:growatd.zilla@gmail.com" style="display:inline-block; font-size:clamp(22px,3vw,44px); font-weight:600; letter-spacing:-0.04em; line-height:1; word-break:break-word; color:#0B0C0E; border-bottom:1px solid rgba(11,12,14,0.24); padding-bottom:6px" style-hover="color:#12854A;border-bottom:1px solid #12854A">growatd.zilla@gmail.com</a>
+        </div>
+        <div style="display:flex; flex-wrap:wrap; gap:10px">
+          <a href="Contact.dc.html" style="font-size:15px; font-weight:600; padding:14px 30px; background:#0B0C0E; color:#F7F8F8; border-radius:999px; position:relative; overflow:hidden; z-index:0" style-before="content:''; position:absolute; left:0; top:0; width:160px; height:160px; margin:-80px 0 0 -80px; border-radius:50%; background:#12854A; transform:translate(var(--sx,80px), var(--sy,22px)) scale(var(--ss,0)); transition:transform 620ms cubic-bezier(0.22,1,0.36,1); pointer-events:none; z-index:0" data-spread="1" ><span style="position:relative; z-index:1">Send us a message</span></a>
+          <a href="tel:+917766938518" style="font-size:15px; font-weight:600; padding:14px 30px; border:1px solid rgba(11,12,14,0.22); color:#0B0C0E; border-radius:999px; position:relative; overflow:hidden; z-index:0" style-before="content:''; position:absolute; left:0; top:0; width:160px; height:160px; margin:-80px 0 0 -80px; border-radius:50%; background:rgba(18,133,74,0.12); transform:translate(var(--sx,80px), var(--sy,22px)) scale(var(--ss,0)); transition:transform 620ms cubic-bezier(0.22,1,0.36,1); pointer-events:none; z-index:0" data-spread="1" style-hover="border:1px solid #12854A;color:#12854A"><span style="position:relative; z-index:1">+91 77669 38518</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background:#050506; color:#F7F8F8; padding:clamp(44px,5.4vw,80px) clamp(16px,3.4vw,40px) 28px">
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr)); gap:clamp(28px,3.4vw,48px)">
+      <div>
+        <div style="font-family:'Instrument Sans','Plus Jakarta Sans',Helvetica,sans-serif; font-weight:600; font-size:21px; letter-spacing:-0.045em; margin-bottom:14px"><img src="assets/logo-light.png" alt="D.zilla" style="display:block; height:28px; width:auto"></div>
+        <p style="margin:0 0 18px; max-width:260px; font-size:15px; line-height:1.65; color:rgba(247,248,248,0.7); text-wrap:pretty">Campaigns, content and films for brands and leaders who want to be remembered.</p>
+        <a href="mailto:growatd.zilla@gmail.com" style="font-size:15px; font-weight:600; color:#F7F8F8" style-hover="color:#4ADE80">growatd.zilla@gmail.com</a>
+        <div style="display:flex; flex-direction:column; gap:6px; margin-top:12px">
+          <a href="tel:+917766938518" style="font-size:15px; color:rgba(247,248,248,0.78)" style-hover="color:#4ADE80">+91 77669 38518</a>
+          <a href="tel:+919065100482" style="font-size:15px; color:rgba(247,248,248,0.78)" style-hover="color:#4ADE80">+91 90651 00482</a>
+        </div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:10px">
+        <div style="font-size:12px; font-weight:600; letter-spacing:0.14em; color:rgba(247,248,248,0.6); margin-bottom:6px">COMPANY</div>
+        <a href="#top" style="font-size:15px; color:rgba(247,248,248,0.78)" style-hover="color:#4ADE80">Home</a>
+        <a href="#work" style="font-size:15px; color:rgba(247,248,248,0.78)" style-hover="color:#4ADE80">Work</a>
+        <a href="#process" style="font-size:15px; color:rgba(247,248,248,0.78)" style-hover="color:#4ADE80">Process</a>
+        <a href="Contact.dc.html" style="font-size:15px; color:rgba(247,248,248,0.78)" style-hover="color:#4ADE80">Contact</a>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:10px">
+        <div style="font-size:12px; font-weight:600; letter-spacing:0.14em; color:rgba(247,248,248,0.6); margin-bottom:6px">SERVICES</div>
+        <a href="Campaigns.dc.html" style="font-size:15px; color:rgba(247,248,248,0.78)" style-hover="color:#4ADE80">Campaigns</a>
+        <a href="Social.dc.html" style="font-size:15px; color:rgba(247,248,248,0.78)" style-hover="color:#4ADE80">Social</a>
+        <a href="Studio-Films.dc.html" style="font-size:15px; color:rgba(247,248,248,0.78)" style-hover="color:#4ADE80">Studio / Films</a>
+        <a href="CGI-AI.dc.html" style="font-size:15px; color:rgba(247,248,248,0.78)" style-hover="color:#4ADE80">CGI + AI</a>
+        <a href="Brand-IP.dc.html" style="font-size:15px; color:rgba(247,248,248,0.78)" style-hover="color:#4ADE80">Brand IP</a>
+        <a href="Political-PR.dc.html" style="font-size:15px; color:rgba(247,248,248,0.78)" style-hover="color:#4ADE80">Political PR</a>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:10px">
+        <div style="font-size:12px; font-weight:600; letter-spacing:0.14em; color:rgba(247,248,248,0.6); margin-bottom:6px">SOCIAL</div>
+        <a href="#contact" style="font-size:15px; color:rgba(247,248,248,0.78)" style-hover="color:#4ADE80">Instagram</a>
+        <a href="#contact" style="font-size:15px; color:rgba(247,248,248,0.78)" style-hover="color:#4ADE80">LinkedIn</a>
+        <a href="#contact" style="font-size:15px; color:rgba(247,248,248,0.78)" style-hover="color:#4ADE80">YouTube</a>
+        <a href="#contact" style="font-size:15px; color:rgba(247,248,248,0.78)" style-hover="color:#4ADE80">Behance</a>
+      </div>
+    </div>
+    <div style="margin-top:clamp(40px,5vw,72px); border-top:1px solid rgba(255,255,255,0.14); padding-top:22px; display:flex; flex-wrap:wrap; gap:20px; justify-content:space-between; font-size:14px; color:rgba(247,248,248,0.7)">
+      <div>© 2026 D.zilla. All rights reserved.</div>
+      <div style="display:flex; gap:26px">
+        <a href="#contact" style="color:rgba(247,248,248,0.7)" style-hover="color:#4ADE80">Terms of service</a>
+        <a href="#contact" style="color:rgba(247,248,248,0.7)" style-hover="color:#4ADE80">Privacy policy</a>
+      </div>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;heroVideo1&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Hero media&quot;},&quot;showClients&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Sections&quot;}}">
+class Component extends DCLogic {
+  state = { menuOpen: false, compact: false };
+
+  syncHeroMedia() {
+    [this.props.heroVideo1].forEach((src, i) => {
+      const v = document.querySelector(`[data-hero-video="${i}"]`);
+      const fb = document.querySelector(`[data-hero-fallback="${i}"]`);
+      if (!v || !fb) return;
+      if (src) {
+        if (v.getAttribute('src') !== src) v.setAttribute('src', src);
+        v.style.display = 'block';
+        fb.style.display = 'none';
+        const p = v.play(); if (p && p.catch) p.catch(() => {});
+      } else {
+        v.removeAttribute('src');
+        v.style.display = 'none';
+        fb.style.display = 'block';
+      }
+    });
+  }
+
+  bindTiles() {
+    [...document.querySelectorAll('[data-tile]')].forEach(tile => {
+      const title = tile.querySelector('[data-title]');
+      tile.addEventListener('mouseenter', () => { if (title) title.style.color = '#12854A'; });
+      tile.addEventListener('mouseleave', () => { if (title) title.style.color = '#0B0C0E'; });
+    });
+  }
+
+  bindVenusVideo() {
+    const v = document.querySelector('[data-venus-video]');
+    const btn = document.querySelector('[data-venus-mute]');
+    if (!v || !btn || btn._bound) return;
+    btn._bound = true;
+    const fb = document.querySelector('[data-venus-fallback]');
+    const fail = () => { v.style.display = 'none'; btn.style.display = 'none'; if (fb) fb.style.display = 'flex'; };
+    const ok = () => { if (fb) fb.style.display = 'none'; };
+    v.addEventListener('error', fail);
+    v.addEventListener('loadeddata', ok);
+    if (v.error) fail();
+    v.muted = true;
+    const p = v.play(); if (p && p.catch) p.catch(() => {});
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      v.muted = !v.muted;
+      btn.textContent = v.muted ? 'Unmute' : 'Mute';
+      if (!v.muted) { const r = v.play(); if (r && r.catch) r.catch(() => {}); }
+    });
+  }
+
+  componentDidUpdate() { this.bindSpread(); this.bindInk(); this.syncHeroMedia(); this.bindVenusVideo(); }
+
+  bindInk() {
+    document.querySelectorAll('[data-ink]').forEach((el) => {
+      if (el._inkBound) return;
+      el._inkBound = true;
+      const host = el.closest('[data-ink-host]') || el;
+      const place = (e) => {
+        const r = el.getBoundingClientRect();
+        el.style.setProperty('--sx', (e.clientX - r.left) + 'px');
+        el.style.setProperty('--sy', (e.clientY - r.top) + 'px');
+        return r;
+      };
+      host.addEventListener('pointerenter', (e) => {
+        const r = place(e);
+        el.style.setProperty('--sr', Math.hypot(r.width, r.height) + 'px');
+      });
+      host.addEventListener('pointerleave', (e) => {
+        place(e);
+        el.style.setProperty('--sr', '0px');
+      });
+    });
+  }
+
+  bindSpread() {
+    const els = document.querySelectorAll('[data-spread]');
+    els.forEach((el) => {
+      if (el._spreadBound) return;
+      el._spreadBound = true;
+      const place = (e) => {
+        const r = el.getBoundingClientRect();
+        el.style.setProperty('--sx', (e.clientX - r.left) + 'px');
+        el.style.setProperty('--sy', (e.clientY - r.top) + 'px');
+      };
+      el.addEventListener('pointerenter', (e) => {
+        place(e);
+        const r = el.getBoundingClientRect();
+        el.style.setProperty('--ss', (Math.hypot(r.width, r.height) / 70).toFixed(2));
+      });
+      el.addEventListener('pointerleave', (e) => {
+        place(e);
+        el.style.setProperty('--ss', '0');
+      });
+    });
+  }
+
+  bindIntro() {
+    const el = document.querySelector('[data-intro]');
+    if (!el) return;
+    const v = el.querySelector('[data-intro-video]');
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const close = () => {
+      if (el.dataset.done) return;
+      el.dataset.done = '1';
+      el.style.opacity = '0';
+      el.style.pointerEvents = 'none';
+      document.documentElement.style.overflow = '';
+      setTimeout(() => el.remove(), 560);
+    };
+    if (reduce) { close(); return; }
+    document.documentElement.style.overflow = 'hidden';
+    if (v) {
+      v.muted = true;
+      v.setAttribute('muted', '');
+      v.addEventListener('ended', close);
+      const p = v.play();
+      if (p && p.catch) p.catch(close);
+    }
+    this._introTimer = setTimeout(close, 5000);
+    el.addEventListener('click', close);
+  }
+
+  bindRail() {
+    document.querySelectorAll('[data-rail]').forEach(w => {
+      const t = w.querySelector('[data-rail-track]');
+      if (!t) return;
+      w.addEventListener('mouseenter', () => { t.style.animationPlayState = 'paused'; });
+      w.addEventListener('mouseleave', () => { t.style.animationPlayState = 'running'; });
+    });
+  }
+
+  componentDidMount() {
+    this.bindRail();
+    this.bindIntro();
+    this.bindSpread();
+    this.bindInk();
+    this.syncHeroMedia();
+    this.bindVenusVideo();
+    this.bindTiles();
+    this._mq = window.matchMedia('(max-width: 660px)');
+    this._onMq = () => this.setState({ compact: this._mq.matches, menuOpen: false });
+    this._onMq();
+    if (this._mq.addEventListener) this._mq.addEventListener('change', this._onMq);
+    else this._mq.addListener(this._onMq);
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!('IntersectionObserver' in window)) return;
+    const EASE = 'cubic-bezier(0.22,1,0.36,1)';
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'none';
+        io.unobserve(e.target);
+      });
+    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.06 });
+    [...document.querySelectorAll('[data-reveal]')].forEach((n, i) => {
+      if (n.getBoundingClientRect().top < window.innerHeight) return;
+      n.style.opacity = '0';
+      n.style.transform = 'translateY(24px)';
+      n.style.transition = `opacity 700ms ${EASE} ${(i % 4) * 70}ms, transform 700ms ${EASE} ${(i % 4) * 70}ms, color 320ms ${EASE}, background-color 320ms ${EASE}, border-color 320ms ${EASE}`;
+      io.observe(n);
+    });
+    this._io = io;
+  }
+
+  componentWillUnmount() {
+    if (this._io) this._io.disconnect();
+    if (this._mq && this._onMq) {
+      if (this._mq.removeEventListener) this._mq.removeEventListener('change', this._onMq);
+      else this._mq.removeListener(this._onMq);
+    }
+  }
+
+  renderVals() {
+    return {
+      menuOpen: this.state.menuOpen && !this.state.compact,
+      compactNav: this.state.compact,
+      fullNav: !this.state.compact,
+      openMenu: () => this.setState({ menuOpen: true }),
+      closeMenu: () => this.setState({ menuOpen: false }),
+      showClients: this.props.showClients ?? true
+    };
+  }
+}
+</script>
+</body>
+</html>
