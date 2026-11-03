@@ -78,7 +78,7 @@ export default function PoliticalPrPage() {
           {trackRecord.map((t) => (
             <div key={t.label}>
               <div className={statNum}>{t.value}</div>
-              <p className="mb-0 mt-2.5 text-base leading-[1.6] text-muted">{t.label}</p>
+              <p className="mb-0 mt-2.5 text-[16px] leading-[1.6] text-muted">{t.label}</p>
             </div>
           ))}
         </div>
@@ -101,9 +101,9 @@ export default function PoliticalPrPage() {
             <ol className="m-0 flex list-none flex-col gap-[clamp(20px,2.4vw,30px)] border-t border-rule p-0 pt-[clamp(22px,2.6vw,32px)]">
               {politicalPr.engagement.map((step, i) => (
                 <li key={step.title}>
-                  <div className="mb-2 text-xs font-semibold text-green">{String(i + 1).padStart(2, "0")}</div>
+                  <div className="mb-2 text-[12px] font-semibold text-green">{String(i + 1).padStart(2, "0")}</div>
                   <h3 className="mb-2 mt-0 text-[19px] font-semibold tracking-[-0.02em]">{step.title}</h3>
-                  <p className="m-0 text-base leading-[1.65] text-muted">{step.body}</p>
+                  <p className="m-0 text-[16px] leading-[1.65] text-muted">{step.body}</p>
                 </li>
               ))}
             </ol>

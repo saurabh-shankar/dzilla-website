@@ -43,6 +43,12 @@ type WorkGrid =
       /** minmax() floor: 200px for 9:16, 320px for 16:9. */
       minCol: 200 | 320;
       items: { title: string; driveId: string }[];
+      /**
+       * Reproduces the designer's Studio-Films.dc.html render exactly: the first
+       * item appears as a title only inside the grid, and the remaining items
+       * stack full-width below it (a markup slip in the reference, kept on request).
+       */
+      designerOrphanFirst?: boolean;
     }
   | {
       kind: "caseStudy";
@@ -145,6 +151,7 @@ export const servicePages: Record<ServicePage["slug"], ServicePage> = {
       label: "STUDIO / FILMS WORK",
       aspect: "16/9",
       minCol: 320,
+      designerOrphanFirst: true,
       items: [
         { title: "Venus Capital Heights", driveId: "1dZh9Z6dFU-u7ZwN5YwiqglkKAXQNNcMW" },
         { title: "Badalta Bihar", driveId: "1QEj78CLhHePA9c8Qs1cSN8OhfuZ9Q29K" },

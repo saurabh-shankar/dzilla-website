@@ -42,8 +42,8 @@ export function CaseSection({ children, className = "" }: { children: React.Reac
 export function NumberedHeading({ n, title }: { n: string; title: string }) {
   return (
     <div className="mb-[clamp(24px,3vw,40px)] flex items-baseline gap-5">
-      <span className="flex-none text-xs font-semibold text-green">{n}</span>
-      <h2 className="m-0 text-[clamp(26px,3.4vw,54px)] font-medium tracking-[-0.04em]">{title}</h2>
+      <span className="flex-none text-[12px] font-semibold text-green">{n}</span>
+      <h2 className="m-0 [text-wrap:balance] text-[clamp(26px,3.4vw,54px)] font-medium tracking-[-0.04em]">{title}</h2>
     </div>
   );
 }
@@ -52,7 +52,7 @@ export function Chips({ items }: { items: string[] }) {
   return (
     <ul className="m-0 flex list-none flex-wrap gap-2 p-0">
       {items.map((c) => (
-        <li key={c} className="rounded-full border border-[rgba(11,12,14,0.16)] px-4 py-2 text-sm text-body">
+        <li key={c} className="rounded-full border border-[rgba(11,12,14,0.16)] px-4 py-2 text-[14px] text-body">
           {c}
         </li>
       ))}
@@ -103,9 +103,9 @@ export function ResultStat({ value, label, note }: { value: string; label: strin
           {value}
           <span className="text-green">+</span>
         </div>
-        <p className="mb-0 mt-2 text-base leading-[1.6] text-muted">{label}</p>
+        <p className="mb-0 mt-2 text-[16px] leading-[1.6] text-muted">{label}</p>
       </div>
-      <p className="m-0 max-w-[420px] text-base leading-[1.65] text-muted">{note}</p>
+      <p className="m-0 max-w-[420px] text-[16px] leading-[1.65] text-muted">{note}</p>
     </div>
   );
 }
@@ -114,7 +114,7 @@ export function Closing({ heading, body, pull }: { heading: string; body: string
   return (
     <section className="gutter-x border-t border-rule py-[clamp(48px,6vw,96px)]">
       <div className="max-w-[820px]">
-        <h2 className="mb-5 mt-0 text-[clamp(24px,3.2vw,48px)] font-medium tracking-[-0.04em]">{heading}</h2>
+        <h2 className="mb-5 mt-0 [text-wrap:balance] text-[clamp(24px,3.2vw,48px)] font-medium tracking-[-0.04em]">{heading}</h2>
         <p className={`${bodyP} !mb-4`}>{body}</p>
         <p className="m-0 text-[clamp(19px,2vw,26px)] font-medium leading-[1.5] tracking-[-0.02em]">{pull}</p>
       </div>

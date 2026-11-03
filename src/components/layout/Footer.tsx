@@ -4,7 +4,7 @@ import { mailHref, site, telHref } from "@/content/site";
 import { serviceHref, services } from "@/content/services";
 
 const linkCls = "text-[15px] text-[rgba(247,248,248,0.78)] hover:text-green-bright";
-const headCls = "mb-1.5 text-xs font-semibold tracking-[0.14em] text-[rgba(247,248,248,0.6)]";
+const headCls = "mb-1.5 text-[12px] font-semibold tracking-[0.14em] text-[rgba(247,248,248,0.6)]";
 
 /**
  * Site footer. `phoneOrder="political"` puts the PR desk number first
@@ -66,7 +66,7 @@ export function Footer({ phoneOrder = "default" }: { phoneOrder?: "default" | "p
           )}
         </nav>
       </div>
-      <div className="mt-[clamp(40px,5vw,72px)] flex flex-wrap justify-between gap-5 border-t border-white/14 pt-[22px] text-sm text-[rgba(247,248,248,0.7)]">
+      <div className="mt-[clamp(40px,5vw,72px)] flex flex-wrap justify-between gap-5 border-t border-white/14 pt-[22px] text-[14px] text-[rgba(247,248,248,0.7)]">
         <div>© 2026 D.zilla. All rights reserved.</div>
         <div className="flex gap-[26px]">
           <Link href="/contact" className="text-[rgba(247,248,248,0.7)] hover:text-green-bright">

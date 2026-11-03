@@ -6,7 +6,7 @@ function CaseStudyPill({ href, label }: { href: string; label: string }) {
   return (
     <Link
       href={href}
-      className="dz-spread btn-outline mt-[18px] !text-sm px-[22px] py-[11px]"
+      className="dz-spread btn-outline mt-[18px] !text-[14px] px-[22px] py-[11px]"
       data-track="case_study_click"
       data-track-label={href}
     >
@@ -52,7 +52,7 @@ function Caption({
         <p className="mt-2.5 mb-0 max-w-[520px] text-[15px] leading-[1.6] text-muted">{note}</p>
         {href && ctaLabel ? <CaseStudyPill href={href} label={ctaLabel} /> : null}
       </div>
-      {n ? <span className="flex-none text-xs font-semibold text-meta">{n}</span> : null}
+      {n ? <span className="flex-none text-[12px] font-semibold text-meta">{n}</span> : null}
     </div>
   );
 }
@@ -65,6 +65,7 @@ function FullTile({ item, lead }: { item: WorkItem; lead?: boolean }) {
         title={item.title}
         aspect={item.aspect}
         lazy={!lead}
+        zoom={false}
         className={`rounded-media min-h-[min(82svh,860px)] ${lead ? "shadow-tile" : ""}`}
       />
       <Caption
@@ -82,7 +83,7 @@ function FullTile({ item, lead }: { item: WorkItem; lead?: boolean }) {
 function TrioTile({ item }: { item: WorkItem }) {
   return (
     <article data-tile className="group flex min-w-0 flex-col">
-      <DriveEmbed driveId={item.driveId} title={item.title} aspect="9/16" className="rounded-media" />
+      <DriveEmbed driveId={item.driveId} title={item.title} aspect="9/16" zoom={false} className="rounded-media" />
       <Caption tag={item.tag} title={item.title} note={item.note} n={item.n} />
     </article>
   );

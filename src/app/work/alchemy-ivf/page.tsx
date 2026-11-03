@@ -43,7 +43,7 @@ export default function AlchemyCaseStudy() {
         <dl className="m-0 flex flex-wrap gap-[clamp(20px,3vw,56px)] border-y border-rule py-[clamp(24px,3vw,40px)]">
           {alchemy.stats.map((s) => (
             <div key={s.label} className="flex flex-col-reverse">
-              <dt className="mt-2 text-base text-muted">{s.label}</dt>
+              <dt className="mt-2 text-[16px] text-muted">{s.label}</dt>
               <dd className="m-0 text-[clamp(40px,5.4vw,78px)] font-bold leading-none tracking-[-0.05em]">
                 {s.value}
                 {s.accent ? <span className="text-green">{s.accent}</span> : null}
@@ -57,7 +57,7 @@ export default function AlchemyCaseStudy() {
         <div className="group/rail relative overflow-hidden py-1">
           <div
             className="dz-marquee gap-[clamp(12px,1.4vw,22px)] px-[clamp(12px,1.4vw,22px)] group-hover/rail:[animation-play-state:paused]"
-            style={{ ["--marquee-duration" as string]: "52s" }}
+            style={{ ["--marquee-duration" as string]: "52s", ["--marquee-name" as string]: "dz-marquee-rev" }}
           >
             {loop.map((r, i) => (
               <DriveEmbed

@@ -83,7 +83,7 @@ function ClientRow({ hidden }: { hidden?: boolean }) {
           >
             <Image
               src={c.logo}
-              alt={c.showName ? "" : c.name}
+              alt={c.name}
               width={c.width}
               height={c.height}
               unoptimized={c.remote}
@@ -107,8 +107,8 @@ export function TrustedBy() {
       <h2 id="clients-heading" className="section-label mx-[var(--gutter)] mb-[clamp(22px,2.6vw,34px)]">
         TRUSTED BY
       </h2>
-      <div className="group/clients overflow-hidden">
-        <div className="dz-marquee group-hover/clients:[animation-play-state:paused]" style={{ ["--marquee-duration" as string]: "78s" }}>
+      <div className="overflow-hidden">
+        <div className="dz-marquee" style={{ ["--marquee-duration" as string]: "78s" }}>
           <ClientRow />
           <ClientRow hidden />
         </div>
@@ -146,13 +146,13 @@ export function WhatWeDo() {
             className="grid grid-cols-[minmax(0,1fr)] gap-2.5 border-b border-white/14 py-[clamp(22px,2.6vw,34px)] text-paper hover:text-paper"
           >
             <div className="flex items-baseline gap-[clamp(14px,2vw,32px)]">
-              <span className="flex-none text-xs font-semibold text-[rgba(247,248,248,0.6)]">{s.n}</span>
-              <h3 className="m-0 text-[clamp(24px,3.6vw,52px)] font-medium leading-none tracking-[-0.04em]">
-                {/* Inline so the clipped background covers descenders. */}
-                <span className="dz-ink dz-ink-light">{s.title}</span>
+              <span className="flex-none text-[12px] font-semibold text-[rgba(247,248,248,0.6)]">{s.n}</span>
+              {/* Block-level ink, as in the reference (descenders clip at line-height 1). */}
+              <h3 className="dz-ink dz-ink-light m-0 text-[clamp(24px,3.6vw,52px)] font-medium leading-none tracking-[-0.04em]">
+                {s.title}
               </h3>
             </div>
-            <p className="m-0 ml-[clamp(28px,3.4vw,62px)] max-w-[620px] text-base leading-[1.65] text-[rgba(247,248,248,0.7)]">
+            <p className="m-0 ml-[clamp(28px,3.4vw,62px)] max-w-[620px] text-[16px] leading-[1.65] text-[rgba(247,248,248,0.7)]">
               {s.description}
             </p>
           </Link>
@@ -232,7 +232,7 @@ export function ContactBlock() {
       <div className="relative">
         <h2
           id="contact-heading"
-          className="m-0 max-w-[1100px] text-[clamp(34px,7.4vw,124px)] font-bold leading-[0.92] tracking-[-0.05em]"
+          className="m-0 max-w-[1100px] [text-wrap:balance] text-[clamp(34px,7.4vw,124px)] font-bold leading-[0.92] tracking-[-0.05em]"
         >
           {contactBlock.headline}
           <span className="text-green">.</span>

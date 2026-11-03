@@ -90,7 +90,7 @@ function HomeNav() {
         </Link>
       </nav>
       {/* Compact nav (≤ 660px) */}
-      <nav aria-label="Primary" className="flex min-w-0 items-center gap-3.5 text-sm font-medium min-[661px]:hidden">
+      <nav aria-label="Primary" className="flex min-w-0 items-center gap-3.5 text-[14px] font-medium min-[661px]:hidden">
         <Link href="/#work" className="dz-ink px-0.5 py-2.5">
           Work
         </Link>
@@ -99,7 +99,7 @@ function HomeNav() {
         </Link>
         <Link
           href="/contact"
-          className="dz-spread btn-solid px-[18px] py-2.5 !text-sm"
+          className="dz-spread btn-solid px-[18px] py-2.5 !text-[14px]"
           data-track="cta_click"
           data-track-label="Contact (header)"
         >
@@ -112,7 +112,10 @@ function HomeNav() {
 
 function SubNav({ variant }: { variant: Exclude<HeaderVariant, "home"> }) {
   return (
-    <nav aria-label="Primary" className="flex min-w-0 items-center gap-[clamp(6px,1.4vw,22px)] text-[15px] font-medium">
+    <nav
+      aria-label="Primary"
+      className={`flex min-w-0 items-center text-[15px] font-medium ${variant === "service" ? "gap-[clamp(6px,1.4vw,22px)]" : "gap-[clamp(8px,1.4vw,22px)]"}`}
+    >
       {variant === "case" ? (
         <Link href="/#work" className={plainLink}>
           All work
@@ -141,25 +144,16 @@ function SubNav({ variant }: { variant: Exclude<HeaderVariant, "home"> }) {
   );
 }
 
-/** Fixed glass header. Condenses slightly once the page is scrolled. */
+/** Fixed glass header. */
 export function Header({ variant }: { variant: HeaderVariant }) {
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
   return (
     <header className="fixed inset-x-0 top-0 z-60">
       <div
-        className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2.5 px-[clamp(14px,3.4vw,40px)] shadow-header backdrop-blur-[22px] backdrop-saturate-[180%] transition-[padding] duration-300 ease-dz"
+        className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2.5 px-[clamp(14px,3.4vw,40px)] shadow-header backdrop-blur-[22px] backdrop-saturate-[180%]"
         style={{
           background: "linear-gradient(180deg, rgba(255,255,255,0.68), rgba(247,248,248,0.42))",
-          paddingTop: scrolled ? 10 : 14,
-          paddingBottom: scrolled ? 10 : 14,
+          paddingTop: 14,
+          paddingBottom: 14,
         }}
       >
         <Link href={variant === "home" ? "#top" : "/"} className="flex-none" aria-label="D.zilla — home">

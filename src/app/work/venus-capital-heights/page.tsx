@@ -65,6 +65,7 @@ export default function VenusCaseStudy() {
           title="Venus Capital Heights brand film"
           aspect="16/9"
           lazy={false}
+          zoom={false}
           className="min-h-[min(76svh,820px)] rounded-media"
         />
       </section>
@@ -113,7 +114,7 @@ export default function VenusCaseStudy() {
           label="Views on Instagram"
           note="And an emotional connection between the audience and the brand that later work could build on."
         />
-        <DriveEmbed driveId={m.brandFilm} title="Venus Capital Heights film" aspect="16/9" className="mt-[clamp(28px,3.4vw,52px)] rounded-media" />
+        <DriveEmbed driveId={m.brandFilm} title="Venus Capital Heights film" aspect="16/9" zoom={false} className="mt-[clamp(28px,3.4vw,52px)] rounded-media" />
       </CaseSection>
 
       <CaseSection>
@@ -152,7 +153,7 @@ export default function VenusCaseStudy() {
           label="Collective views across event content"
           note="Strong engagement and visibility across social, from a single weekend of shooting."
         />
-        <DriveEmbed driveId={m.eventFilm} title="Venus Capital Heights event film" aspect="16/9" className="mt-[clamp(28px,3.4vw,52px)] rounded-media" />
+        <DriveEmbed driveId={m.eventFilm} title="Venus Capital Heights event film" aspect="16/9" zoom={false} className="mt-[clamp(28px,3.4vw,52px)] rounded-media" />
         <div className="mt-[clamp(16px,2vw,28px)]">
           <ReelTrio ids={m.redCarpetKarnivalReels} title="Red Carpet Karnival reel" />
         </div>

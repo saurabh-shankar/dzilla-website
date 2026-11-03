@@ -80,9 +80,15 @@ With `RESEND_API_KEY` + `CONTACT_FROM_EMAIL` set, the form posts to `/api/contac
 5. **Terms / Privacy pages** — linked as placeholders (to `/contact`), as in the reference.
 6. **Intro loader** plays on every load; the client may want once-per-session — confirm before changing.
 
-## Decisions where the handoff disagreed with itself
+## Fidelity to the design
 
-- **Trusted by**: the README/`site.json` list 8 logos; the landing reference HTML shows 12 (adds Venus Star India, Prime Group, NILF and EFA Public School using Google favicons). The site follows the HTML reference. Remove entries in `clients` if the client prefers the 8.
-- **Marquee direction**: the README defines `dz-marquee` as `-50% → 0` (left→right); the landing HTML used the opposite. The README definition is used everywhere.
-- **Mobile nav**: the reference shows a compact inline nav (Work / Services / Contact) at ≤660px rather than a toggle menu; that is what's implemented.
-- **Every embed** uses the over-scan treatment (the landing reference had a few without it; the README says use it on all).
+The site is matched **pixel-for-pixel** to the designer's HTML files in `docs/handoff/design-reference/` (verified by full-page screenshot diffs at 390, 820 and 1440px). Where the handoff README and the HTML disagree, **the HTML wins**:
+
+- **Trusted by** shows the 12 entries from the landing HTML (the README listed 8).
+- **Marquees**: landing strips scroll right→left (landing HTML); the Alchemy IVF case-study strip scrolls left→right (its HTML). "Trusted by" doesn't pause on hover; the reel strips do.
+- **Embed zoom**: landing tiles 01–10 and the three main Venus films are un-zoomed, as in the HTML. Every other embed uses the 1.06 over-scan (`<DriveEmbed zoom={false}>` controls this).
+- **Studio / Films work section** reproduces the HTML's render, in which a markup slip leaves "Venus Capital Heights" as a title only and the other five films full-width (`designerOrphanFirst` in `src/content/services.ts`; remove it for a normal grid).
+- **"What we do" titles** clip descenders (e.g. the "g" in Campaigns) exactly as the HTML does.
+- **Mobile nav** is the compact inline nav from the HTML (no toggle menu); the header doesn't change on scroll.
+
+Implementation notes that keep it exact: `line-height: normal` on the root (the references don't use Tailwind's 1.5), plain `text-[Npx]` sizes instead of `text-sm`/`text-xs` (those also set line-heights), `text-wrap: balance` only on `h1` and the display `h2`s the designer balanced, and the logo served un-resampled.

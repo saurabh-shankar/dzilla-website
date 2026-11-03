@@ -18,7 +18,7 @@ function Field({ label, error, id, children }: { label: string; error?: string; 
       </label>
       {children}
       {error ? (
-        <span id={`${id}-error`} className="text-sm text-[#B42318]">
+        <span id={`${id}-error`} className="text-[14px] text-[#B42318]">
           {error}
         </span>
       ) : null}
@@ -106,7 +106,7 @@ export function ContactForm({ email, hasBackend }: { email: string; hasBackend: 
           <input {...aria("phone")} type="tel" required autoComplete="tel" placeholder="+91 00000 00000" value={values.phone} onChange={set("phone")} className={lineInput} />
         </Field>
         <Field label="SERVICE" id="contact-service" error={errors.service}>
-          <select {...aria("service")} required value={values.service} onChange={set("service")} className={`${lineInput} appearance-none`}>
+          <select {...aria("service")} required value={values.service} onChange={set("service")} className={`${lineInput} h-[48px] leading-[19px] appearance-none`}>
             <option value="">Select a service</option>
             {serviceOptions.map((s) => (
               <option key={s} value={s}>
@@ -149,7 +149,7 @@ export function ContactForm({ email, hasBackend }: { email: string; hasBackend: 
           {status === "sent" && "Thanks — your enquiry is in. We'll be in touch shortly."}
         </span>
       </div>
-      <p className="m-0 max-w-[520px] text-sm leading-[1.6] text-meta">
+      <p className="m-0 max-w-[520px] text-[14px] leading-[1.6] text-meta">
         {hasBackend
           ? `Your enquiry goes straight to ${email}. We reply within one working day.`
           : `Submitting composes the message in your own mail app and sends it to ${email} — nothing leaves your device until you hit send.`}

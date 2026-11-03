@@ -58,7 +58,7 @@ export default function ContactPage() {
               <a href={telHref(site.contact.phonePrimary)} className="block text-[clamp(20px,2.2vw,30px)] font-semibold tracking-[-0.035em] text-ink hover:text-green">
                 {site.contact.phonePrimary}
               </a>
-              <a href={telHref(site.contact.phoneSecondary)} className="mt-2 block text-base font-medium text-muted hover:text-green">
+              <a href={telHref(site.contact.phoneSecondary)} className="mt-2 block text-[16px] font-medium text-muted hover:text-green">
                 {site.contact.phoneSecondary}
               </a>
               <div className="mt-3 text-[15px] text-muted">Tap to call →</div>

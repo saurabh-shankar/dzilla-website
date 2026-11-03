@@ -14,6 +14,7 @@ export function Logo({ variant, height, priority }: { variant: "dark" | "light";
       width={logo.width}
       height={logo.height}
       priority={priority}
+      unoptimized
       sizes={`${Math.ceil((height * logo.width) / logo.height)}px`}
       style={{ display: "block", height, width: "auto" }}
     />

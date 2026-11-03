@@ -58,7 +58,26 @@ function WorkGrid({ page }: { page: ServicePage }) {
           See all work →
         </Link>
       </div>
-      {work.kind === "embeds" ? (
+      {work.kind === "embeds" && work.designerOrphanFirst ? (
+        <>
+          <div
+            className="grid gap-[clamp(18px,2.2vw,32px)]"
+            style={{ gridTemplateColumns: `repeat(auto-fit, minmax(min(100%, ${work.minCol}px), 1fr))` }}
+          >
+            <div className="px-1 pt-3.5">
+              <h3 className="m-0 text-[clamp(17px,1.6vw,22px)] font-medium tracking-[-0.03em] text-ink">{work.items[0].title}</h3>
+            </div>
+          </div>
+          {work.items.slice(1).map((item) => (
+            <div key={item.driveId} className="flex min-w-0 flex-col">
+              <DriveEmbed driveId={item.driveId} title={item.title} aspect={work.aspect} className="rounded-media" />
+              <div className="px-1 pt-3.5">
+                <h3 className="m-0 text-[clamp(17px,1.6vw,22px)] font-medium tracking-[-0.03em] text-ink">{item.title}</h3>
+              </div>
+            </div>
+          ))}
+        </>
+      ) : work.kind === "embeds" ? (
         <div
           className="grid gap-[clamp(18px,2.2vw,32px)]"
           style={{ gridTemplateColumns: `repeat(auto-fit, minmax(min(100%, ${work.minCol}px), 1fr))` }}
@@ -85,7 +104,7 @@ function WorkGrid({ page }: { page: ServicePage }) {
               <div className="eyebrow mb-2.5 text-green-bright">{cs.eyebrow}</div>
               <h3 className="m-0 text-[clamp(22px,2.4vw,32px)] font-medium tracking-[-0.035em]">{cs.title}</h3>
               <p className="mb-0 mt-2.5 text-[15px] leading-[1.6] text-[rgba(247,248,248,0.7)]">{cs.body}</p>
-              <span className="mt-[18px] text-sm font-semibold text-green-bright">{cs.cta}</span>
+              <span className="mt-[18px] text-[14px] font-semibold text-green-bright">{cs.cta}</span>
             </Link>
           ))}
         </div>
@@ -141,7 +160,7 @@ export default async function ServicePageRoute({ params }: { params: Promise<Par
               {page.numbers.map((n) => (
                 <div key={n.label}>
                   <dt className="text-[clamp(30px,3.2vw,46px)] font-semibold leading-none tracking-[-0.04em]">{n.value}</dt>
-                  <dd className="m-0 mt-2 text-sm text-muted">{n.label}</dd>
+                  <dd className="m-0 mt-2 text-[14px] text-muted">{n.label}</dd>
                 </div>
               ))}
             </dl>

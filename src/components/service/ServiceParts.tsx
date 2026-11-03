@@ -7,7 +7,7 @@ export function Breadcrumb({ current }: { current: string }) {
   return (
     <nav
       aria-label="Breadcrumb"
-      className="mb-[clamp(20px,2.6vw,32px)] flex items-center gap-2.5 text-xs font-semibold tracking-[0.16em] text-meta"
+      className="mb-[clamp(20px,2.6vw,32px)] flex items-center gap-2.5 text-[12px] font-semibold tracking-[0.16em] text-meta"
     >
       <Link href="/" className="text-meta hover:text-green">
         HOME
@@ -53,7 +53,7 @@ export function ServiceChips({ current }: { current: ServiceSlug }) {
           <span
             key={s.slug}
             aria-current="page"
-            className="whitespace-nowrap rounded-full bg-ink px-[18px] py-[9px] text-sm font-semibold text-paper"
+            className="whitespace-nowrap rounded-full bg-ink px-[18px] py-[9px] text-[14px] font-semibold text-paper"
           >
             {s.title}
           </span>
@@ -61,7 +61,7 @@ export function ServiceChips({ current }: { current: ServiceSlug }) {
           <Link
             key={s.slug}
             href={serviceHref(s.slug)}
-            className="whitespace-nowrap rounded-full border border-[rgba(11,12,14,0.18)] px-[18px] py-[9px] text-sm font-medium text-body hover:border-ink hover:text-ink"
+            className="whitespace-nowrap rounded-full border border-[rgba(11,12,14,0.18)] px-[18px] py-[9px] text-[14px] font-medium text-body hover:border-ink hover:text-ink"
           >
             {s.title}
           </Link>
@@ -110,7 +110,7 @@ export function DarkList({
             className={`${pr ? "" : "grid grid-cols-[minmax(0,1fr)] gap-2.5"} border-b border-white/14 py-[clamp(20px,2.4vw,32px)]`}
           >
             <div className="flex items-baseline gap-[clamp(14px,2vw,32px)]">
-              <span className={`flex-none text-xs font-semibold ${pr ? "text-[rgba(247,248,248,0.7)]" : "text-[rgba(247,248,248,0.6)]"}`}>
+              <span className={`flex-none text-[12px] font-semibold ${pr ? "text-[rgba(247,248,248,0.7)]" : "text-[rgba(247,248,248,0.6)]"}`}>
                 {String(i + 1).padStart(2, "0")}
               </span>
               <h3 className={`m-0 text-[clamp(22px,3.2vw,44px)] font-medium tracking-[-0.04em] ${pr ? "leading-[1.05]" : "leading-none"}`}>
@@ -120,8 +120,8 @@ export function DarkList({
             <p
               className={
                 pr
-                  ? "mb-0 ml-[clamp(28px,3.4vw,62px)] mr-0 mt-3 max-w-[660px] text-base leading-[1.65] text-[rgba(247,248,248,0.76)]"
-                  : "m-0 ml-[clamp(28px,3.4vw,62px)] max-w-[620px] text-base leading-[1.65] text-[rgba(247,248,248,0.7)]"
+                  ? "mb-0 ml-[clamp(28px,3.4vw,62px)] mr-0 mt-3 max-w-[660px] text-[16px] leading-[1.65] text-[rgba(247,248,248,0.76)]"
+                  : "m-0 ml-[clamp(28px,3.4vw,62px)] max-w-[620px] text-[16px] leading-[1.65] text-[rgba(247,248,248,0.7)]"
               }
             >
               {item.body}
@@ -149,7 +149,7 @@ export function ServiceCta({
   const primaryCls = "btn-solid hover-green px-[30px] py-3.5";
   return (
     <section className="gutter-x border-t border-rule py-[clamp(56px,8vw,120px)]" data-track-section="service-cta">
-      <h2 className="m-0 max-w-[1000px] text-[clamp(32px,6.4vw,104px)] font-bold leading-[0.94] tracking-[-0.05em]">
+      <h2 className="m-0 max-w-[1000px] [text-wrap:balance] text-[clamp(32px,6.4vw,104px)] font-bold leading-[0.94] tracking-[-0.05em]">
         {title}
         <span className="dz-dot" aria-hidden />
       </h2>
