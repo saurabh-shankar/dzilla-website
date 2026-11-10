@@ -27,16 +27,10 @@ export const site = {
     studio: "Gurgaon, Haryana",
     hours: "Mon–Sat, 10am–7pm IST",
   },
-  /**
-   * Social profiles. The reference links these to the contact section as
-   * placeholders — fill in real URLs and they will be used everywhere
-   * (footer + Organization JSON-LD `sameAs`).
-   */
+  /** Social profiles (footer + Organization JSON-LD `sameAs`). Only these two — per Handoff 2. */
   social: [
-    { label: "Instagram", href: "" },
-    { label: "LinkedIn", href: "" },
-    { label: "YouTube", href: "" },
-    { label: "Behance", href: "" },
+    { label: "Instagram", href: "https://www.instagram.com/d.zillaagency?utm_source=ig_web_button_share_sheet&srtk=ZDNlZDc0MzIxNw==" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/company/dzilla/" },
   ],
 } as const;
 

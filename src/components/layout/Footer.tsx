@@ -52,18 +52,11 @@ export function Footer({ phoneOrder = "default" }: { phoneOrder?: "default" | "p
         </nav>
         <nav aria-label="Social" className="flex flex-col gap-2.5">
           <div className={headCls}>SOCIAL</div>
-          {site.social.map((s) =>
-            s.href ? (
-              <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" className={linkCls}>
-                {s.label}
-              </a>
-            ) : (
-              // Placeholder until the client supplies profile URLs (see site.ts).
-              <Link key={s.label} href="/contact" className={linkCls}>
-                {s.label}
-              </Link>
-            ),
-          )}
+          {site.social.map((s) => (
+            <a key={s.label} href={s.href} target="_blank" rel="noopener" className={linkCls}>
+              {s.label}
+            </a>
+          ))}
         </nav>
       </div>
       <div className="mt-[clamp(40px,5vw,72px)] flex flex-wrap justify-between gap-5 border-t border-white/14 pt-[22px] text-[14px] text-[rgba(247,248,248,0.7)]">

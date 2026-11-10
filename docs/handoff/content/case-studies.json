@@ -3,14 +3,24 @@
     "title": "Venus Capital Heights",
     "tag": "STUDIO / FILMS",
     "media": {
-      "hero": { "driveId": "1dZh9Z6dFU-u7ZwN5YwiqglkKAXQNNcMW", "aspect": "16/9", "note": "min-height min(76svh, 820px)" },
-      "brandFilm": { "driveId": "1RPsU58M0Jk5lMytnk-yAss89YpURWmlT", "aspect": "16/9" },
+      "hero": {
+        "driveId": "1dZh9Z6dFU-u7ZwN5YwiqglkKAXQNNcMW",
+        "aspect": "16/9",
+        "note": "min-height min(76svh, 820px)"
+      },
+      "brandFilm": {
+        "driveId": "1RPsU58M0Jk5lMytnk-yAss89YpURWmlT",
+        "aspect": "16/9"
+      },
       "experienceCentreReels": [
         "1pS9KCrZvRoIUS4gzwlmIu5KHfD8ic_20",
         "15bz-dEd09sDtmPhxEXg1emM9CCZY1Tbi",
         "10FJfNgasMkzMeCzP_mjNxYbSUhRFbGb1"
       ],
-      "eventFilm": { "driveId": "1p1fUg45Vc_fGpXhwsls1XCUgmnJ8WnS6", "aspect": "16/9" },
+      "eventFilm": {
+        "driveId": "1p1fUg45Vc_fGpXhwsls1XCUgmnJ8WnS6",
+        "aspect": "16/9"
+      },
       "redCarpetKarnivalReels": [
         "1BZmV_ktp3tkocawV-nOYv1gaFRh9wbAw",
         "1b0xCyUNW8xKDKt-MCWI42LyjWANR433r",
@@ -23,13 +33,25 @@
     "title": "ivf.for.all",
     "client": "Alchemy IVF Nepal",
     "tag": "BRAND IP",
-    "statsPending": true,
     "stats": [
-      { "value": "00M+", "label": "Total views" },
-      { "value": "00+", "label": "Reels published" },
-      { "value": "00", "label": "Months running" }
+      {
+        "value": "6.8M",
+        "label": "Views in 30 days"
+      },
+      {
+        "value": "4.8M",
+        "label": "People reached"
+      },
+      {
+        "value": "99.7%",
+        "label": "Non-followers reached",
+        "accentSuffix": "%"
+      },
+      {
+        "value": "99",
+        "label": "Episodes published"
+      }
     ],
-    "reelViewCountsPending": true,
     "reels": [
       "19Cc91a52PDA_trEQeeQA9J-sFkkJGifl",
       "1Gi_xvY4aPn0Rl1rAiPuGj6BrDoflbVHH",
@@ -47,6 +69,23 @@
       "1Xdtz8WUjxsb6l9pqkYhX5GFv147haFnf",
       "13ep-LyDsXfK5lGgpih3aeaI34Je9MN8U"
     ],
-    "sourceFile": "design-reference/Case-Alchemy-IVF.dc.html"
+    "sourceFile": "design-reference/Case-Alchemy-IVF.dc.html",
+    "statsSource": "Instagram Insights, 30-day window ending 1 Nov 2026 (@ivf.for.all)",
+    "rawInsights": {
+      "views30d": 6776754,
+      "viewers30d": 4801622,
+      "netFollowers30d": 2265,
+      "nonFollowerShare": 0.997,
+      "posts": 99,
+      "followers": 2427,
+      "topReels": [
+        "3.2M",
+        "2.9M",
+        "329.5K",
+        "256.3K",
+        "246.6K"
+      ]
+    },
+    "perReelViewCounts": false
   }
 }

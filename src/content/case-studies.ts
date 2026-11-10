@@ -32,9 +32,8 @@ export const venus = {
 };
 
 /**
- * OPEN ITEM — every number below is a placeholder until the client supplies
- * real figures. `statsPending` / `reelViewCountsPending` exist so a CMS or
- * a check can tell real data from placeholders.
+ * Stats are collective figures from Instagram Insights (30 days ending
+ * 1 Nov 2026, @ivf.for.all). Per-reel view counts are intentionally not shown.
  */
 export const alchemy = {
   slug: "alchemy-ivf",
@@ -43,28 +42,36 @@ export const alchemy = {
   client: "Alchemy IVF Nepal",
   intro:
     "An owned content property built for Alchemy IVF Nepal — not a campaign that ends, but a format that returns every week and compounds.",
-  statsPending: true,
+  statsSource: "Instagram Insights, 30-day window ending 1 Nov 2026 (@ivf.for.all)",
   stats: [
-    { value: "00M", accent: "+", label: "Total views" },
-    { value: "00", accent: "+", label: "Reels published" },
-    { value: "00", accent: "", label: "Months running" },
+    { value: "6.8M", accent: "", label: "Views in 30 days" },
+    { value: "4.8M", accent: "", label: "People reached" },
+    { value: "99.7", accent: "%", label: "Non-followers reached" },
+    { value: "99", accent: "", label: "Episodes published" },
   ],
-  reelViewCountsPending: true,
+  rawInsights: {
+    views30d: 6776754,
+    viewers30d: 4801622,
+    netFollowers30d: 2265,
+    nonFollowerShare: 0.997,
+    posts: 99,
+    followers: 2427,
+  },
   reels: [
-    { id: "19Cc91a52PDA_trEQeeQA9J-sFkkJGifl", views: "— views" },
-    { id: "1Gi_xvY4aPn0Rl1rAiPuGj6BrDoflbVHH", views: "— views" },
-    { id: "1fZlJvtwApHNSyQS-9FpDpRJPMJaZK9pd", views: "— views" },
-    { id: "1c6KzqcFqvLOaGb6MP5ckaSK1hbvXaMIK", views: "— views" },
-    { id: "1WleWnG9BBa6v6p6B8j_oaETKpj2ad3OD", views: "— views" },
-    { id: "1biNKSX80pc-unVzL39v2BXQ-5rTuKO_-", views: "— views" },
-    { id: "1jNQX7aSTzd-r35zRlq9EUM0_p2MG6jQB", views: "— views" },
-    { id: "1foxWo2r67UmgTNzTr7jZYtP-488AVoWK", views: "— views" },
-    { id: "1LphoGJTGA41P2KwHkmI6TLTAeKdDJ_D8", views: "— views" },
-    { id: "1Jz8vfxoOeMwqVdlVDvQ7VwQfdU2H9RFO", views: "— views" },
-    { id: "1deukUys15sYOkijKGtc2Oce96pJQnuSC", views: "— views" },
-    { id: "1fGKWQqMX06Cur0RW0MHeAo6hytBSEa68", views: "— views" },
-    { id: "14NQvSh9Q2SqOWd_tbj_A9jGFB5nWejRU", views: "— views" },
-    { id: "1Xdtz8WUjxsb6l9pqkYhX5GFv147haFnf", views: "— views" },
-    { id: "13ep-LyDsXfK5lGgpih3aeaI34Je9MN8U", views: "— views" },
+    { id: "19Cc91a52PDA_trEQeeQA9J-sFkkJGifl" },
+    { id: "1Gi_xvY4aPn0Rl1rAiPuGj6BrDoflbVHH" },
+    { id: "1fZlJvtwApHNSyQS-9FpDpRJPMJaZK9pd" },
+    { id: "1c6KzqcFqvLOaGb6MP5ckaSK1hbvXaMIK" },
+    { id: "1WleWnG9BBa6v6p6B8j_oaETKpj2ad3OD" },
+    { id: "1biNKSX80pc-unVzL39v2BXQ-5rTuKO_-" },
+    { id: "1jNQX7aSTzd-r35zRlq9EUM0_p2MG6jQB" },
+    { id: "1foxWo2r67UmgTNzTr7jZYtP-488AVoWK" },
+    { id: "1LphoGJTGA41P2KwHkmI6TLTAeKdDJ_D8" },
+    { id: "1Jz8vfxoOeMwqVdlVDvQ7VwQfdU2H9RFO" },
+    { id: "1deukUys15sYOkijKGtc2Oce96pJQnuSC" },
+    { id: "1fGKWQqMX06Cur0RW0MHeAo6hytBSEa68" },
+    { id: "14NQvSh9Q2SqOWd_tbj_A9jGFB5nWejRU" },
+    { id: "1Xdtz8WUjxsb6l9pqkYhX5GFv147haFnf" },
+    { id: "13ep-LyDsXfK5lGgpih3aeaI34Je9MN8U" },
   ],
 };

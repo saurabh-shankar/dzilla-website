@@ -140,6 +140,9 @@ export default async function ServicePageRoute({ params }: { params: Promise<Par
 
       <Statement>{page.statement}</Statement>
 
+      {/* Handoff 2: the work videos come before the service explanation. */}
+      <WorkGrid page={page} />
+
       <DarkList label="WHAT'S INCLUDED" note={includedNote} items={page.included} />
 
       <section className="gutter-x py-[clamp(56px,7vw,104px)]">
@@ -167,8 +170,6 @@ export default async function ServicePageRoute({ params }: { params: Promise<Par
           </div>
         </div>
       </section>
-
-      <WorkGrid page={page} />
 
       <ServiceCta title={page.cta} primary={{ href: serviceMail, label: "Send us a message" }} />
     </PageShell>

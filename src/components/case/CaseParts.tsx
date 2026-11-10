@@ -110,12 +110,16 @@ export function ResultStat({ value, label, note }: { value: string; label: strin
   );
 }
 
-export function Closing({ heading, body, pull }: { heading: string; body: string; pull: string }) {
+export function Closing({ heading, body, pull }: { heading: string; body: string | string[]; pull: string }) {
   return (
     <section className="gutter-x border-t border-rule py-[clamp(48px,6vw,96px)]">
       <div className="max-w-[820px]">
         <h2 className="mb-5 mt-0 [text-wrap:balance] text-[clamp(24px,3.2vw,48px)] font-medium tracking-[-0.04em]">{heading}</h2>
-        <p className={`${bodyP} !mb-4`}>{body}</p>
+        {(Array.isArray(body) ? body : [body]).map((b, i) => (
+          <p key={i} className={`${bodyP} !mb-4`}>
+            {b}
+          </p>
+        ))}
         <p className="m-0 text-[clamp(19px,2vw,26px)] font-medium leading-[1.5] tracking-[-0.02em]">{pull}</p>
       </div>
     </section>

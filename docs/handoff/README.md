@@ -1,4 +1,44 @@
-# Handoff: D.zilla Website
+# Handoff 2: D.zilla Website — delta since Checkpoint 1
+
+> **Read this first.** This package supersedes `design_handoff_dzilla_website/` (Checkpoint 1, 10 Nov 2026).
+> Everything below is the **current, complete** spec — but only the items listed under **"Changes since last handoff"** differ from what you already built. If Checkpoint 1 is already implemented, apply just those changes. If you are starting fresh, build from this document in full and ignore Checkpoint 1 entirely.
+
+## Changes since last handoff
+
+### 1. Service pages reordered
+On **Social, Studio / Films, CGI + AI and Brand IP**, the work videos now sit directly after the page description, before "What's included".
+
+Order is now: **hero (eyebrow + H1 + one-line description) → work videos → What's included → What you get / In numbers → CTA → footer.**
+
+Campaigns and Political PR are unchanged (they still have no work section).
+
+### 2. Alchemy IVF case study — real stats, collective not per-reel
+The stat band is no longer a placeholder and is no longer three items. It is now **four collective stats**, sourced from Instagram Insights for the 30-day window ending 1 Nov 2026 on `@ivf.for.all`:
+
+| Value | Label |
+|---|---|
+| `6.8M` | Views in 30 days |
+| `4.8M` | People reached |
+| `99.7%` | Non-followers reached (the `%` is green `#12854A`) |
+| `99` | Episodes published |
+
+**Per-reel view captions have been removed** from the reel grid — the cards are now media only, no caption row. Do not reintroduce them; the client's decision is that the numbers read as one collective result, not a leaderboard.
+
+A supporting line was added to "Why it compounds":
+> "Almost none of this reach was bought or borrowed: 99.7% of the people who watched did not follow the account. The format found them."
+
+Raw figures are preserved in `content/case-studies.json` under `rawInsights` if you need to render precise numbers anywhere.
+
+### 3. Footer social links are real, and trimmed to two
+Every footer previously had four dead links (Instagram, LinkedIn, YouTube, Behance) all pointing at `#contact`. Now:
+
+- **Instagram** → `https://www.instagram.com/d.zillaagency?utm_source=ig_web_button_share_sheet&srtk=ZDNlZDc0MzIxNw==`
+- **LinkedIn** → `https://www.linkedin.com/company/dzilla/`
+- **YouTube and Behance removed entirely.**
+
+Both open in a new tab (`target="_blank" rel="noopener"`). Applied across all 7 pages that have a footer.
+
+---
 
 ## Overview
 
@@ -134,11 +174,13 @@ Section order is fixed: **Hero → Trusted by → Work → What we do → Politi
 
 **Contact.** "Let's build something worth noticing." + sub-line, email, both phone numbers, CTA.
 
-**Footer.** Logo (`logo-light.png`, 28px), email, both phone numbers stacked, nav, social links.
+**Footer.** Logo (`logo-light.png`, 28px), email, both phone numbers stacked, nav, and exactly two social links — Instagram and LinkedIn, both `target="_blank" rel="noopener"`. URLs in `site.json`. No YouTube, no Behance.
 
 ### 2. Service pages (6) — e.g. `design-reference/Social.dc.html`
 
-Shared template: header → hero (eyebrow + H1 + one-line definition) → "What's included" list → "What you get" / "In numbers" two-column → work grid → CTA → footer.
+Shared template: header → hero (eyebrow + H1 + one-line definition) → **work grid** → "What's included" list → "What you get" / "In numbers" two-column → CTA → footer.
+
+The work grid sits directly below the description — the videos are the proof, so they come before the service explanation.
 
 Work grids per service are in `services.json`. **Campaigns and Political PR have no work section at all** — the client hasn't tagged any work to them. Do not fill them with borrowed work; render nothing until content is supplied.
 
@@ -150,9 +192,9 @@ Hero film → intro → brand film → 3-up experience-centre reels → event fi
 
 ### 4. Alchemy IVF (`/work/alchemy-ivf`) — Brand IP case study
 
-Hero (`ivf.for.all`) → 3-stat band → **full-bleed marquee** of all 15 reels (same mechanics as the landing marquee, 52s) → The client / The problem → 01 The format → 02 The work (full 9:16 grid, one card per reel with a view-count caption) → Why it compounds → CTA to `/services/brand-ip`.
+Hero (`ivf.for.all`) → 4-stat band → **full-bleed marquee** of all 15 reels (same mechanics as the landing marquee, 52s) → The client / The problem → 01 The format → 02 The work (full 9:16 grid, media only) → Why it compounds → CTA to `/services/brand-ip`.
 
-**Stats and per-reel view counts are placeholders** (`00M+`, `00+`, `00`, `— views`). Build them as data fields; the client will supply real numbers.
+**Stats are real** — see "Changes since last handoff" above and `content/case-studies.json`. They are collective figures, not per-reel. The reel grid carries **no view-count captions**.
 
 ### 5. Contact (`/contact`)
 
@@ -239,7 +281,7 @@ To view a reference file, open it directly in a browser — `support.js` must si
 ## Open items (do not invent)
 
 1. **Hero video** — not supplied. Keep the empty slot.
-2. **Alchemy IVF stats** — total views, reel count, months running, and per-reel view counts are all placeholders.
-3. **Campaigns and Political PR work** — no tagged work exists yet.
-4. **Tile notes for 07–10** were written from client context; copy is final as it stands in `work.json`.
-5. **Contact form** has no backend.
+2. **Campaigns and Political PR work** — no tagged work exists yet.
+3. **Contact form** has no backend.
+
+Resolved since Checkpoint 1: Alchemy IVF stats are now real; footer social links are now real.

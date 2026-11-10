@@ -38,7 +38,6 @@ export default function AlchemyCaseStudy() {
 
       <CaseHero tag={alchemy.tag} title={alchemy.title} intro={alchemy.intro} introMaxWidth={680} />
 
-      {/* OPEN ITEM — placeholder stats (alchemy.statsPending). */}
       <section className="gutter-x pb-[clamp(32px,4vw,64px)]">
         <dl className="m-0 flex flex-wrap gap-[clamp(20px,3vw,56px)] border-y border-rule py-[clamp(24px,3vw,40px)]">
           {alchemy.stats.map((s) => (
@@ -106,12 +105,11 @@ export default function AlchemyCaseStudy() {
 
       <CaseSection>
         <NumberedHeading n="02" title="The work" />
-        {/* OPEN ITEM — per-reel view counts are placeholders (alchemy.reelViewCountsPending). */}
+        {/* Media only — no per-reel view captions (client decision, Handoff 2). */}
         <ul className="m-0 grid list-none grid-cols-[repeat(auto-fit,minmax(min(100%,200px),1fr))] gap-[clamp(14px,1.8vw,26px)] p-0">
           {alchemy.reels.map((r, i) => (
             <li key={r.id} className="flex flex-col">
               <DriveEmbed driveId={r.id} title={`ivf.for.all episode ${i + 1}`} aspect="9/16" className="rounded-media" />
-              <div className="px-1 pt-3.5 text-[15px] font-semibold text-ink">{r.views}</div>
             </li>
           ))}
         </ul>
@@ -119,7 +117,10 @@ export default function AlchemyCaseStudy() {
 
       <Closing
         heading="Why it compounds"
-        body="A campaign spends, runs and ends. An IP is an asset — the name, the format and the library stay with the brand, and every season costs less to make than the last."
+        body={[
+          "A campaign spends, runs and ends. An IP is an asset — the name, the format and the library stay with the brand, and every season costs less to make than the last.",
+          "Almost none of this reach was bought or borrowed: 99.7% of the people who watched did not follow the account. The format found them.",
+        ]}
         pull="We didn't run ads for a clinic. We built something it owns."
       />
 

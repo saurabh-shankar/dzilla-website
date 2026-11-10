@@ -1,16 +1,76 @@
 {
   "note": "Services section on the landing page (#services) and the dropdown in the header. Order is fixed.",
   "services": [
-    { "n": "01", "slug": "campaigns", "title": "Campaigns", "description": "Ad campaign development & execution, plus social media campaign strategy that holds up across every channel.", "workSlugs": [] },
-    { "n": "02", "slug": "social", "title": "Social", "description": "Posts, reels, carousels and graphics, backed by content marketing.", "workSlugs": ["ava-x-mars", "aro-cafe", "hyugaone"] },
-    { "n": "03", "slug": "studio-films", "title": "Studio / Films", "description": "Documentary and filmmaking, event coverage and production, video production and editing — shoot to delivery, one crew, one timeline.", "workSlugs": ["venus-capital-heights", "badalta-bihar", "nilf", "obop-industries-bihar", "documentary-ajit-kumar", "campzilla-travel-film"], "heroDriveId": "1dZh9Z6dFU-u7ZwN5YwiqglkKAXQNNcMW" },
-    { "n": "04", "slug": "cgi-ai", "title": "CGI + AI", "description": "CGI production in 3D and VFX, plus AI-generated content and visuals.", "workSlugs": ["products-compilation"] },
-    { "n": "05", "slug": "brand-ip", "title": "Brand IP", "description": "Owned content properties — formats, shows and characters a brand can run season after season.", "caseStudySlugs": ["alchemy-ivf"], "heroDriveId": "19Cc91a52PDA_trEQeeQA9J-sFkkJGifl" },
-    { "n": "06", "slug": "political-pr", "title": "Political PR", "description": "Positioning, war-room content, constituency storytelling and rapid-response media for leaders and parties.", "workSlugs": [] }
+    {
+      "n": "01",
+      "slug": "campaigns",
+      "title": "Campaigns",
+      "description": "Ad campaign development & execution, plus social media campaign strategy that holds up across every channel.",
+      "workSlugs": []
+    },
+    {
+      "n": "02",
+      "slug": "social",
+      "title": "Social",
+      "description": "Posts, reels, carousels and graphics, backed by content marketing.",
+      "workSlugs": [
+        "ava-x-mars",
+        "aro-cafe",
+        "hyugaone"
+      ]
+    },
+    {
+      "n": "03",
+      "slug": "studio-films",
+      "title": "Studio / Films",
+      "description": "Documentary and filmmaking, event coverage and production, video production and editing — shoot to delivery, one crew, one timeline.",
+      "workSlugs": [
+        "venus-capital-heights",
+        "badalta-bihar",
+        "nilf",
+        "obop-industries-bihar",
+        "documentary-ajit-kumar",
+        "campzilla-travel-film"
+      ],
+      "heroDriveId": "1dZh9Z6dFU-u7ZwN5YwiqglkKAXQNNcMW"
+    },
+    {
+      "n": "04",
+      "slug": "cgi-ai",
+      "title": "CGI + AI",
+      "description": "CGI production in 3D and VFX, plus AI-generated content and visuals.",
+      "workSlugs": [
+        "products-compilation"
+      ]
+    },
+    {
+      "n": "05",
+      "slug": "brand-ip",
+      "title": "Brand IP",
+      "description": "Owned content properties — formats, shows and characters a brand can run season after season.",
+      "caseStudySlugs": [
+        "alchemy-ivf"
+      ],
+      "heroDriveId": "19Cc91a52PDA_trEQeeQA9J-sFkkJGifl"
+    },
+    {
+      "n": "06",
+      "slug": "political-pr",
+      "title": "Political PR",
+      "description": "Positioning, war-room content, constituency storytelling and rapid-response media for leaders and parties.",
+      "workSlugs": []
+    }
   ],
   "openItems": [
     "Campaigns and Political PR currently have NO work tiles — the client has not tagged any work to them yet. Their work sections were removed rather than filled with borrowed work. Do not invent content.",
-    "Alchemy IVF stats and per-reel view counts are still placeholders (00M+, 00+, 00, '— views').",
     "Landing page hero media slot is intentionally empty — the client has not supplied the hero video yet. Keep the grey placeholder (#EDEEF0) and a `heroVideo` field in the CMS/config."
+  ],
+  "pageSectionOrder": [
+    "hero (eyebrow + H1 + one-line description)",
+    "work videos",
+    "What’s included",
+    "What you get / In numbers",
+    "CTA",
+    "footer"
   ]
 }
