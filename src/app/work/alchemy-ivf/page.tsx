@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { PageShell } from "@/components/layout/PageShell";
-import { DriveEmbed } from "@/components/ui/DriveEmbed";
+import { Video } from "@/components/ui/Video";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { CaseCta, CaseHero, CaseSection, Closing, DidHelped, NumberedHeading, TwoCol } from "@/components/case/CaseParts";
 import { alchemy } from "@/content/case-studies";
@@ -59,11 +59,12 @@ export default function AlchemyCaseStudy() {
             style={{ ["--marquee-duration" as string]: "52s", ["--marquee-name" as string]: "dz-marquee-rev" }}
           >
             {loop.map((r, i) => (
-              <DriveEmbed
+              <Video
                 key={`${r.id}-${i}`}
-                driveId={r.id}
+                video={r.id}
                 title={`ivf.for.all reel ${(i % alchemy.reels.length) + 1}`}
                 aspect="9/16"
+                soundToggle={false}
                 className="w-[clamp(150px,16vw,268px)] flex-none rounded-card"
               />
             ))}
@@ -109,7 +110,7 @@ export default function AlchemyCaseStudy() {
         <ul className="reel-grid-2 m-0 grid list-none grid-cols-[repeat(auto-fit,minmax(min(100%,200px),1fr))] gap-[clamp(14px,1.8vw,26px)] p-0">
           {alchemy.reels.map((r, i) => (
             <li key={r.id} className="flex flex-col">
-              <DriveEmbed driveId={r.id} title={`ivf.for.all episode ${i + 1}`} aspect="9/16" className="rounded-media" />
+              <Video video={r.id} title={`ivf.for.all episode ${i + 1}`} aspect="9/16" className="rounded-media" />
             </li>
           ))}
         </ul>

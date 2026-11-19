@@ -236,27 +236,21 @@
     --ink-base: var(--color-paper);
   }
 
-  /* Google Drive embeds — centred and over-scanned to kill letterboxing. */
+  /* Self-hosted video boxes: the aspect-ratio box from the design, filled
+     edge to edge by the video (no letterbox bars). */
   .dz-embed {
     position: relative;
     overflow: hidden;
     background: var(--color-ink);
   }
-  .dz-embed > iframe {
+  .dz-embed > video {
     position: absolute;
-    top: 50%;
-    left: 50%;
+    inset: 0;
     width: 100%;
     height: 100%;
-    transform: translate(-50%, -50%) scale(1.06);
-    transform-origin: center;
-    border: 0;
+    object-fit: cover;
     display: block;
-  }
-
-  .dz-embed-plain > iframe {
-    inset: 0;
-    transform: none;
+    border: 0;
   }
 
   /* Phones: rows of 9:16 reels become a swipeable row (next card peeks in)

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { DriveEmbed } from "@/components/ui/DriveEmbed";
+import { Video } from "@/components/ui/Video";
 import { alchemyRail, workItems, type WorkItem } from "@/content/work";
 
 function CaseStudyPill({ href, label }: { href: string; label: string }) {
@@ -60,12 +60,11 @@ function Caption({
 function FullTile({ item, lead }: { item: WorkItem; lead?: boolean }) {
   return (
     <article data-tile className="group mx-auto flex w-[min(100%,1680px)] max-w-full flex-col self-center">
-      <DriveEmbed
-        driveId={item.driveId}
+      <Video
+        video={item.video}
         title={item.title}
         aspect={item.aspect}
         lazy={!lead}
-        zoom={false}
         className={`rounded-media ${lead ? "shadow-tile" : ""}`}
       />
       <Caption
@@ -83,7 +82,7 @@ function FullTile({ item, lead }: { item: WorkItem; lead?: boolean }) {
 function TrioTile({ item }: { item: WorkItem }) {
   return (
     <article data-tile className="group flex min-w-0 flex-col">
-      <DriveEmbed driveId={item.driveId} title={item.title} aspect="9/16" zoom={false} className="rounded-media" />
+      <Video video={item.video} title={item.title} aspect="9/16" className="rounded-media" />
       <Caption tag={item.tag} title={item.title} note={item.note} n={item.n} />
     </article>
   );
@@ -91,7 +90,7 @@ function TrioTile({ item }: { item: WorkItem }) {
 
 /** Full-bleed Alchemy IVF marquee — pauses on hover. */
 function AlchemyRail() {
-  const loop = [...alchemyRail.driveIds, ...alchemyRail.driveIds];
+  const loop = [...alchemyRail.videos, ...alchemyRail.videos];
   return (
     <section
       aria-label="Alchemy IVF — ivf.for.all reels"
@@ -102,11 +101,12 @@ function AlchemyRail() {
         style={{ ["--marquee-duration" as string]: "60s" }}
       >
         {loop.map((id, i) => (
-          <DriveEmbed
+          <Video
             key={`${id}-${i}`}
-            driveId={id}
-            title={`Alchemy IVF reel ${(i % alchemyRail.driveIds.length) + 1}`}
+            video={id}
+            title={`Alchemy IVF reel ${(i % alchemyRail.videos.length) + 1}`}
             aspect="9/16"
+            soundToggle={false}
             className="flex-none rounded-card w-[clamp(180px,16vw,268px)]"
           />
         ))}

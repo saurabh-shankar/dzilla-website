@@ -4,6 +4,8 @@ import { site, telHref } from "@/content/site";
 /** Canonical origin, without trailing slash. */
 export const siteUrl = (
   process.env.NEXT_PUBLIC_SITE_URL ||
+  // Netlify sets URL to the site's primary URL at build time.
+  process.env.URL ||
   (process.env.VERCEL_PROJECT_PRODUCTION_URL
     ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
     : "http://localhost:3000")
