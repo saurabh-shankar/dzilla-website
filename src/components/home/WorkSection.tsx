@@ -66,7 +66,7 @@ function FullTile({ item, lead }: { item: WorkItem; lead?: boolean }) {
         aspect={item.aspect}
         lazy={!lead}
         zoom={false}
-        className={`rounded-media min-h-[min(82svh,860px)] ${lead ? "shadow-tile" : ""}`}
+        className={`rounded-media ${lead ? "shadow-tile" : ""}`}
       />
       <Caption
         tag={item.tag}
@@ -152,7 +152,7 @@ export function WorkSection() {
             return (
               <div
                 key="trio"
-                className="mx-auto grid w-full max-w-[1680px] grid-cols-[repeat(auto-fit,minmax(min(100%,170px),1fr))] items-start gap-[clamp(14px,1.8vw,32px)]"
+                className="reel-swipe mx-auto grid w-full max-w-[1680px] grid-cols-[repeat(auto-fit,minmax(min(100%,170px),1fr))] items-start gap-[clamp(14px,1.8vw,32px)]"
               >
                 {trio.map((t) => (
                   <TrioTile key={t.slug} item={t} />

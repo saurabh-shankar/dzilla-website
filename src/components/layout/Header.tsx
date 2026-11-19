@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
+import { useEffect, useId, useRef, useState } from "react";
 import { Logo } from "@/components/ui/Logo";
 import { serviceHref, services } from "@/content/services";
 
@@ -90,7 +91,7 @@ function HomeNav() {
         </Link>
       </nav>
       {/* Compact nav (≤ 660px) */}
-      <nav aria-label="Primary" className="flex min-w-0 items-center gap-3.5 text-[14px] font-medium min-[661px]:hidden">
+      <nav aria-label="Primary" className="flex min-w-0 items-center gap-3.5 text-[14px] font-medium min-[661px]:hidden max-[399px]:hidden">
         <Link href="/#work" className="dz-ink px-0.5 py-2.5">
           Work
         </Link>
@@ -114,7 +115,7 @@ function SubNav({ variant }: { variant: Exclude<HeaderVariant, "home"> }) {
   return (
     <nav
       aria-label="Primary"
-      className={`flex min-w-0 items-center text-[15px] font-medium ${variant === "service" ? "gap-[clamp(6px,1.4vw,22px)]" : "gap-[clamp(8px,1.4vw,22px)]"}`}
+      className={`flex min-w-0 items-center text-[15px] font-medium max-[399px]:hidden ${variant === "service" ? "gap-[clamp(6px,1.4vw,22px)]" : "gap-[clamp(8px,1.4vw,22px)]"}`}
     >
       {variant === "case" ? (
         <Link href="/#work" className={plainLink}>
@@ -144,12 +145,109 @@ function SubNav({ variant }: { variant: Exclude<HeaderVariant, "home"> }) {
   );
 }
 
+const menuItemCls =
+  "dz-spread block rounded-xl px-3.5 py-[11px] text-[15px] text-body [--spread:var(--color-ink)] hover:text-paper";
+
+/**
+ * Phones narrower than 400px: logo + Contact pill + a menu button. The panel
+ * reuses the Services dropdown styling and motion. (At 400px and up the
+ * designed navs fit on one row and are used unchanged.)
+ */
+function MobileMenu({ variant }: { variant: HeaderVariant }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+  const panelId = useId();
+  const pathname = usePathname();
+  const [lastPath, setLastPath] = useState(pathname);
+
+  // Close when the route changes.
+  if (pathname !== lastPath) {
+    setLastPath(pathname);
+    setOpen(false);
+  }
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    const onDown = (e: PointerEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    };
+    document.addEventListener("keydown", onKey);
+    document.addEventListener("pointerdown", onDown);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.removeEventListener("pointerdown", onDown);
+    };
+  }, [open]);
+
+  const close = () => setOpen(false);
+  const items: { href: string; label: string }[] = [
+    { href: "/#work", label: variant === "case" ? "All work" : "Work" },
+    ...services.map((s) => ({ href: serviceHref(s.slug), label: s.title })),
+  ];
+
+  return (
+    <div ref={ref} className="flex items-center gap-2 min-[400px]:hidden">
+      {variant !== "contact" && (
+      <Link
+        href={variant === "home" ? "/contact" : "/#contact"}
+        className="dz-spread btn-solid px-4 py-2.5 !text-[14px]"
+        data-track="cta_click"
+        data-track-label="Contact (mobile header)"
+      >
+        <span>Contact</span>
+      </Link>
+      )}
+      <button
+        type="button"
+        aria-expanded={open}
+        aria-controls={panelId}
+        aria-label={open ? "Close menu" : "Open menu"}
+        onClick={() => setOpen((o) => !o)}
+        className="relative grid h-10 w-10 cursor-pointer place-items-center rounded-full border border-[rgba(11,12,14,0.18)] bg-transparent"
+      >
+        <span aria-hidden className="relative block h-3 w-4">
+          <span
+            className="absolute left-0 h-[1.5px] w-4 rounded-full bg-ink transition-transform duration-300 ease-dz"
+            style={{ top: open ? 5 : 1, transform: open ? "rotate(45deg)" : "none" }}
+          />
+          <span
+            className="absolute left-0 h-[1.5px] w-4 rounded-full bg-ink transition-transform duration-300 ease-dz"
+            style={{ top: open ? 5 : 9, transform: open ? "rotate(-45deg)" : "none" }}
+          />
+        </span>
+      </button>
+      {open && (
+        <div id={panelId} className="absolute inset-x-[var(--gutter)] top-full pt-2">
+          <nav
+            aria-label="Menu"
+            className="overflow-hidden rounded-[18px] border border-[rgba(11,12,14,0.1)] bg-white p-1.5 shadow-[0_18px_40px_rgba(11,12,14,0.1)]"
+            style={{ transformOrigin: "right top", animation: "dz-menu-in 460ms cubic-bezier(0.22,1,0.36,1) both" }}
+          >
+            {items.map((item, i) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={close}
+                className={menuItemCls}
+                style={{ animation: `dz-menu-item-in 520ms cubic-bezier(0.22,1,0.36,1) ${60 + i * 35}ms backwards` }}
+              >
+                <span>{item.label}</span>
+              </Link>
+            ))}
+          </nav>
+        </div>
+      )}
+    </div>
+  );
+}
+
 /** Fixed glass header. */
 export function Header({ variant }: { variant: HeaderVariant }) {
   return (
     <header className="fixed inset-x-0 top-0 z-60">
       <div
-        className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2.5 px-[clamp(14px,3.4vw,40px)] shadow-header backdrop-blur-[22px] backdrop-saturate-[180%]"
+        className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2.5 px-[max(clamp(14px,3.4vw,40px),calc((100%-1680px)/2))] shadow-header backdrop-blur-[22px] backdrop-saturate-[180%]"
         style={{
           background: "linear-gradient(180deg, rgba(255,255,255,0.68), rgba(247,248,248,0.42))",
           paddingTop: 14,
@@ -160,6 +258,7 @@ export function Header({ variant }: { variant: HeaderVariant }) {
           <Logo variant="dark" height={26} priority />
         </Link>
         {variant === "home" ? <HomeNav /> : <SubNav variant={variant} />}
+        <MobileMenu variant={variant} />
       </div>
     </header>
   );

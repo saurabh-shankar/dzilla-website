@@ -17,7 +17,7 @@ export const metadata: Metadata = pageMetadata({
 
 function ReelTrio({ ids, title }: { ids: string[]; title: string }) {
   return (
-    <div className="grid grid-cols-[repeat(auto-fit,minmax(min(100%,260px),1fr))] gap-[clamp(16px,2vw,28px)]">
+    <div className="reel-swipe grid grid-cols-[repeat(auto-fit,minmax(min(100%,260px),1fr))] gap-[clamp(16px,2vw,28px)]">
       {ids.map((id, i) => (
         <DriveEmbed key={id} driveId={id} title={`${title} ${i + 1}`} aspect="9/16" className="rounded-media" />
       ))}
@@ -66,7 +66,7 @@ export default function VenusCaseStudy() {
           aspect="16/9"
           lazy={false}
           zoom={false}
-          className="min-h-[min(76svh,820px)] rounded-media"
+          className="rounded-media"
         />
       </section>
 

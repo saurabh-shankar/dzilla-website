@@ -36,7 +36,9 @@
 
 /* Fluid spacing shared across every screen. */
 :root {
-  --gutter: clamp(16px, 3.4vw, 40px);
+  /* Design gutter; above 1760px it grows so content stays a centred 1680px column
+     (the design's max media width). Identical to the design at ≤1760px. */
+  --gutter: max(clamp(16px, 3.4vw, 40px), calc((100% - 1680px) / 2));
 }
 
 /* Landing reference: right → left. */
@@ -255,6 +257,35 @@
   .dz-embed-plain > iframe {
     inset: 0;
     transform: none;
+  }
+
+  /* Phones: rows of 9:16 reels become a swipeable row (next card peeks in)
+     instead of stacking full-screen-tall reels. */
+  @media (max-width: 639px) {
+    .reel-swipe {
+      display: flex !important;
+      gap: 12px !important;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      margin-inline: calc(-1 * var(--gutter)) !important;
+      width: auto !important;
+      max-width: none !important;
+      padding-inline: var(--gutter);
+      scroll-padding-inline: var(--gutter);
+      scrollbar-width: none;
+      overscroll-behavior-x: contain;
+    }
+    .reel-swipe::-webkit-scrollbar {
+      display: none;
+    }
+    .reel-swipe > * {
+      flex: 0 0 68%;
+      min-width: 0;
+      scroll-snap-align: start;
+    }
+    .reel-grid-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
   }
 
   /* Infinite marquee track — pause on hover handled in <Marquee />. */

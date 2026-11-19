@@ -106,7 +106,7 @@ export default function AlchemyCaseStudy() {
       <CaseSection>
         <NumberedHeading n="02" title="The work" />
         {/* Media only — no per-reel view captions (client decision, Handoff 2). */}
-        <ul className="m-0 grid list-none grid-cols-[repeat(auto-fit,minmax(min(100%,200px),1fr))] gap-[clamp(14px,1.8vw,26px)] p-0">
+        <ul className="reel-grid-2 m-0 grid list-none grid-cols-[repeat(auto-fit,minmax(min(100%,200px),1fr))] gap-[clamp(14px,1.8vw,26px)] p-0">
           {alchemy.reels.map((r, i) => (
             <li key={r.id} className="flex flex-col">
               <DriveEmbed driveId={r.id} title={`ivf.for.all episode ${i + 1}`} aspect="9/16" className="rounded-media" />

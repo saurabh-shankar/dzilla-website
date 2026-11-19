@@ -33,7 +33,7 @@ function HeroMedia({ page }: { page: ServicePage }) {
       title={m.title}
       aspect="16/9"
       lazy={false}
-      className="mt-[clamp(26px,3.2vw,44px)] min-h-[min(64svh,680px)] rounded-media"
+      className="mt-[clamp(26px,3.2vw,44px)] rounded-media"
     />
   ) : (
     <DriveEmbed
@@ -79,7 +79,7 @@ function WorkGrid({ page }: { page: ServicePage }) {
         </>
       ) : work.kind === "embeds" ? (
         <div
-          className="grid gap-[clamp(18px,2.2vw,32px)]"
+          className={`grid gap-[clamp(18px,2.2vw,32px)] ${work.aspect === "9/16" ? "reel-swipe" : ""}`}
           style={{ gridTemplateColumns: `repeat(auto-fit, minmax(min(100%, ${work.minCol}px), 1fr))` }}
         >
           {work.items.map((item) => (
