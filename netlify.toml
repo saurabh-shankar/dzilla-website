@@ -1,0 +1,11 @@
+# Netlify deploys Next.js zero-config via its OpenNext adapter.
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+# Self-hosted videos and posters (public/videos). Cached on the CDN and in
+# browsers for 30 days; rename a file if you replace its content.
+[[headers]]
+  for = "/videos/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000, stale-while-revalidate=86400"

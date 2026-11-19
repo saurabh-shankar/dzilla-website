@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { PageShell } from "@/components/layout/PageShell";
-import { DriveEmbed } from "@/components/ui/DriveEmbed";
+import { Video } from "@/components/ui/Video";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { Breadcrumb, DarkList, ServiceChips, ServiceCta, ServiceHeading, Statement, serviceMail } from "@/components/service/ServiceParts";
 import { includedNote, servicePages, serviceHref, type ServicePage } from "@/content/services";
@@ -28,16 +28,16 @@ function HeroMedia({ page }: { page: ServicePage }) {
   const m = page.heroMedia;
   if (!m) return null;
   return m.kind === "film" ? (
-    <DriveEmbed
-      driveId={m.driveId}
+    <Video
+      video={m.video}
       title={m.title}
       aspect="16/9"
       lazy={false}
       className="mt-[clamp(26px,3.2vw,44px)] rounded-media"
     />
   ) : (
-    <DriveEmbed
-      driveId={m.driveId}
+    <Video
+      video={m.video}
       title={m.title}
       aspect="9/16"
       lazy={false}
@@ -69,8 +69,8 @@ function WorkGrid({ page }: { page: ServicePage }) {
             </div>
           </div>
           {work.items.slice(1).map((item) => (
-            <div key={item.driveId} className="flex min-w-0 flex-col">
-              <DriveEmbed driveId={item.driveId} title={item.title} aspect={work.aspect} className="rounded-media" />
+            <div key={item.video} className="flex min-w-0 flex-col">
+              <Video video={item.video} title={item.title} aspect={work.aspect} className="rounded-media" />
               <div className="px-1 pt-3.5">
                 <h3 className="m-0 text-[clamp(17px,1.6vw,22px)] font-medium tracking-[-0.03em] text-ink">{item.title}</h3>
               </div>
@@ -83,8 +83,8 @@ function WorkGrid({ page }: { page: ServicePage }) {
           style={{ gridTemplateColumns: `repeat(auto-fit, minmax(min(100%, ${work.minCol}px), 1fr))` }}
         >
           {work.items.map((item) => (
-            <div key={item.driveId} className="flex min-w-0 flex-col">
-              <DriveEmbed driveId={item.driveId} title={item.title} aspect={work.aspect} className="rounded-media" />
+            <div key={item.video} className="flex min-w-0 flex-col">
+              <Video video={item.video} title={item.title} aspect={work.aspect} className="rounded-media" />
               <div className="px-1 pt-3.5">
                 <h3 className="m-0 text-[clamp(17px,1.6vw,22px)] font-medium tracking-[-0.03em] text-ink">{item.title}</h3>
               </div>

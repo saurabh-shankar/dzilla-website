@@ -83,10 +83,6 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en-IN" className={jakarta.variable}>
-      <head>
-        <link rel="preconnect" href="https://drive.google.com" />
-        <link rel="dns-prefetch" href="https://drive.google.com" />
-      </head>
       <body>
         <JsonLd data={[organizationJsonLd(), websiteJsonLd()]} />
         {children}

@@ -32,8 +32,8 @@ export const services: Service[] = [
 export const serviceHref = (slug: ServiceSlug) => `/services/${slug}`;
 
 type HeroMedia =
-  | { kind: "film"; driveId: string; title: string }
-  | { kind: "reel"; driveId: string; title: string };
+  | { kind: "film"; video: string; title: string }
+  | { kind: "reel"; video: string; title: string };
 
 type WorkGrid =
   | {
@@ -42,7 +42,7 @@ type WorkGrid =
       aspect: "16/9" | "9/16";
       /** minmax() floor: 200px for 9:16, 320px for 16:9. */
       minCol: 200 | 320;
-      items: { title: string; driveId: string }[];
+      items: { title: string; video: string }[];
       /**
        * Reproduces the designer's Studio-Films.dc.html render exactly: the first
        * item appears as a title only inside the grid, and the remaining items
@@ -120,9 +120,9 @@ export const servicePages: Record<ServicePage["slug"], ServicePage> = {
       aspect: "9/16",
       minCol: 200,
       items: [
-        { title: "Ava X Mars", driveId: "1GEJsZMZLRu6rmg8gbRbszrvhpUlxbVlp" },
-        { title: "Aro Cafe", driveId: "1B9sEIdy9nEPnC7VQNAT2P4JwKKeFSM_J" },
-        { title: "Hyugaone", driveId: "1B-LBJX_k1TmlC91r_HKN7iw14zYMr9Io" },
+        { title: "Ava X Mars", video: "ava-x-mars" },
+        { title: "Aro Cafe", video: "aro-cafe" },
+        { title: "Hyugaone", video: "hyugaone" },
       ],
     },
     cta: "Start a social project",
@@ -132,7 +132,7 @@ export const servicePages: Record<ServicePage["slug"], ServicePage> = {
     title: "Studio / Films",
     sub: "Documentary and filmmaking, event coverage and production, video production and editing — shoot to delivery, one crew, one timeline.",
     statement: "We keep direction, camera and post under one roof, so the film you signed off on in the treatment is the film that gets graded.",
-    heroMedia: { kind: "film", driveId: "1dZh9Z6dFU-u7ZwN5YwiqglkKAXQNNcMW", title: "Venus Capital Heights" },
+    heroMedia: { kind: "film", video: "venus-capital-heights-film", title: "Venus Capital Heights" },
     included: [
       { title: "Treatment & scripting", body: "Story, structure and the reason anyone watches past the first ten seconds." },
       { title: "Production", body: "Crew, kit, casting, locations and the schedule that holds it together." },
@@ -153,12 +153,12 @@ export const servicePages: Record<ServicePage["slug"], ServicePage> = {
       minCol: 320,
       designerOrphanFirst: true,
       items: [
-        { title: "Venus Capital Heights", driveId: "1dZh9Z6dFU-u7ZwN5YwiqglkKAXQNNcMW" },
-        { title: "Badalta Bihar", driveId: "1QEj78CLhHePA9c8Qs1cSN8OhfuZ9Q29K" },
-        { title: "NILF", driveId: "1TnHj2Lfk0_xdlPEiXkBVofUfO62M9wZy" },
-        { title: "OBOP Industries of Bihar (ODOP & OBOP)", driveId: "1kq6sPwUDBQyL0gRk7Kvx2nxPvKTzITVq" },
-        { title: "Documentary — Ajit Kumar", driveId: "10-OCoU-f_i6fDcT7n87PIKm2DHJnAzPg" },
-        { title: "Campzilla travel film", driveId: "1P8YpuIL-rQdY8jPb3uL9m366jdbVrbw0" },
+        { title: "Venus Capital Heights", video: "venus-capital-heights-film" },
+        { title: "Badalta Bihar", video: "badalta-bihar" },
+        { title: "NILF", video: "nilf" },
+        { title: "OBOP Industries of Bihar (ODOP & OBOP)", video: "obop-industries-bihar" },
+        { title: "Documentary — Ajit Kumar", video: "documentary-ajit-kumar" },
+        { title: "Campzilla travel film", video: "campzilla-travel-film" },
       ],
     },
     cta: "Start a studio / films project",
@@ -186,7 +186,7 @@ export const servicePages: Record<ServicePage["slug"], ServicePage> = {
       label: "CGI + AI WORK",
       aspect: "16/9",
       minCol: 320,
-      items: [{ title: "Products compilation", driveId: "15bEoSxAt-lj9hF2bBms3DGgAvaky_RgJ" }],
+      items: [{ title: "Products compilation", video: "products-compilation" }],
     },
     cta: "Start a cgi + ai project",
   },
@@ -195,7 +195,7 @@ export const servicePages: Record<ServicePage["slug"], ServicePage> = {
     title: "Brand IP",
     sub: "Owned content properties — formats, shows and characters a brand can run season after season.",
     statement: "A founder brand fails on cadence, not on talent. We define the territory, then build a system that runs on an hour of your time a week.",
-    heroMedia: { kind: "reel", driveId: "19Cc91a52PDA_trEQeeQA9J-sFkkJGifl", title: "ivf.for.all" },
+    heroMedia: { kind: "reel", video: "ivf-for-all-01", title: "ivf.for.all" },
     included: [
       { title: "Format design", body: "The idea, the shape and the reason it returns — before a frame is shot." },
       { title: "World & narrative", body: "Characters, tone and rules that stay consistent across every episode." },
