@@ -4,13 +4,19 @@ import { useEffect, useRef, useState } from "react";
 
 /** Close if playback hasn't started by then (slow network, autoplay blocked). */
 const START_TIMEOUT_MS = 6000;
-/** Once playing, safety net if `ended` never fires: video length + this. */
-const END_GRACE_MS = 1500;
-const FADE_MS = 520;
+/**
+ * The "D.zilla" wordmark finishes writing at 4.8s of intro.mp4 and the rest
+ * is a static hold. Start fading a short beat after it completes.
+ * (If intro.mp4 is replaced, re-measure this.)
+ */
+const FADE_AT_S = 5.1;
+/** Safety net if playback stalls: fade this long after the expected point. */
+const STALL_GRACE_MS = 2500;
+const FADE_MS = 800;
 
 /**
- * Full-screen intro animation. Dismisses when the video ends or on click,
- * then fades over 520ms and unmounts. Safety timers are tied to playback
+ * Full-screen intro animation. Fades out (800ms) as soon as the wordmark has
+ * finished writing, or on click / video end, then unmounts. Safety timers are tied to playback
  * (not page load), so a slow-loading video is never cut off mid-animation.
  * Portrait screens fill the frame; landscape screens show the whole frame
  * (on black) so the logo stays centred and visible.
@@ -40,10 +46,19 @@ export function IntroLoader({ src }: { src: string }) {
     root.style.overflow = "hidden";
     const v = videoRef.current;
     let timer = window.setTimeout(close, START_TIMEOUT_MS);
+    let raf = 0;
+    // Watch the playhead every frame and fade as soon as the wordmark is written.
+    const watch = () => {
+      if (done.current || !v) return;
+      if (v.currentTime >= FADE_AT_S) return close();
+      raf = requestAnimationFrame(watch);
+    };
     const onPlaying = () => {
       window.clearTimeout(timer);
-      const remaining = v && Number.isFinite(v.duration) ? (v.duration - v.currentTime) * 1000 : 10000;
-      timer = window.setTimeout(close, remaining + END_GRACE_MS);
+      const remaining = v ? Math.max(0, FADE_AT_S - v.currentTime) * 1000 : 0;
+      timer = window.setTimeout(close, remaining + STALL_GRACE_MS);
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(watch);
     };
     if (v) {
       v.muted = true;
@@ -58,6 +73,7 @@ export function IntroLoader({ src }: { src: string }) {
 
     return () => {
       window.clearTimeout(timer);
+      cancelAnimationFrame(raf);
       v?.removeEventListener("ended", close);
       v?.removeEventListener("playing", onPlaying);
       root.style.overflow = "";
@@ -73,7 +89,7 @@ export function IntroLoader({ src }: { src: string }) {
       style={{
         opacity: phase === "fading" ? 0 : 1,
         pointerEvents: phase === "fading" ? "none" : undefined,
-        transition: `opacity ${FADE_MS}ms cubic-bezier(0.22,1,0.36,1)`,
+        transition: `opacity ${FADE_MS}ms cubic-bezier(0.4,0,0.2,1)`,
       }}
       onClick={() => closeRef.current()}
     >
