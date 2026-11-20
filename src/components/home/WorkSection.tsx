@@ -107,6 +107,7 @@ function AlchemyRail() {
             title={`Alchemy IVF reel ${(i % alchemyRail.videos.length) + 1}`}
             aspect="9/16"
             soundToggle={false}
+            play="hover"
             className="flex-none rounded-card w-[clamp(180px,16vw,268px)]"
           />
         ))}

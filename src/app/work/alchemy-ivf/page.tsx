@@ -65,6 +65,7 @@ export default function AlchemyCaseStudy() {
                 title={`ivf.for.all reel ${(i % alchemy.reels.length) + 1}`}
                 aspect="9/16"
                 soundToggle={false}
+            play="hover"
                 className="w-[clamp(150px,16vw,268px)] flex-none rounded-card"
               />
             ))}

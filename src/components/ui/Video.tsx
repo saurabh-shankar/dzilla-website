@@ -10,6 +10,41 @@ export const posterSrc = (name: string) => `/videos/posters/${name}.jpg`;
 /** Only one video plays with sound at a time. */
 const SOUND_EVENT = "dz:video-sound";
 
+/*
+ * Playback budget. Decoding many videos at once makes scrolling stutter,
+ * especially on phones, so only the most visible few autoplay; the rest
+ * hold their poster frame until they are among the most visible.
+ */
+type Entry = { v: HTMLVideoElement; ratio: number; manual: () => boolean };
+const entries = new Set<Entry>();
+let scheduled = false;
+const maxPlaying = () => (window.matchMedia("(pointer: coarse)").matches ? 2 : 3);
+
+function applyBudget() {
+  scheduled = false;
+  const ranked = [...entries]
+    .filter((e) => e.ratio >= 0.25 && !e.manual())
+    .sort((a, b) => b.ratio - a.ratio)
+    .slice(0, maxPlaying());
+  const allowed = new Set(ranked);
+  for (const e of entries) {
+    if (e.manual()) {
+      if (e.ratio === 0 && !e.v.paused) e.v.pause(); // sound-on video scrolled away
+      continue;
+    }
+    if (allowed.has(e)) {
+      if (e.v.paused) e.v.play().catch(() => {});
+    } else if (!e.v.paused) {
+      e.v.pause();
+    }
+  }
+}
+function scheduleBudget() {
+  if (scheduled) return;
+  scheduled = true;
+  requestAnimationFrame(applyBudget);
+}
+
 type Props = {
   /** File name in public/videos, without extension. */
   video: string;
@@ -20,6 +55,11 @@ type Props = {
   lazy?: boolean;
   /** Show the sound button (off for small cards inside moving marquees). */
   soundToggle?: boolean;
+  /**
+   * "visible" (default): autoplay muted while on screen, within the budget.
+   * "hover": poster only; plays while hovered on desktop (marquee cards).
+   */
+  play?: "visible" | "hover";
   className?: string;
   style?: CSSProperties;
 };
@@ -30,7 +70,7 @@ type Props = {
  * native controls. Under prefers-reduced-motion nothing autoplays: the poster
  * shows with native controls instead.
  */
-export function Video({ video, title, aspect, lazy = true, soundToggle = true, className = "", style }: Props) {
+export function Video({ video, title, aspect, lazy = true, soundToggle = true, play = "visible", className = "", style }: Props) {
   const ref = useRef<HTMLVideoElement>(null);
   const id = useId();
   const [soundOn, setSoundOn] = useState(false);
@@ -47,6 +87,23 @@ export function Video({ video, title, aspect, lazy = true, soundToggle = true, c
       return;
     }
 
+    // Hover-only cards (marquees): poster until hovered; never on touch screens.
+    if (play === "hover") {
+      const box = v.parentElement!;
+      const onEnter = () => {
+        if (v.preload === "none") v.preload = "metadata";
+        v.play().catch(() => {});
+      };
+      const onLeave = () => v.pause();
+      box.addEventListener("pointerenter", onEnter);
+      box.addEventListener("pointerleave", onLeave);
+      return () => {
+        box.removeEventListener("pointerenter", onEnter);
+        box.removeEventListener("pointerleave", onLeave);
+        v.pause();
+      };
+    }
+
     // Start fetching a little before the video scrolls into view.
     const near = new IntersectionObserver(
       ([e]) => {
@@ -54,16 +111,15 @@ export function Video({ video, title, aspect, lazy = true, soundToggle = true, c
       },
       { rootMargin: "400px 0px" },
     );
-    // Play while at least a quarter is visible; pause otherwise.
+    // Track how much is visible; the shared budget decides what plays.
+    const entry: Entry = { v, ratio: 0, manual: () => soundOnRef.current };
+    entries.add(entry);
     const visible = new IntersectionObserver(
       ([e]) => {
-        if (e.isIntersecting) {
-          if (!soundOnRef.current) v.play().catch(() => {});
-        } else {
-          v.pause();
-        }
+        entry.ratio = e.isIntersecting ? e.intersectionRatio : 0;
+        scheduleBudget();
       },
-      { threshold: 0.25 },
+      { threshold: [0, 0.25, 0.5, 0.75, 1] },
     );
     near.observe(v);
     visible.observe(v);
@@ -74,15 +130,18 @@ export function Video({ video, title, aspect, lazy = true, soundToggle = true, c
         setSoundOn(false);
         v.muted = true;
         v.controls = false;
+        scheduleBudget();
       }
     };
     window.addEventListener(SOUND_EVENT, onOtherSound);
     return () => {
       near.disconnect();
       visible.disconnect();
+      entries.delete(entry);
       window.removeEventListener(SOUND_EVENT, onOtherSound);
+      scheduleBudget();
     };
-  }, [id]);
+  }, [id, play]);
 
   const toggleSound = () => {
     const v = ref.current;
@@ -97,6 +156,7 @@ export function Video({ video, title, aspect, lazy = true, soundToggle = true, c
       v.play().catch(() => {});
       track("video_sound_on", { video });
     }
+    scheduleBudget();
   };
 
   return (

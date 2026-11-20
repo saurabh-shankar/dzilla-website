@@ -247,7 +247,7 @@ export function Header({ variant }: { variant: HeaderVariant }) {
   return (
     <header className="fixed inset-x-0 top-0 z-60">
       <div
-        className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2.5 px-[max(clamp(14px,3.4vw,40px),calc((100%-1680px)/2))] shadow-header backdrop-blur-[22px] backdrop-saturate-[180%]"
+        className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2.5 px-[max(clamp(14px,3.4vw,40px),calc((100%-1680px)/2))] shadow-header backdrop-blur-[22px] backdrop-saturate-[180%] max-[639px]:backdrop-blur-[12px]"
         style={{
           background: "linear-gradient(180deg, rgba(255,255,255,0.68), rgba(247,248,248,0.42))",
           paddingTop: 14,

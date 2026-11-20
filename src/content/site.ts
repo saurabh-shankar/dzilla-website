@@ -21,7 +21,7 @@ export const site = {
   heroVideo: "",
   introVideo: "/intro.mp4",
   contact: {
-    email: "growatd.zilla@gmail.com",
+    email: "info@zillabiz.com",
     phonePrimary: "+91 77669 38518",
     phoneSecondary: "+91 90651 00482",
     studio: "Gurgaon, Haryana",
