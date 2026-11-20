@@ -48,6 +48,8 @@ function scheduleBudget() {
 type Props = {
   /** File name in public/videos, without extension. */
   video: string;
+  /** Optional lighter file for phones (≤639px wide); the browser picks one. */
+  mobileVideo?: string;
   title: string;
   /** CSS aspect-ratio of the box, e.g. "16/9" or "9/16". */
   aspect: string;
@@ -70,7 +72,7 @@ type Props = {
  * native controls. Under prefers-reduced-motion nothing autoplays: the poster
  * shows with native controls instead.
  */
-export function Video({ video, title, aspect, lazy = true, soundToggle = true, play = "visible", className = "", style }: Props) {
+export function Video({ video, mobileVideo, title, aspect, lazy = true, soundToggle = true, play = "visible", className = "", style }: Props) {
   const ref = useRef<HTMLVideoElement>(null);
   const id = useId();
   const [soundOn, setSoundOn] = useState(false);
@@ -163,7 +165,7 @@ export function Video({ video, title, aspect, lazy = true, soundToggle = true, p
     <div className={`dz-embed ${className}`} style={{ aspectRatio: aspect, ...style }}>
       <video
         ref={ref}
-        src={videoSrc(video)}
+        src={mobileVideo ? undefined : videoSrc(video)}
         poster={posterSrc(video)}
         title={title}
         aria-label={title}
@@ -172,7 +174,14 @@ export function Video({ video, title, aspect, lazy = true, soundToggle = true, p
         playsInline
         preload={lazy ? "none" : "metadata"}
         disablePictureInPicture
-      />
+      >
+        {mobileVideo ? (
+          <>
+            <source src={videoSrc(mobileVideo)} type="video/mp4" media="(max-width: 639px)" />
+            <source src={videoSrc(video)} type="video/mp4" />
+          </>
+        ) : null}
+      </video>
       {soundToggle ? (
         <button
           type="button"

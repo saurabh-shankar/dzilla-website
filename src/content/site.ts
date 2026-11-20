@@ -14,11 +14,10 @@ export const site = {
     dark: { src: "/logo-dark.png", width: 867, height: 286 },
     light: { src: "/logo-light.png", width: 867, height: 286 },
   },
-  /**
-   * OPEN ITEM — the client has not supplied the hero video yet.
-   * Set to a video URL (e.g. "/hero.mp4") to replace the grey placeholder.
-   */
-  heroVideo: "",
+  /** Hero showreel — file names in public/videos (no extension). */
+  heroVideo: "hero-showreel",
+  /** Lighter version served to phones (≤639px wide). */
+  heroVideoMobile: "hero-showreel-mobile",
   introVideo: "/intro.mp4",
   contact: {
     email: "info@zillabiz.com",

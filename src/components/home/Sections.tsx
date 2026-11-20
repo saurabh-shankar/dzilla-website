@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Video } from "@/components/ui/Video";
 import {
   clients,
   contactBlock,
@@ -22,16 +23,16 @@ export function Hero() {
       data-track-section="hero"
       className="gutter-x flex min-h-svh flex-wrap items-stretch gap-[clamp(18px,2.4vw,36px)] bg-paper pb-[clamp(26px,3.2vw,44px)] pt-[clamp(84px,10vh,120px)] text-ink"
     >
-      {/* OPEN ITEM — hero video not supplied yet; set site.heroVideo to fill this slot. */}
+      {/* Hero showreel fills the designed media slot (grey placeholder if unset). */}
       <div className="relative min-h-[clamp(260px,44svh,680px)] min-w-[min(100%,280px)] flex-[1_1_300px] overflow-hidden rounded-media bg-placeholder">
         {site.heroVideo ? (
-          <video
-            src={site.heroVideo}
-            muted
-            loop
-            playsInline
-            autoPlay
-            className="absolute inset-0 h-full w-full object-cover"
+          <Video
+            video={site.heroVideo}
+            mobileVideo={site.heroVideoMobile}
+            title="D.zilla showreel"
+            aspect="auto"
+            lazy={false}
+            className="!absolute inset-0"
           />
         ) : null}
       </div>
