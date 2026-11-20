@@ -32,6 +32,7 @@ export function Hero() {
             title="D.zilla showreel"
             aspect="auto"
             lazy={false}
+            afterIntro
             className="!absolute inset-0"
           />
         ) : null}

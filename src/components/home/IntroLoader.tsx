@@ -13,6 +13,8 @@ const FADE_AT_S = 5.1;
 /** Safety net if playback stalls: fade this long after the expected point. */
 const STALL_GRACE_MS = 2500;
 const FADE_MS = 800;
+/** Fired on window when the intro starts fading (videos waiting on it can start). */
+export const INTRO_DONE_EVENT = "dz:intro-done";
 
 /**
  * Full-screen intro animation. Fades out (800ms) as soon as the wordmark has
@@ -36,6 +38,8 @@ export function IntroLoader({ src }: { src: string }) {
       if (done.current) return;
       done.current = true;
       root.style.overflow = "";
+      (window as Window & { __dzIntroDone?: boolean }).__dzIntroDone = true;
+      window.dispatchEvent(new Event(INTRO_DONE_EVENT));
       setPhase("fading");
       window.setTimeout(() => setPhase("gone"), FADE_MS + 40);
     };

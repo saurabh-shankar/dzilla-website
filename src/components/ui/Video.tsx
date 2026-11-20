@@ -62,6 +62,8 @@ type Props = {
    * "hover": poster only; plays while hovered on desktop (marquee cards).
    */
   play?: "visible" | "hover";
+  /** Hold on the first frame while the landing intro plays, then start from 0:00. */
+  afterIntro?: boolean;
   className?: string;
   style?: CSSProperties;
 };
@@ -72,7 +74,7 @@ type Props = {
  * native controls. Under prefers-reduced-motion nothing autoplays: the poster
  * shows with native controls instead.
  */
-export function Video({ video, mobileVideo, title, aspect, lazy = true, soundToggle = true, play = "visible", className = "", style }: Props) {
+export function Video({ video, mobileVideo, title, aspect, lazy = true, soundToggle = true, play = "visible", afterIntro = false, className = "", style }: Props) {
   const ref = useRef<HTMLVideoElement>(null);
   const id = useId();
   const [soundOn, setSoundOn] = useState(false);
@@ -114,7 +116,20 @@ export function Video({ video, mobileVideo, title, aspect, lazy = true, soundTog
       { rootMargin: "400px 0px" },
     );
     // Track how much is visible; the shared budget decides what plays.
-    const entry: Entry = { v, ratio: 0, manual: () => soundOnRef.current };
+    // Wait for the intro overlay (if one is showing) before joining the budget.
+    let waiting =
+      afterIntro &&
+      !!document.querySelector(".dz-intro") &&
+      !(window as Window & { __dzIntroDone?: boolean }).__dzIntroDone;
+    const onIntroDone = () => {
+      if (!waiting) return;
+      waiting = false;
+      v.currentTime = 0;
+      scheduleBudget();
+    };
+    if (waiting) window.addEventListener("dz:intro-done", onIntroDone);
+
+    const entry: Entry = { v, ratio: 0, manual: () => soundOnRef.current || waiting };
     entries.add(entry);
     const visible = new IntersectionObserver(
       ([e]) => {
@@ -140,10 +155,11 @@ export function Video({ video, mobileVideo, title, aspect, lazy = true, soundTog
       near.disconnect();
       visible.disconnect();
       entries.delete(entry);
+      window.removeEventListener("dz:intro-done", onIntroDone);
       window.removeEventListener(SOUND_EVENT, onOtherSound);
       scheduleBudget();
     };
-  }, [id, play]);
+  }, [id, play, afterIntro]);
 
   const toggleSound = () => {
     const v = ref.current;
